@@ -1,0 +1,6 @@
+1. validar que no recargue pagina 
+sino que se quede hay al salir el error
+
+2. actualizar campos en la base de datos de usuario que coincidan con el formulario de registro
+
+3. al recargar se borre el error mensajeERROR
