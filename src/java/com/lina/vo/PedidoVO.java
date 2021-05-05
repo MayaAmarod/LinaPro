@@ -11,6 +11,7 @@ package com.lina.vo;
  */
 public class PedidoVO {
 
+    //Mensaje Jose Nidia github
     
     private String id_Pedido, id_Usuario, fecha_Pedido,
             fecha_Entrega, forma_Envio;
