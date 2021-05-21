@@ -35,6 +35,12 @@ background: #ffffff;
 	margin: auto; 
 }
 
+.navbar-brand img{
+  	width: 50px;
+	display: block;
+	margin: auto;   
+}
+
 .ContenedorFormulario label{
 	max-width: 70px;
 	display: inline-block;

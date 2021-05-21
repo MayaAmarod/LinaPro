@@ -71,7 +71,7 @@
                 <%
 
                     productoVO proVO = new productoVO(); //se deja vacio porque no va a enviar sino recibir, no pasa x controlador
-                   ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
+                    ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
                     //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
                     ArrayList<productoVO> listaProductos = proDAO.listar(); //se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
 
