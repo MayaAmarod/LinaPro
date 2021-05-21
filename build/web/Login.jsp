@@ -83,7 +83,7 @@
                             </a>
                         </span>
                         <span class="registrarse">
-                            <a href="Registro.jsp">
+                            <a href="RegistroUsuario.jsp">
                                 Registrarse
                             </a>
                         </span>

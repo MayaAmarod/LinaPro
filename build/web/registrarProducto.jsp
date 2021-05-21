@@ -176,7 +176,7 @@
                                     </table>
                                 </div> <!-- /.table-stats -->
                             </div>
-<button> Ver Detalle de Productos</button>
+                            <a href="LinaHome.jsp"><button> Ver Detalle de Productos</button></a>
                         </div>
 
 
@@ -275,10 +275,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div><!-- .animated -->
             </div><!-- .content -->
