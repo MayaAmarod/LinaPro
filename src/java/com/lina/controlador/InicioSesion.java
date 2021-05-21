@@ -24,7 +24,7 @@ import sun.awt.RequestFocusController;
 @WebServlet(urlPatterns = {"/InicioSesion"})
 public class InicioSesion extends HttpServlet {
 
-    //Prueba commit 1
+    //Prueba commit 2
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

@@ -1,10 +1,16 @@
+<%-- 
+    Document   : confirmarClave
+    Created on : 21/05/2021, 01:46:34 AM
+    Author     : spier
+--%>
+
 <!-- definir que versión de HTML5 se usa para que el navegador interprete-->
 <html lang="es-419">
     <!-- definir idioma -->
     <head>
         <!-- informacion que lee el navegador y no muestra -->
         <title>
-            Restablecer Contraseña
+            Confirmar Contraseña
         </title>
         <!-- definit titulo -->
         <!-- metaetiquetas -->
@@ -59,50 +65,39 @@
                     <!-- contenedor formulario -->
                     <!-- insertar logo -->
                     <h1 class="titulo">
-                        Restablecer Contraseña
+                        Confirmar Contraseña
                     </h1>
                     <!-- dividir elementos en categorias, se asigna una clase para el elemento ejemplo h1 -->
-                    <form action="EnvioCorreo" method="post">
+                    <form action="Registrar" method="post">
                         
-                        <label for="correo">
-                            Correo Electronico:
+                        <label for="password">
+                            Nueva Contraseña:
                         </label>
-                        <input id="correo" name="textCorreo" 
-                               placeholder="cuenta@example.com" required
-                               type="email" onkeyup='checkmail();'
-                               pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
-                               title="Carácter permitidos(_.)"><br>
+                        <input id="password" name="textClaveC" 
+                               placeholder="Nueva Contraseña" required
+                               type="password" onkeyup='check();'
+                               pattern="[a-zA-Z0-9_*.%]{12,30}"
+                               title="La contraseña debe tener minimo 12 digitos,
+                               letras, números y carácteres especiales(_*.%)"><br>
 
-                        <label for="ccorreo">
-                            Confirmar Correo:
+                        <label for="password2">
+                            Confirmar Contraseña:
                         </label>
-                        <input id="ccorreo" name="textCcorreo" 
-                               placeholder="Confirme su correo" required
-                               type="email" onkeyup='checkmail();'
+                        <input id="password2" name="textclaveC2" 
+                               placeholder="Confirmar Contraseña" required
+                               type="password" onkeyup='check();'
                                autocomplete="none"
-                               pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
-                               title="Solo se permiten los siguientes cáracteres (_.)"><br>
+                               pattern="[a-zA-Z0-9_*.%]{12,30}"
+                               title="La contraseña debe tener minimo 12 digitos,
+                               letras, números y carácteres especiales(_*.%)"><br>
+                        
                         <div class="alert"> <span id="alertamail"></span></div>
-                        <div class="cdocument"> 
-                            <label for="textDocumento">
-                                Documento:
-                            </label>
-                            <select id="textTipoDocumento" 
-                                    name="textTipoDocumento">
-                                <option value="1">
-                                    CC
-                                </option>
-                                <option value="2">
-                                    CE
-                                </option>
-                            </select>
-                            <input id="textDocumento" name="textDocumento" 
-                                   placeholder="Ingrese su documento" 
-                                   required type="text"
-                                   pattern="[0-9]{6,30}"
-                                   ti    tle="Ingrese solo números"><br>
-                        </div>
+                        
+
+                        
+                        <div class="alert"> <span id="alerta"></span></div>
                         <div class="MensajeE">
+
                             <%
                                 if (request.getAttribute("mensajeError") != null) {
                             %>
@@ -110,15 +105,15 @@
                             <%} else {%>
                             ${mensajeExito}
                             <%}%>
-                        </div>                        
-                        <div class="alert"> <span id="alerta"></span></div>
+
+                        </div>
+
                         <!--type submit-->
                         <input name="btnenviar" type="submit" value="Restablecer">
                         <br>
                         <br>
                     </form>
                     <span class="login">
-                        ¿Ya tiene cuenta?
                         <a href="Login.jsp">
                             Ingresar
                         </a>
