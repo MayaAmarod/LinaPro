@@ -185,14 +185,14 @@ public class ProductoDAO extends Conexion implements Crud {
 
             conexion = this.obtenerConexion(); 
             //21 establecer conexión , arriba es diferente porque se conecta desde a super clase
-            sql = "select * from producto where nombre_producto=? "; //query
+            sql = "select * from producto where id_producto=? "; //query
             puente = conexion.prepareStatement(sql);
             puente.setString(1, nombre_producto);
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {  //22. next en el recorrido de la tabla, mientras que lo encuentre       
                 //23crear objeto y trae el constructor y getstring obtener lo que encontro en la columna especificada
-                proVo = new productoVO(nombre_producto, mensajero.getString(2),
+                proVo = new productoVO(id_producto, mensajero.getString(2),
                         mensajero.getString(3), mensajero.getString(4),
                         mensajero.getString(5), mensajero.getString(6),
                         mensajero.getString(7), mensajero.getString(8),

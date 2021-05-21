@@ -74,7 +74,7 @@ public class ProductoControlador extends HttpServlet {
              }
         //36. Redireccionar mensaje a la vista, cuando se estan mandando atributos
              
-          request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+      request.getRequestDispatcher("LinaHome.jsp").forward(request, response);
          //forward  manejar peticiones request o response en el jsp para que reciba los mensajes    
              break;
              
