@@ -51,6 +51,25 @@ public class UsuarioDAO extends Conexion {
         }
         return false;
     }
+    
+     public boolean verificarCorreo(String correo, String numeroDocumento) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            String consulta = "select * from usuario where correo= ? and documento= ?";
+            pst = obtenerConexion().prepareStatement(consulta);
+            pst.setString(1, correo);
+            pst.setString(2, numeroDocumento);
+
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception ex) {
+            System.err.println("ERROR " + ex);
+        }
+        return false;
+    }
 
     /**
      * valida si el correo recibido ya existe en la base de datos
