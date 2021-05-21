@@ -67,7 +67,7 @@ public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                <tr>\r\n");
       out.write("                    <th>\r\n");
       out.write("                        Ingrese Nombre Producto: <br>\r\n");
-      out.write("                        <input type=\"text\" name=\"textnombre_producto\" <br> <br>\r\n");
+      out.write("                        <input type=\"text\" name=\"textid_producto\" <br> <br>\r\n");
       out.write("                    </th>\r\n");
       out.write("                </tr>\r\n");
       out.write("            </table><br><br>\r\n");

@@ -126,6 +126,9 @@
                     </div>
                 </div>
             </div>
+           
+            
+            
 
             <div class="content">
                 <div class="animated fadeIn">
@@ -133,13 +136,19 @@
                         <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-header">
-                                    <strong class="card-title">Registrados</strong>
-                                </div>
+                                    <form action="Productos" method="post">
+                                    <strong class="card-title">Código Producto</strong>
+                                    <input type="text" name="textid_producto">
+                                                <button class="btn1">Actualizar</button>
+            <input type="hidden" value="3" name="opcion" > 
+             </form>
+                                </div> 
+                                
                                 <div class="table-stats order-table ov-h">
                                     <table class="table ">
                                         <thead>
                                             <tr>
-                                                <th>ID Producto</th>
+                                                <th>Código</th>
                                                 <th>Nombre Producto</th>
                                                 <th>Planta</th>
                                                 <th>Peso</th>

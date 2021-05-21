@@ -1,3 +1,7 @@
+<%@page import="com.lina.vo.CategoriaProductoVO"%>
+<%@page import="com.lina.modelo.CategoriaProductoDAO"%>
+<%@page import="com.lina.vo.TipoProductoVO"%>
+<%@page import="com.lina.modelo.TipoProductoDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.lina.modelo.ProductoDAO"%>
 <%@page import="com.lina.vo.productoVO"%>
@@ -9,7 +13,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Lina </title>
+        <title>Registrar Producto </title>
+        <meta name="description" content="Ela Admin - HTML5 Admin Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="colocarL">
@@ -53,6 +58,7 @@
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-table"></i><a href="registrarProducto.jsp">Registrar </a></li>
                                 <li><i class="fa fa-table"></i><a href="actualizarProducto.jsp">Actualizar Y Eliminar </a></li>
+
                             </ul>
                         </li>
                     </ul>
@@ -63,7 +69,6 @@
         <!-- Left Panel -->
 
         <!-- Right Panel -->
-
         <div id="right-panel" class="right-panel">
 
             <!-- Header-->
@@ -95,14 +100,13 @@
                 </div>
             </header><!-- /header -->
             <!-- Header-->
-
             <div class="breadcrumbs">
                 <div class="breadcrumbs-inner">
                     <div class="row m-0">
                         <div class="col-sm-4">
                             <div class="page-header float-left">
                                 <div class="page-title">
-                                    <h1>Productos Registrados</h1>
+                                    <h1>Registar Productos</h1>
                                 </div>
                             </div>
                         </div>
@@ -110,9 +114,9 @@
                             <div class="page-header float-right">
                                 <div class="page-title">
                                     <ol class="breadcrumb text-right">
-                                        <li><a href="#">Dashboard</a></li>
-                                        <li class="active"><a href="#">Productos</a></li>
-
+                                        <li><a href="#">Menu</a></li>
+                                        <li><a href="#">Productos</a></li>
+                                        <li class="active">Registrar Productos</li>
                                     </ol>
                                 </div>
                             </div>
@@ -124,114 +128,174 @@
             <div class="content">
                 <div class="animated fadeIn">
                     <div class="row">
-
-                        <div class="col-md-12">
+                        <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <strong class="card-title">Productos</strong>
+                                    <strong class="card-title">Actualizar</strong>
                                 </div>
                                 <div class="card-body">
-                                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>ID Producto</th>
-                                                <th>Tipo de Producto</th>
-                                                <th>Categoria</th>
-                                                <th>Nombre Producto</th>
-                                                <th>Peso</th>
-                                                <th>Imagen</th>
-                                                <th>Unidades Existentes</th>
-                                                <th>Precio</th>
-                                                <th>Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <%
+                                    <table class="table">
+                                        <div class="contenedor">
+                                            <!-- agrupar contenido en bloques -->
+                                            <!-- contenedor Informacion -->
+                                            <div class="ContenedorFormulario">
+                                                <!-- contenedor formulario -->
+                                                <!-- insertar logo -->
+                                                <!-- dividir elementos en categorias, se asigna una clase para el elemento ejemplo h1 -->      
+                                                <%
+                                                    productoVO proVO = (productoVO) request.getAttribute("Datos Consultados"); //crear objeto asignandole un valor de una vez
+                                                    //
+                                                    if (proVO != null) {
 
-                                                productoVO proVO = new productoVO(); //se deja vacio porque no va a enviar sino recibir, no pasa x controlador
-                                                ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
-                                                //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
-                                                ArrayList<productoVO> listaProductos = proDAO.listar(); //se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
+                                                %>  
+                                                <form method="post" action="Productos">
+                                                    <label for="textid_producto">
+                                                        Código Producto:
+                                                    </label>
+                                                    <input readonly type="text" name="textid_producto" value="<%=proVO.getId_producto()%>" >
+                                                    <label for="textid_tipo_producto">
+                                                        Tipo de Producto:
+                                                    </label>
 
-                                                for (int i = 0; i < listaProductos.size(); i++) {
-                                                    proVO = listaProductos.get(i);
+                                                    <input type="text" name="textid_tipo_producto" value="<%=proVO.getId_tipo_producto()%>" >
 
-                                            %>
-                                            <tr>
-                                                <td><%=proVO.getId_producto()%></td>
-                                                <td><%=proVO.getId_tipo_producto()%></td>
-                                                <td><%=proVO.getId_categoria()%></td>
-                                                <td><%=proVO.getNombre_producto()%></td>
-                                                <td><%=proVO.getPeso()%></td>
-                                                <td><%=proVO.getUrl_imagen()%></td>
-                                                <td><%=proVO.getUnidades_existentes()%></td>
-                                                <td><%=proVO.getPrecio()%></td>
-                                                <td><button class="btn1"> Actualizar </button>
-                                                    <input type="hidden" value="2" name="opcion" >
-                                                    <button class="btn2"> Eliminar </button>
-                                                    <input type="hidden" value="2" name="opcion" >
-                                                </td> 
-                                            </tr>
+                                                    <!-- <select name="textid_tipo_producto"><br> <br>
+                                                       <option>Seleccione...</option> 
+                                                    <%--<%
+                                                        TipoProductoDAO tipProDao = new TipoProductoDAO(); //ella tiene el metodo
+                                                        for (TipoProductoVO tipProVO : tipProDao.listar()) {
+                                                    %>
 
-                                            <%}%>
+                                                        <option value="<%=tipProVO.getId_tipo_producto()%>"><%=tipProVO.getNombre_tipo()%> </option>
 
-                                        </tbody>
-                                    </table>
+                                                        <%}%>--%> .
+                                                    </select>  -->
+
+                                                    <label for="textid_categoria">
+                                                        Categoria:
+                                                    </label> 
+
+                                                    <input type="text" name="textid_categoria" value="<%=proVO.getId_categoria()%>" >
+                                                    <!--  <select name="textid_categoria"><br> <br>
+                                                        <option>Seleccione...</option> 
+                                                    <%--  <%
+                                                        CategoriaProductoDAO catProDao = new CategoriaProductoDAO(); //ella tiene el metodo
+                                                        for (CategoriaProductoVO catVO : catProDao.listar()) {
+                                                    %>
+
+                                                        <option value="<%=catVO.getId_categoria()%>"><%=catVO.getNombre_categoria()%> </option>
+
+                                                        <%}%>--%> .
+                                                    </select> -->
+
+                                                    <label for="nomProducto">
+                                                        Nombre Producto:
+                                                    </label>
+                                                    <input type="text" name="textnombre_producto" value="<%=proVO.getNombre_producto()%>" >
+
+                                                    <label for="plaMaq">
+                                                        Planta Maquilado : 
+                                                    </label>
+                                                    <input type="text" name="textid_planta" value="<%=proVO.getId_planta()%>" >
+
+                                                    <label>
+                                                        Peso:  <br>
+                                                    </label>
+                                                    <input type="text" name="textpeso" value="<%=proVO.getPeso()%>" >
+
+                                                    <label>
+                                                        Imagen: <br>
+                                                    </label>
+                                                    <input type="text" name="texturl_imagen" value="<%=proVO.getUrl_imagen()%>" >   
+                                                    <label>
+                                                        Producto Col:  <br>
+                                                    </label>
+                                                    <input type="text" name="textproductocol" value="<%=proVO.getProductocol()%>" >  
+
+                                                    <label>
+                                                        Muestreo:  <br></label>
+                                                    <input type="text" name="textid_muestreo" value="<%=proVO.getId_muestreo()%>" >  
+
+                                                    <label>
+                                                        Stock:</label>
+                                                    <input type="text" name="textunidades_existentes" value="<%=proVO.getUnidades_existentes()%>" >   
+
+                                                    <label>
+                                                        Precio:  </label>
+                                                    <input type="text" name="textprecio" value="<%=proVO.getPrecio()%>" >
+                                                    <button> Actualizar
+
+                                                    </button>
+                                                    <input type="hidden" value="2" name="opcion" > <%-- 39 value es el numero de caso, contenido oculto, opcion valor a recoger --%>   
+                                                </form>
+                                                <div class="MensajeE">
+
+                                                    <%
+                                                        if (request.getAttribute("mensajeError") != null) {
+                                                    %>
+                                                    ${mensajeError}
+                                                    <%} else {%>
+                                                    ${mensajeExito}
+                                                    <%}%>
+
+                                                </div>
+                                                <%}
+                                                %>  
+                                                <a href="registrarProducto.jsp" >  <button class="btn1" >Volver</button></a>
+                                            </div>
+                                        </div>                                 
+                                    </table> 
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-                </div><!-- .animated -->
-            </div><!-- .content -->
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->   
 
 
-            <div class="clearfix"></div>
 
-            <footer class="site-footer">
-                <div class="footer-inner bg-white">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            Copyright &copy; 2021 LinAdmin
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            Diseñado por <a href="#">LinAdmin</a>
-                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="clearfix"></div>
+        <footer class="site-footer">
+            <div class="footer-inner bg-white">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Copyright &copy; 2021 LinAdmin
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        Diseñado por <a href="#">LinAdmin</a>
                     </div>
                 </div>
-            </footer>
+            </div>
+        </footer>
 
-        </div><!-- /#right-panel -->
+    </div><!-- /#right-panel -->
 
-        <!-- Right Panel -->
+    <!-- Right Panel -->
 
-        <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-        <script src="assets/js/main.js"></script>
-
-
-        <script src="assets/js/lib/data-table/datatables.min.js"></script>
-        <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-        <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-        <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-        <script src="assets/js/lib/data-table/jszip.min.js"></script>
-        <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-        <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-        <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-        <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-        <script src="assets/js/init/datatables-init.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#bootstrap-data-table-export').DataTable();
-            });
-        </script>
-
-
-    </body>
+</body>
 </html>
