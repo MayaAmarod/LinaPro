@@ -15,7 +15,7 @@ public class PedidoVO {
 
     //Mensaje Jose Nidia github
     private int id_Pedido, id_Usuario;
-    private String forma_Envio;
+    private String forma_Envio,nombreUsuario;
     private Date fecha_Pedido, fecha_Entrega;
 
     public PedidoVO() {
@@ -67,6 +67,14 @@ public class PedidoVO {
 
     public void setFecha_Entrega(Date fecha_Entrega) {
         this.fecha_Entrega = fecha_Entrega;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
 }

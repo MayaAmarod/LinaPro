@@ -40,13 +40,28 @@ public class PedidoControlador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
-
-        int id_Usuario = Integer.parseInt(request.getParameter("textid_usuario"));
-        Date fecha_Pedido=Date.valueOf(request.getParameter("textfecha_pedido"));
-        Date fecha_Entrega=Date.valueOf(request.getParameter("textfecha_entrega"));
+        int id_Usuario=-1 ;
+        int idPedido=-1 ;
+        Date fecha_Pedido=null;
+        Date fecha_Entrega=null;
+        if(request.getParameter("textid_usuario")!=null){
+            id_Usuario  = Integer.parseInt(request.getParameter("textid_usuario"));
+        }
+        if(request.getParameter("textid_pedido")!=null){
+            idPedido  = Integer.parseInt(request.getParameter("textid_pedido"));
+        }
+        if(request.getParameter("id_pedido")!=null){
+            idPedido  = Integer.parseInt(request.getParameter("id_pedido"));
+        }
+        if(request.getParameter("textfecha_pedido")!=null){
+            fecha_Pedido=Date.valueOf(request.getParameter("textfecha_pedido"));
+        }
+        if(request.getParameter("textfecha_entrega")!=null){
+               fecha_Entrega=Date.valueOf(request.getParameter("textfecha_entrega"));
+        } 
         String forma_Envio = request.getParameter("textforma_envio");
 
-        PedidoVO pedVO = new PedidoVO(0, id_Usuario, fecha_Pedido, fecha_Entrega, forma_Envio);
+        PedidoVO pedVO = new PedidoVO(idPedido, id_Usuario, fecha_Pedido, fecha_Entrega, forma_Envio);
 
         PedidoDAO pedDAO = new PedidoDAO();
         switch (opcion) {
@@ -71,7 +86,19 @@ public class PedidoControlador extends HttpServlet {
                 request.getRequestDispatcher("actualizarPedido.jsp").forward(request, response);
 
                 break;
+             case 3: //metodo propio
 
+            pedVO = pedDAO.obtenerPedidoPorId(idPedido); //se llena el objeto con la consulta que se hace en dao
+
+             if (pedVO != null) { //si retorna no nulo significa que si lleno 
+                 request.setAttribute("Datos Consultados", pedVO); //el objeto se llama datos consultados, se envia VO lleno
+                 request.getRequestDispatcher("actualizarPedido.jsp").forward(request, response); //aqui va a llenar
+                 //si va a actualizar luego de la consulta o solo ver
+             }else{
+                  request.setAttribute("mensajeError", "El pedido NO existe");
+                  request.getRequestDispatcher("consultarPedido.jsp").forward(request, response); 
+             }
+             break;
         }
 
     }

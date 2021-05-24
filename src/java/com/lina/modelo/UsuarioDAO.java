@@ -8,6 +8,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase donde se van a realizar todas las transacciones de base de datos de la
@@ -30,7 +32,7 @@ public class UsuarioDAO extends Conexion {
      * @param usuarios
      * @return
      */
-    public UsuariosVO autenticacion(String correo, String clave) {
+   					 public UsuariosVO autenticacion(String correo, String clave) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -59,6 +61,7 @@ public class UsuarioDAO extends Conexion {
         }
         return null;
     }
+	
     
      public boolean verificarCorreo(String correo, String numeroDocumento) {
         PreparedStatement pst = null;
@@ -102,6 +105,25 @@ public class UsuarioDAO extends Conexion {
         return false;
     }
 
+     public List<UsuariosVO> listarUsuarios() {
+        List<UsuariosVO> usuarios=new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            String consulta = "select * from usuario";
+            pst = obtenerConexion().prepareStatement(consulta);
+            rs = pst.executeQuery();
+           while (rs.next()) {
+                UsuariosVO usuario=new UsuariosVO();
+                usuario.setIdUsusario(rs.getInt("id_usuario"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuarios.add(usuario);
+            }
+        } catch (Exception ex) {
+            System.err.println("ERROR " + ex);
+        }
+        return usuarios;
+    }
     /**
      * registra un nuevo usuario en la base de datos
      *

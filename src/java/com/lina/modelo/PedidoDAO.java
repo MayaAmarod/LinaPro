@@ -114,23 +114,81 @@ public class PedidoDAO extends Conexion  {
     public ArrayList<PedidoVO> listar() {
         PedidoVO pedVo = null;
         ArrayList<PedidoVO> listaPedidos = new ArrayList<>();
-
         try {
             conexion = this.obtenerConexion();
-
             sql = "select * from pedido"; //query
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
-
             while (mensajero.next()) {
                 pedVo = new PedidoVO(mensajero.getInt(1), mensajero.getInt(2),
                         mensajero.getDate(3), mensajero.getDate(4),
                         mensajero.getString(5));
-
                 listaPedidos.add(pedVo);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+
+                Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, e);
 
             }
+        }
+        return listaPedidos;
+    }
+    
+     public PedidoVO obtenerPedidoPorId(int idPedido) {
+        PedidoVO pedVo = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from pedido where id_pedido=?"; //query
+           
+            puente = conexion.prepareStatement(sql);
+            puente.setInt(1, idPedido);
+            mensajero = puente.executeQuery();
+             
+            while (mensajero.next()) {
+                pedVo = new PedidoVO(mensajero.getInt(1), mensajero.getInt(2),
+                        mensajero.getDate(3), mensajero.getDate(4),
+                        mensajero.getString(5));
+                pedVo.setNombreUsuario(mensajero.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, e);
 
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+
+                Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
+        }
+        return pedVo;
+    }
+    
+    
+     public ArrayList<PedidoVO> listarPedidosConNombreUsuario() {
+        PedidoVO pedVo = null;
+        ArrayList<PedidoVO> listaPedidos = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select p.id_pedido,p.id_usuario , p.fecha_pedido, p.fecha_entrega, p.forma_envio, u.nombre"+
+                    " from pedido p "+
+                    "inner join usuario u on p.id_usuario=u.id_usuario"; //query
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                pedVo = new PedidoVO(mensajero.getInt(1), mensajero.getInt(2),
+                        mensajero.getDate(3), mensajero.getDate(4),
+                        mensajero.getString(5));
+                pedVo.setNombreUsuario(mensajero.getString("nombre"));
+                listaPedidos.add(pedVo);
+            }
         } catch (SQLException e) {
             Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, e);
 

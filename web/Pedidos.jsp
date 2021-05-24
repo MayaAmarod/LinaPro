@@ -50,8 +50,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                     <li class="menu-item-has-children active dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-truck"></i><a href="LinaHome.jsp">Basic Table</a></li>
-                            <li><i class="fa fa-truck"></i><a href="Pedidos.jsp">Basic Table</a></li>
+                           <li><i class="fa fa-table"></i><a href="registrarProducto.jsp">Registrar </a></li>
                         </ul>
                     </li>
 
@@ -95,7 +94,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i>Logout</a>
+                            <a class="nav-link" href="Login.jsp"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
                 </div>

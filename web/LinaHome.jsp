@@ -53,7 +53,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                     <li class="menu-item-has-children active dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-truck"></i><a href="registrarPedido.jsp">Registrar</a></li>
+                            <li><i class="fa fa-truck"></i><a href="registarPedido.jsp">Registrar</a></li>
                             <li><i class="fa fa-truck"></i><a href="Pedidos.jsp">Actualizar</a></li>
                         </ul>
                     </li>
@@ -62,7 +62,6 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Productos</a>
                         <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-table"></i><a href="registrarProducto.jsp">Registrar </a></li>
-                                <li><i class="fa fa-table"></i><a href="actualizarProducto.jsp">Actualizar Y Eliminar </a></li>
                         </ul>
                     </li>
                 </ul>
