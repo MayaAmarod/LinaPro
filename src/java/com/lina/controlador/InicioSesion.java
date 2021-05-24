@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sun.awt.RequestFocusController;
 
 /**
@@ -69,16 +70,21 @@ public class InicioSesion extends HttpServlet {
 
                 //Recibir los datos del VO para validar el metodo autenticacion
                 //boolean loginCorrecto = usuarioDAO.autenticacion(usuarioVO); ->prueba
-                boolean loginCorrecto = usuarioDAO.autenticacion(Ucorreo, Uclave);
+                UsuariosVO user = usuarioDAO.autenticacion(Ucorreo, Uclave);
 
                 //Condicional de datos correctos para acceder a la pagina (Si todas las validaciones pasan)
-                if (loginCorrecto) {
+                if (user!=null) {
                     //Enviar mensaje a la vista (Datos correctos)  
                     
                     String mensajeU = request.getParameter("textcorreo");
                     request.getSession().setAttribute("Usuario", mensajeU);
                     request.setAttribute("mensajeExito", "");
                     request.setAttribute("MensajeU", "");
+                    
+                    //creamos la sesion
+                    HttpSession misession= request.getSession(true);
+                    misession.setAttribute("usuarioSesion", user);
+                    
                     //Redireccionar al dashboard
                     request.getRequestDispatcher("LinaHome.jsp").forward(request, response);
                 } else {

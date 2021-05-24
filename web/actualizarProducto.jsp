@@ -1,6 +1,15 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.lina.modelo.ProductoDAO"%>
 <%@page import="com.lina.vo.productoVO"%>
+<%@page import="com.lina.vo.UsuariosVO"%>
+<%  //validamos si existe sesion, de lo contrario redirigimos al login
+HttpSession misession= (HttpSession) request.getSession();
+if(misession==null || misession.getAttribute("usuarioSesion")==null ){ 
+    request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
+    request.getRequestDispatcher("Login.jsp").forward(request, response);
+}
+ UsuariosVO userSesion= (UsuariosVO) misession.getAttribute("usuarioSesion");
+%> 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->

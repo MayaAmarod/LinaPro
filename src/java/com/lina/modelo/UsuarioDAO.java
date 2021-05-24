@@ -30,7 +30,7 @@ public class UsuarioDAO extends Conexion {
      * @param usuarios
      * @return
      */
-    public boolean autenticacion(String correo, String clave) {
+    public UsuariosVO autenticacion(String correo, String clave) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -44,12 +44,20 @@ public class UsuarioDAO extends Conexion {
 
             rs = pst.executeQuery();
             if (rs.next()) {
-                return true;
+                UsuariosVO user=new UsuariosVO();
+                user.setNombre(rs.getString("nombre"));
+                user.setUcorreo(rs.getString("correo"));
+                user.setDirreccion(rs.getString("direccion"));
+                user.setTelefonoFijo(rs.getString("telefono_fijo"));
+                user.setTelefonoMovil(rs.getString("telefono_movil"));
+                user.setIdTipoDocumento(rs.getInt("id_tipo_documento"));
+                 user.setIdTipoUsuario(rs.getInt("id_tipo_usuario"));
+                 return user;
             }
         } catch (Exception ex) {
             System.err.println("ERROR " + ex);
         }
-        return false;
+        return null;
     }
     
      public boolean verificarCorreo(String correo, String numeroDocumento) {

@@ -1,3 +1,7 @@
+<%  //validamos si existe sesion, la invalidamos
+session.invalidate();
+request.getSession(false);
+%> 
 <!DOCTYPE HTML>
 <!-- definir que versión de HTML5 se usa para que el navegador interprete-->
 <html lang="es-ES">

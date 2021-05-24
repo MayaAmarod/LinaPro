@@ -5,7 +5,17 @@
 --%>
 
 <%@page import="com.lina.vo.PedidoVO"%>
+<%@page import="com.lina.vo.UsuariosVO"%>
+<%  //validamos si existe sesion, de lo contrario redirigimos al login
+HttpSession misession= (HttpSession) request.getSession();
+if(misession==null || misession.getAttribute("usuarioSesion")==null ){ 
+    request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
+    request.getRequestDispatcher("Login.jsp").forward(request, response);
+}
+ UsuariosVO userSesion= (UsuariosVO) misession.getAttribute("usuarioSesion");
+%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
