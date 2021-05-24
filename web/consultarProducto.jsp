@@ -34,7 +34,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                 <tr>
                     <th>
                         Ingrese Nombre Producto: <br>
-                        <input type="text" name="textnombre_producto" <br> <br>
+                        <input type="text" name="textid_producto" <br> <br>
                     </th>
                 </tr>
             </table><br><br>

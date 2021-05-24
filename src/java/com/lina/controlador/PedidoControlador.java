@@ -53,10 +53,11 @@ public class PedidoControlador extends HttpServlet {
             case 1:
                 if (pedDAO.agregarRegistro(pedVO)) {
                     request.setAttribute("mensajeExito", "El pedido se registro correctamente");
+                    request.getRequestDispatcher("detallePedidos.jsp").forward(request, response);
                 } else {
                     request.setAttribute("mensajeError", "El pedido NO se registro correctamente");
                 }
-                request.getRequestDispatcher("registrarPedido.jsp").forward(request, response);
+                request.getRequestDispatcher("detallePedidos.jsp").forward(request, response);
                 break;
             case 2:
 

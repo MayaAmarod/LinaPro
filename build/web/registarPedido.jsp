@@ -1,3 +1,5 @@
+<%@page import="com.lina.modelo.PedidoDAO"%>
+<%@page import="com.lina.vo.PedidoVO"%>
 <%@page import="com.lina.vo.CategoriaProductoVO"%>
 <%@page import="com.lina.modelo.CategoriaProductoDAO"%>
 <%@page import="com.lina.vo.TipoProductoVO"%>
@@ -5,15 +7,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.lina.modelo.ProductoDAO"%>
 <%@page import="com.lina.vo.productoVO"%>
-<%@page import="com.lina.vo.UsuariosVO"%>
-<%  //validamos si existe sesion, de lo contrario redirigimos al login
-HttpSession misession= (HttpSession) request.getSession();
-if(misession==null || misession.getAttribute("usuarioSesion")==null ){ 
-    request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
-    request.getRequestDispatcher("Login.jsp").forward(request, response);
-}
- UsuariosVO userSesion= (UsuariosVO) misession.getAttribute("usuarioSesion");
-%> 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -25,7 +18,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
         <title>Registrar Producto </title>
         <meta name="description" content="Ela Admin - HTML5 Admin Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<--cambio-->
+
         <link rel="shortcut icon" href="colocarL">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -57,7 +50,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-truck"></i><a href="LinaHome.jsp">Basic Table</a></li>
+                                <li><i class="fa fa-truck"></i><a href="registarPedido.jsp">Registar Pedido</a></li>
                                 <li><i class="fa fa-truck"></i><a href="Pedidos.jsp">Basic Table</a></li>
                             </ul>
                         </li>
@@ -117,7 +110,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <div class="col-sm-4">
                             <div class="page-header float-left">
                                 <div class="page-title">
-                                    <h1>Registar Productos</h1>
+                                    <h1>Registar Pedido</h1>
                                 </div>
                             </div>
                         </div>
@@ -126,8 +119,8 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                 <div class="page-title">
                                     <ol class="breadcrumb text-right">
                                         <li><a href="#">Menu</a></li>
-                                        <li><a href="#">Productos</a></li>
-                                        <li class="active">Registrar Productos</li>
+                                        <li><a href="#">Pedidos</a></li>
+                                        <li class="active">Registrar Pedidos</li>
                                     </ol>
                                 </div>
                             </div>
@@ -135,9 +128,9 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                     </div>
                 </div>
             </div>
-           
-            
-            
+
+
+
 
             <div class="content">
                 <div class="animated fadeIn">
@@ -145,24 +138,23 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-header">
-                                    <form action="Productos" method="post">
-                                    <strong class="card-title">Código Producto</strong>
-                                    <input type="text" name="textid_producto">
-                                                <button class="btn1">Actualizar</button>
-            <input type="hidden" value="3" name="opcion" > 
-             </form>
+                                    <form method="post" action="Pedido">
+                                        <strong class="card-title">Código Pedido</strong>
+                                        <input type="text" name="textid_pedido">
+                                        <button class="btn1">Actualizar</button>
+                                        <input type="hidden" value="3" name="opcion" > 
+                                    </form>
                                 </div> 
-                                
+
                                 <div class="table-stats order-table ov-h">
                                     <table class="table ">
                                         <thead>
                                             <tr>
-                                                <th>Código</th>
-                                                <th>Nombre Producto</th>
-                                                <th>Planta</th>
-                                                <th>Peso</th>
-                                                <th>Unidades Existentes</th>
-                                                <th>Precio</th>
+                                                <th>ID Pedido</th>
+                                                <th>ID Usuario</th>
+                                                <th>Fecha de Pedido</th>
+                                                <th>Fecha de Entrega</th>
+                                                <th>Forma de Envio</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -170,31 +162,30 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
 
                                             <%
 
-                                                productoVO proVO = new productoVO(); //se deja vacio porque no va a enviar sino recibir, no pasa x controlador
-                                                ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
-                                                //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
-                                                ArrayList<productoVO> listaProductos = proDAO.listar(); //se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
+                                                PedidoVO pedVO = new PedidoVO();
+                                                PedidoDAO pedDAO = new PedidoDAO();
 
-                                                for (int i = 0; i < listaProductos.size(); i++) {
-                                                    proVO = listaProductos.get(i);
+                                                ArrayList<PedidoVO> listaPedidos = pedDAO.listar();
 
-                                            %>            
+                                                for (int i = 0; i < listaPedidos.size(); i++) {
+                                                    pedVO = listaPedidos.get(i);
+
+                                            %>           
                                             <tr>
-                                                <td><%=proVO.getId_producto()%></td>
-                                                <td><%=proVO.getNombre_producto()%></td>
-                                                <td><%=proVO.getId_planta()%></td>
-                                                <td><%=proVO.getPeso()%></td>
-                                                <td><%=proVO.getUnidades_existentes()%></td>
-                                                <td><%=proVO.getPrecio()%></td>
+                                                <td><%=pedVO.getId_Pedido()%></td>
+                                                <td><%=pedVO.getId_Usuario()%></td>
+                                                <td><%=pedVO.getFecha_Pedido()%></td>
+                                                <td><%=pedVO.getFecha_Entrega()%></td>
+                                                <td><%=pedVO.getForma_Envio()%></td>
                                             </tr>
-                                            <%}%>                  
+                                            <%}%>               
 
 
                                         </tbody>
                                     </table>
                                 </div> <!-- /.table-stats -->
                             </div>
-                            <a href="LinaHome.jsp"><button> Ver Detalle de Productos</button></a>
+                            <a href="detallePedidos.jsp"><button> Ver Detalle de Pedidos</button></a>
                         </div>
 
 
@@ -212,78 +203,33 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                                 <!-- contenedor formulario -->
                                                 <!-- insertar logo -->
                                                 <!-- dividir elementos en categorias, se asigna una clase para el elemento ejemplo h1 -->
-                                                <form method="post" action="Productos"> 
+                                                <form method="post" action="Pedido">
 
-                                                    <label for="tipoProducto">
-                                                        Tipo de Producto:
+                                                    <label for="idusuario">
+                                                        id usuario:
                                                     </label>
-                                                    <select name="textid_tipo_producto"><br> <br>
-                                                        <option>Seleccione...</option> 
-                                                        <%
-                                                            TipoProductoDAO tipProDao = new TipoProductoDAO(); //ella tiene el metodo
-                                                            for (TipoProductoVO tipProVO : tipProDao.listar()) {
-                                                        %>
+                                                    <input type="text" name="textid_usuario">
 
-                                                        <option value="<%=tipProVO.getId_tipo_producto()%>"><%=tipProVO.getNombre_tipo()%> </option>
-
-                                                        <%}%>
-                                                    </select> 
-                                                    <!-- id amarrar input a label-->
-                                                    <!--type clave-->
-                                                    <label for="Categoria">
-                                                        Categoria:
+                                                    <label for="textfecha_pedido">
+                                                        Fecha pedido:
                                                     </label>
-                                                    <select name="textid_categoria"><br> <br>
-                                                        <option>Seleccione...</option> 
-                                                        <%
-                                                            CategoriaProductoDAO catProDao = new CategoriaProductoDAO(); //ella tiene el metodo
-                                                            for (CategoriaProductoVO catVO : catProDao.listar()) {
-                                                        %>
-
-                                                        <option value="<%=catVO.getId_categoria()%>"><%=catVO.getNombre_categoria()%> </option>
-
-                                                        <%}%>
-                                                    </select>
-                                                    <label for="nomProducto">
-                                                        Nombre Producto:
-                                                    </label>
-                                                    <input type="text" name="textnombre_producto"> 
-                                                    <label for="plaMaq">
-                                                        Planta Maquilado : 
-                                                    </label>
-                                                    <input type="text" name="textid_planta"> <br>
+                                                    <input type="date" id="textfecha_pedido" name="textfecha_pedido"> <br>
 
                                                     <label>
-                                                        Peso:  <br>
+                                                        Fecha entrega:  <br>
                                                     </label>
-                                                    <input type="text" name="textpeso"> 
+                                                    <input type="date" name="textfecha_entrega">
 
                                                     <label>
-                                                        Imagen: <br>
+                                                        Forma de envio: <br>
                                                     </label>
-                                                    <input type="text" name="texturl_imagen">   
+                                                    <input type="text" name="textforma_envio"> 
 
-                                                    <label>
-                                                        Producto Col:  <br>
-                                                    </label>
-                                                    <input type="text" name="textproductocol"> 
+                                                    <button> Registrar Pedido</button>
+                                                    <input type="hidden" value="1" name="opcion"> <%-- 39 value es el numero de caso, contenido oculto, opcion valor a recoger --%>
+                                                    
 
-                                                    <label>
-                                                        Muestreo:  <br></label>
-                                                    <input type="text" name="textid_muestreo"> 
-
-                                                    <label>
-                                                        Stock:</label>
-                                                    <input type="text" name="textunidades_existentes"> 
-
-                                                    <label>
-                                                        Precio:  </label>
-                                                    <input type="text" name="textprecio"> 
-
-                                                    <button> Registrar
-
-                                                    </button>
-                                                    <input type="hidden" value="1" name="opcion" > <%-- 39 value es el numero de caso, contenido oculto, opcion valor a recoger --%>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>

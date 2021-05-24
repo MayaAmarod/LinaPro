@@ -66,7 +66,7 @@ public class Registrarse extends HttpServlet {
             if(!validacionesSonCorrectas()){
                 //mensajeError="validaciones incorrectas";
                  request.setAttribute("mensajeError", "¡Validaciones incorrectas!");
-                 request.getRequestDispatcher("Registro.jsp").forward(request, response);
+                 request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
                  return;
             }
 
@@ -74,7 +74,7 @@ public class Registrarse extends HttpServlet {
             if (existeUsuario) {
                 //mensajeError="usuario con el mismo correo ya existe";
                 request.setAttribute("mensajeError", "¡Ya existe un usuario con el mismo correo!");
-                request.getRequestDispatcher("Registro.jsp").forward(request, response);
+                request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
                 return;
             }
 
@@ -84,12 +84,12 @@ public class Registrarse extends HttpServlet {
             boolean registroExitoso = usuarioDAO.registrarUsuario(Pusuario, Pcontraseña, Pcorreo, Pdocumento, tipoUsuarioEmpleado, Integer.parseInt(Ptipodocumento), Pdireccion, Pcelular);
             if (registroExitoso) {
                 request.setAttribute("mensajeExito", "¡Registro exitoso!");
-                request.getRequestDispatcher("Registro.jsp").forward(request, response);
+                request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
             } else {
                 //TODO colocar el error apropiado segun sea el caso
                  //mensajeError="Error al insertar usuario en base de datos";
                 request.setAttribute("mensajeError", "¡Error al insertar usuario en base de datos!");
-                request.getRequestDispatcher("Registro.jsp").forward(request, response);
+                request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
             }
             
             

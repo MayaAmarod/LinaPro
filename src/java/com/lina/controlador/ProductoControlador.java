@@ -82,22 +82,21 @@ public class ProductoControlador extends HttpServlet {
                 
              if (proDAO.actualizarRegistro()) { //si el metodo es verdadero se envia mensaje
                  request.setAttribute("mensajeExito", "El producto se actualizo correctamente");
+                 request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
                  //obtenga un atributo que se llama mensaje exito, (nombredelatributo, mensaje enviado)
              }else{
                  request.setAttribute("mensajeError", "El producto NO se actualizo correctamente");
+                 request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
              }
         //36. Redireccionar mensaje a la vista, cuando se estan mandando atributos
-             
-          request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
+     
          //forward  manejar peticiones request o response en el jsp para que reciba los mensajes    
              break;
-             
-             
              //metodos personalizados
              
          case 3: //metodo propio
 
-            proVO = proDAO.consultar_nombreProducto(nombre_producto); //se llena el objeto con la consulta que se hace en dao
+            proVO = proDAO.consultar_nombreProducto(id_producto); //se llena el objeto con la consulta que se hace en dao
 
              if (proVO != null) { //si retorna no nulo significa que si lleno 
                  request.setAttribute("Datos Consultados", proVO); //el objeto se llama datos consultados, se envia VO lleno
