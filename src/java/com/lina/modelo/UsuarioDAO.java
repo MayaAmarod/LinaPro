@@ -32,7 +32,7 @@ public class UsuarioDAO extends Conexion {
      * @param usuarios
      * @return
      */
-   					 public UsuariosVO autenticacion(String correo, String clave) {
+   	public UsuariosVO autenticacion(String correo, String clave) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {

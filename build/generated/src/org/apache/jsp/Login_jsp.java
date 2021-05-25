@@ -41,6 +41,11 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+  //validamos si existe sesion, la invalidamos
+session.invalidate();
+request.getSession(false);
+
+      out.write(" \r\n");
       out.write("<!DOCTYPE HTML>\r\n");
       out.write("<!-- definir que versión de HTML5 se usa para que el navegador interprete-->\r\n");
       out.write("<html lang=\"es-ES\">\r\n");

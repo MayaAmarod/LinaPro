@@ -6,6 +6,7 @@ import javax.servlet.jsp.*;
 import com.lina.vo.productoVO;
 import com.lina.modelo.ProductoDAO;
 import java.util.ArrayList;
+import com.lina.vo.UsuariosVO;
 
 public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,6 +45,8 @@ public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");

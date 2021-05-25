@@ -1,3 +1,12 @@
+<%@page import="com.lina.vo.UsuariosVO"%>
+<%  //validamos si existe sesion, de lo contrario redirigimos al login
+HttpSession misession= (HttpSession) request.getSession();
+if(misession==null || misession.getAttribute("usuarioSesion")==null ){ 
+    request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
+    request.getRequestDispatcher("Login.jsp").forward(request, response);
+}
+ UsuariosVO userSesion= (UsuariosVO) misession.getAttribute("usuarioSesion");
+%> 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -38,21 +47,19 @@
 
                     <li class="menu-title">Menu</li><!-- /.menu-title -->
 
-                    <li class="menu-item-has-children active dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-truck"></i><a href="LinaHome.jsp">Basic Table</a></li>
-                            <li><i class="fa fa-truck"></i><a href="Pedidos.jsp">Basic Table</a></li>
-                        </ul>
-                    </li>
+                        <li class="menu-item-has-children active dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="fa fa-truck"></i><a href="registarPedido.jsp">Gestionar Pedidos</a></li>
+                            </ul>
+                        </li>
 
-                    <li class="menu-item-has-children active dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Productos</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="LinaHome.jsp">Basic Table</a></li>
-                            <li><i class="fa fa-table"></i><a href="Pedidos.jsp">Basic Table</a></li>
-                        </ul>
-                    </li>
+                        <li class="menu-item-has-children active dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-envira"></i>Productos</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Gestionar Productos </a></li>
+                            </ul>
+                        </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -86,7 +93,7 @@
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i>Logout</a>
+                            <a class="nav-link" href="Login.jsp"><i class="fa fa-power-off"></i>Logout</a>
                         </div>
                     </div>
                 </div>

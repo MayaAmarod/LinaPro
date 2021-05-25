@@ -62,11 +62,9 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         </li>
 
                         <li class="menu-item-has-children active dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Productos</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-envira"></i>Productos</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-table"></i><a href="registrarProducto.jsp">Registrar </a></li>
-                                <li><i class="fa fa-table"></i><a href="actualizarProducto.jsp">Actualizar Y Eliminar </a></li>
-
+                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Gestionar Productos </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -134,9 +132,9 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                     </div>
                 </div>
             </div>
-           
-            
-            
+
+
+
 
             <div class="content">
                 <div class="animated fadeIn">
@@ -145,13 +143,15 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                             <div class="card">
                                 <div class="card-header">
                                     <form action="Productos" method="post">
-                                    <strong class="card-title">Código Producto</strong>
-                                    <input type="text" name="textid_producto">
-                                                <button class="btn1">Actualizar</button>
-            <input type="hidden" value="3" name="opcion" > 
-             </form>
+                                        <strong class="card-title">Código Producto</strong>
+                                        <input type="text" name="textid_producto">
+                                        <button class="btn1">Actualizar</button>
+                                        <input type="hidden" value="3" name="opcion" > 
+                                        <button class="btn2">Eliminar</button>
+                                        <input type="hidden" value="4" name="opcion" > 
+                                    </form>
                                 </div> 
-                                
+
                                 <div class="table-stats order-table ov-h">
                                     <table class="table ">
                                         <thead>
