@@ -1,3 +1,5 @@
+<%@page import="com.lina.vo.TipoDocumentoVO"%>
+<%@page import="com.lina.modelo.TipoDocumentoDAO"%>
 <!DOCTYPE HTML>
 <!-- definir que versión de HTML5 se usa para que el navegador interprete-->
 <html lang="es-419">
@@ -101,13 +103,16 @@
                             </label>
                             <select id="textTipoDocumento" 
                                     name="textTipoDocumento">
-                                <option value="1">
-                                    CC
-                                </option>
-                                <option value="2">
-                                    CE
-                                </option>
-                            </select>
+                            <option>...</option> 
+                            <%
+                                TipoDocumentoDAO tipoDocDao = new TipoDocumentoDAO(); //ella tiene el metodo
+                                for (TipoDocumentoVO tipoDocVO : tipoDocDao.listar()) {
+                            %>
+
+                            <option value="<%=tipoDocVO.getId_tipo_Documento()%>"><%=tipoDocVO.getNombre_Documento()%> </option>
+
+                            <%}%>
+                        </select>
                             <input id="textDocumento" name="textDocumento" 
                                    placeholder="Ingrese su documento" 
                                    required type="text"
