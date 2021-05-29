@@ -133,23 +133,26 @@ public class UsuarioDAO extends Conexion {
      * @param numeroDocumento
      * @param tipoUsuario
      * @param tipoDocumento
+     * @param direccion
+     * @param celular
+     * @param telefono
      * @return
      */
-    public boolean registrarUsuario(String nombre, String clave, String correo, String numeroDocumento, int tipoUsuario, int tipoDocumento, String direccion, String celular) {
+    public boolean registrarUsuario(String nombre, String clave, String correo, String numeroDocumento,
+            int tipoUsuario, int tipoDocumento, String direccion, String celular, String telefono) {
         PreparedStatement pst = null;
         try {
-
-            String consulta = "insert into usuario (nombre, documento, correo, direccion, clave,telefono_movil,id_tipo_usuario,id_tipo_documento) values(?,?,?,?,?,?,?,?);";
+            String consulta = "insert into usuario (nombre,documento,correo,direccion,clave,telefono_fijo,telefono_movil,id_tipo_usuario,id_tipo_documento) values(?,?,?,?,?,?,?,?,?);";
             pst = obtenerConexion().prepareStatement(consulta);
             pst.setString(1, nombre);
             pst.setString(2, numeroDocumento);
             pst.setString(3, correo.trim());
             pst.setString(4, direccion);
             pst.setString(5, clave);
-            pst.setString(6, celular);
-            pst.setInt(7, tipoUsuario);
-            pst.setInt(8, tipoDocumento);
-
+            pst.setString(6, telefono);
+            pst.setString(7, celular);
+            pst.setInt(8, tipoUsuario);
+            pst.setInt(9, tipoDocumento);
             pst.execute();
             return true;
 
