@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Registrarse extends HttpServlet {
 
     //int tipoUsuarioEmpleado = 2;//por defecto se crean los usuarios como tipo 2 (empleado)
+    int tipoEstado=1;
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     String mensajeError = "";
 
@@ -85,7 +86,9 @@ public class Registrarse extends HttpServlet {
 
             Pcontraseña = usuarioDAO.cifrarClave(Pcontraseña.trim());
 
-            boolean registroExitoso = usuarioDAO.registrarUsuario(Pusuario, Pcontraseña, Pcorreo, Pdocumento, Integer.parseInt(PtipoUsuario), Integer.parseInt(Ptipodocumento), Pdireccion, PtelefonoFijo, Pcelular);
+            boolean registroExitoso = usuarioDAO.registrarUsuario(Pusuario, Pcontraseña, Pcorreo, Pdocumento, 
+                    Integer.parseInt(PtipoUsuario), Integer.parseInt(Ptipodocumento), Pdireccion, PtelefonoFijo, Pcelular, tipoEstado);
+            
             if (registroExitoso) {
                 request.setAttribute("mensajeExito", "¡Registro exitoso!");
                 request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
