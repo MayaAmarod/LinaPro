@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/Registrar"})
 public class Registrarse extends HttpServlet {
 
-    int tipoUsuarioEmpleado = 2;//por defecto se crean los usuarios como tipo 2 (empleado)
+    //int tipoUsuarioEmpleado = 2;//por defecto se crean los usuarios como tipo 2 (empleado)
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     String mensajeError = "";
 
@@ -36,13 +36,12 @@ public class Registrarse extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    String Pusuario, Pcorreo, Ptipodocumento, Pdocumento, Pdireccion, Pcelular, Pcontraseña;
+    String Pusuario, Pcorreo, Ptipodocumento, Pdocumento, Pdireccion, Pcelular, Pcontraseña, PtelefonoFijo, PtipoUsuario;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        PersonasVO personaVO = new PersonasVO();
-        
+        PersonasVO personaVO = new PersonasVO();        
         
         try (PrintWriter out = response.getWriter()) {
             //Form registro
@@ -54,6 +53,10 @@ public class Registrarse extends HttpServlet {
             personaVO.setPdireccion(request.getParameter("textDireccion"));
             personaVO.setPcelular(request.getParameter("textCelular"));
             
+            personaVO.setPtelefonoFijo(request.getParameter("textFijo"));
+            personaVO.setPtipoUsuario(request.getParameter("textTipoUsuario"));
+            
+            
             Pusuario = personaVO.getPusuario();
             Pcontraseña = personaVO.getPcontraseña();
             Pcorreo = personaVO.getPcorreo();
@@ -62,6 +65,8 @@ public class Registrarse extends HttpServlet {
             Pdireccion = personaVO.getPdireccion();
             Pcelular = personaVO.getPcelular();
               
+            PtelefonoFijo = personaVO.getPtelefonoFijo();
+            PtipoUsuario = personaVO.getPtipoUsuario();            
             
             if(!validacionesSonCorrectas()){
                 //mensajeError="validaciones incorrectas";
@@ -78,10 +83,9 @@ public class Registrarse extends HttpServlet {
                 return;
             }
 
-
             Pcontraseña = usuarioDAO.cifrarClave(Pcontraseña.trim());
 
-            boolean registroExitoso = usuarioDAO.registrarUsuario(Pusuario, Pcontraseña, Pcorreo, Pdocumento, tipoUsuarioEmpleado, Integer.parseInt(Ptipodocumento), Pdireccion, Pcelular);
+            boolean registroExitoso = usuarioDAO.registrarUsuario(Pusuario, Pcontraseña, Pcorreo, Pdocumento, Integer.parseInt(PtipoUsuario), Integer.parseInt(Ptipodocumento), Pdireccion, PtelefonoFijo, Pcelular);
             if (registroExitoso) {
                 request.setAttribute("mensajeExito", "¡Registro exitoso!");
                 request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
