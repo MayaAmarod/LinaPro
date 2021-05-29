@@ -111,14 +111,14 @@ input[type="submit"]{
     margin-top: 10px;  
     color: white;
     border: 0px;
-    background: linear-gradient(98deg, #54b14e, #f6ea51);
+     background: #8EC044;
     font-weight: 300;
     cursor: pointer; 
     font-size: 18px;
 }
 
 input[type="submit"]:hover{ 
-    background: linear-gradient(98deg, #f6ea51,#54b14e);
+    background:  #54b14e
 }
 
 

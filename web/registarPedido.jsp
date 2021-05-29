@@ -71,6 +71,12 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Gestionar Productos </a></li>
                             </ul>
                         </li>
+                                                                        <li class="menu-item-has-children active dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-circle-o "></i>Usuarios</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </nav>

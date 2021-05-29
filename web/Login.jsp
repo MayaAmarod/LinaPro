@@ -86,11 +86,6 @@ request.getSession(false);
                                 Recordar
                             </a>
                         </span>
-                        <span class="registrarse">
-                            <a href="RegistroUsuario.jsp">
-                                Registrarse
-                            </a>
-                        </span>
                         </img>
                     </div>
                     <!-- contenedor Informacion -->

@@ -25,7 +25,6 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
         <title>Registrar Producto </title>
         <meta name="description" content="Ela Admin - HTML5 Admin Template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<--cambio-->
         <link rel="shortcut icon" href="colocarL">
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -50,14 +49,14 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
             <nav class="navbar navbar-expand-sm navbar-default">
 
                 <div id="main-menu" class="main-menu collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
+                                    <ul class="nav navbar-nav">
 
-                        <li class="menu-title">Menu</li><!-- /.menu-title -->
+                    <li class="menu-title">Menu</li><!-- /.menu-title -->
 
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
                             <ul class="sub-menu children dropdown-menu">
-                               <li><i class="fa fa-table"></i><a href="registarPedido.jsp">Registrar </a></li>
+                                <li><i class="fa fa-truck"></i><a href="registarPedido.jsp">Gestionar Pedidos</a></li>
                             </ul>
                         </li>
 
@@ -67,7 +66,13 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Gestionar Productos </a></li>
                             </ul>
                         </li>
-                    </ul>
+                                                <li class="menu-item-has-children active dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-circle-o"></i>Usuarios</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
+                            </ul>
+                        </li>
+                </ul>
                 </div><!-- /.navbar-collapse -->
             </nav>
         </aside><!-- /#left-panel -->
@@ -168,15 +173,12 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                             </tr>
 
                                             <%
-
                                                 productoVO proVO = new productoVO(); //se deja vacio porque no va a enviar sino recibir, no pasa x controlador
                                                 ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
                                                 //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
                                                 ArrayList<productoVO> listaProductos = proDAO.listar(); //se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
-
                                                 for (int i = 0; i < listaProductos.size(); i++) {
                                                     proVO = listaProductos.get(i);
-
                                             %>            
                                             <tr>
                                                 <td><%=proVO.getId_producto()%></td>

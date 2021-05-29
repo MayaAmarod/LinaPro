@@ -3,12 +3,11 @@ package com.lina.vo;
 
 
 public class PersonasVO {
-    private String Pusuario, Pcorreo, Ptipodocumento, Pdocumento, Pdireccion, Pcelular, Pcontraseña;
-    
-    public PersonasVO() {
-    }   
-    
-    public PersonasVO(String Pusuario, String Pcorreo, String Ptipodocumento, String Pdocumento, String Pdireccion, String Pcelular, String Pcontraseña) {
+    private String Pusuario, Pcorreo, Ptipodocumento, Pdocumento, Pdireccion, Pcelular, Pcontraseña, PtelefonoFijo, PtipoUsuario;
+
+
+
+    public PersonasVO(String Pusuario, String Pcorreo, String Ptipodocumento, String Pdocumento, String Pdireccion, String Pcelular, String Pcontraseña, String PtelefonoFijo, String PtipoUsuario) {
         this.Pusuario = Pusuario;
         this.Pcorreo = Pcorreo;
         this.Ptipodocumento = Ptipodocumento;
@@ -16,9 +15,14 @@ public class PersonasVO {
         this.Pdireccion = Pdireccion;
         this.Pcelular = Pcelular;
         this.Pcontraseña = Pcontraseña;
+        this.PtelefonoFijo = PtelefonoFijo;
+        this.PtipoUsuario = PtipoUsuario;
     }
 
-    public String getPusuario() {
+    public PersonasVO() {
+    }
+    
+        public String getPusuario() {
         return Pusuario;
     }
 
@@ -73,10 +77,21 @@ public class PersonasVO {
     public void setPcontraseña(String Pcontraseña) {
         this.Pcontraseña = Pcontraseña;
     }
-    
-    
-    
-    
-    
+
+    public String getPtelefonoFijo() {
+        return PtelefonoFijo;
+    }
+
+    public void setPtelefonoFijo(String PtelefonoFijo) {
+        this.PtelefonoFijo = PtelefonoFijo;
+    }
+
+    public String getPtipoUsuario() {
+        return PtipoUsuario;
+    }
+
+    public void setPtipoUsuario(String PtipoUsuario) {
+        this.PtipoUsuario = PtipoUsuario;
+    }
     
 }

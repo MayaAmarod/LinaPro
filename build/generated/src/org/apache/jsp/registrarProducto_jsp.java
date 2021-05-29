@@ -77,7 +77,6 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("        <title>Registrar Producto </title>\r\n");
       out.write("        <meta name=\"description\" content=\"Ela Admin - HTML5 Admin Template\">\r\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
-      out.write("<--cambio-->\r\n");
       out.write("        <link rel=\"shortcut icon\" href=\"colocarL\">\r\n");
       out.write("\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css\">\r\n");
@@ -102,14 +101,14 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("            <nav class=\"navbar navbar-expand-sm navbar-default\">\r\n");
       out.write("\r\n");
       out.write("                <div id=\"main-menu\" class=\"main-menu collapse navbar-collapse\">\r\n");
-      out.write("                    <ul class=\"nav navbar-nav\">\r\n");
+      out.write("                                    <ul class=\"nav navbar-nav\">\r\n");
       out.write("\r\n");
-      out.write("                        <li class=\"menu-title\">Menu</li><!-- /.menu-title -->\r\n");
+      out.write("                    <li class=\"menu-title\">Menu</li><!-- /.menu-title -->\r\n");
       out.write("\r\n");
       out.write("                        <li class=\"menu-item-has-children active dropdown\">\r\n");
       out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"> <i class=\"menu-icon fa fa-truck\"></i>Pedidos</a>\r\n");
       out.write("                            <ul class=\"sub-menu children dropdown-menu\">\r\n");
-      out.write("                               <li><i class=\"fa fa-table\"></i><a href=\"registarPedido.jsp\">Registrar </a></li>\r\n");
+      out.write("                                <li><i class=\"fa fa-truck\"></i><a href=\"registarPedido.jsp\">Gestionar Pedidos</a></li>\r\n");
       out.write("                            </ul>\r\n");
       out.write("                        </li>\r\n");
       out.write("\r\n");
@@ -119,7 +118,13 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                                <li><i class=\"fa fa-envira\"></i><a href=\"registrarProducto.jsp\">Gestionar Productos </a></li>\r\n");
       out.write("                            </ul>\r\n");
       out.write("                        </li>\r\n");
-      out.write("                    </ul>\r\n");
+      out.write("                                                <li class=\"menu-item-has-children active dropdown\">\r\n");
+      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"> <i class=\"menu-icon fa fa-user-circle-o\"></i>Usuarios</a>\r\n");
+      out.write("                            <ul class=\"sub-menu children dropdown-menu\">\r\n");
+      out.write("                                <li><i class=\"fa fa-user-circle-o \"></i><a href=\"RegistroUsuario.jsp\">Registrar Usuarios </a></li>\r\n");
+      out.write("                            </ul>\r\n");
+      out.write("                        </li>\r\n");
+      out.write("                </ul>\r\n");
       out.write("                </div><!-- /.navbar-collapse -->\r\n");
       out.write("            </nav>\r\n");
       out.write("        </aside><!-- /#left-panel -->\r\n");
@@ -221,15 +226,12 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("\r\n");
       out.write("                                            ");
 
-
                                                 productoVO proVO = new productoVO(); //se deja vacio porque no va a enviar sino recibir, no pasa x controlador
                                                 ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
                                                 //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
                                                 ArrayList<productoVO> listaProductos = proDAO.listar(); //se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
-
                                                 for (int i = 0; i < listaProductos.size(); i++) {
                                                     proVO = listaProductos.get(i);
-
                                             
       out.write("            \r\n");
       out.write("                                            <tr>\r\n");

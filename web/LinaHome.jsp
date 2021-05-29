@@ -63,6 +63,12 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Gestionar Productos </a></li>
                             </ul>
                         </li>
+                                                <li class="menu-item-has-children active dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-circle-o"></i>Usuarios</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
+                            </ul>
+                        </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -138,8 +144,24 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
+ 
+                                <form action="generarPDF.jsp" method="post" target="_blank">
+                                                                   
                                 <strong class="card-title">Productos</strong> 
+                         <button class="btn1">Generar Reporte PDF</button>
+                                </form>
+                                
+                                <form action="reporteParametrizado.jsp" method="post" target="_blank">
+                                                                   
+                                <strong class="card-title">Productos</strong> 
+                                <select name="tipo">
+                                    <option value="extra"> extra</option>  
+                                    <option value="Hass"> Hass</option> 
+                                                                    </select>
+                                <button class="btn1"> Generar </button>
+                                </form> 
                             </div>
+                            
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
@@ -191,7 +213,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
             </div><!-- .animated -->
         </div><!-- .content -->
 
-
+        
         <div class="clearfix"></div>
 
         <footer class="site-footer">
