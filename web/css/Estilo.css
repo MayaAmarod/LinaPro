@@ -12,7 +12,14 @@ main{
 	padding: 15px;
 	font-family: 'Quicksand', sans-serif;
  }
-
+ .contenedorBienvenida{
+     width: 100%;
+     padding:auto;
+     margin:auto;
+     text-align: center;
+     height: 360px;
+ }
+ 
 .contenedor	{ 
 width: 100%;
 max-width: 950px;
@@ -185,9 +192,11 @@ text-align: center;
 }
 
 .nombreSesion{
-  padding-top:30px;  
+  padding: 20px;  
   font-size: 18px;
 font-weight: bold;
+color:#6a6866 ;
+
 }
 
 button{
@@ -196,23 +205,27 @@ button{
     margin-top: 10px;  
     color: white;
     border: 0px;
-    background: #03A9F3;
+    background: #8EC044;
     font-weight: 300;
     cursor: pointer; 
     font-size: 18px;
 }
 
-.btn1{
-    width: 15%;
+.btn1, .btn2{
+    width: 25%;
     height: 25px;
     margin-top: 10px;  
     color: white;
     border: 0px;
-    background: #03A9F3;
+    background: #8EC044;
     font-weight: 300;
     cursor: pointer; 
     font-size: 10px;
     float: right;
+}
+.btn2{
+    background: #f97716;
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 800px){

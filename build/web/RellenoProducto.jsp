@@ -7,12 +7,12 @@
 <%@page import="com.lina.vo.productoVO"%>
 <%@page import="com.lina.vo.UsuariosVO"%>
 <%  //validamos si existe sesion, de lo contrario redirigimos al login
-HttpSession misession= (HttpSession) request.getSession();
-if(misession==null || misession.getAttribute("usuarioSesion")==null ){ 
-    request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
-    request.getRequestDispatcher("Login.jsp").forward(request, response);
-}
- UsuariosVO userSesion= (UsuariosVO) misession.getAttribute("usuarioSesion");
+    HttpSession misession = (HttpSession) request.getSession();
+    if (misession == null || misession.getAttribute("usuarioSesion") == null) {
+        request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
+    }
+    UsuariosVO userSesion = (UsuariosVO) misession.getAttribute("usuarioSesion");
 %> 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -61,13 +61,17 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                             </ul>
                         </li>
 
+
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-envira"></i>Productos</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Gestionar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Registrar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Actualizar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="eliminarProducto.jsp">Eliminar Productos </a></li>
+                           <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>
                             </ul>
                         </li>
-                                                                        <li class="menu-item-has-children active dropdown">
+                        <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-circle-o "></i>Usuarios</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
@@ -104,8 +108,8 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                             </a>
 
                             <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
-                                <a class="nav-link" href="Login.jsp"><i class="fa fa-power-off"></i>Logout</a>
+                                <a class="nav-link" href="#"><i class="fa fa-user"></i>Perfil</a>
+                                <a class="nav-link" href="Login.jsp"><i class="fa fa-power-off"></i>Salir</a>
                             </div>
                         </div>
                     </div>
@@ -118,7 +122,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <div class="col-sm-4">
                             <div class="page-header float-left">
                                 <div class="page-title">
-                                    <h1>Registar Productos</h1>
+                                    <h1>Actualizar Producto</h1>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +132,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                     <ol class="breadcrumb text-right">
                                         <li><a href="#">Menu</a></li>
                                         <li><a href="#">Productos</a></li>
-                                        <li class="active">Registrar Productos</li>
+                                        <li class="active">Actualizar Producto</li>
                                     </ol>
                                 </div>
                             </div>
@@ -162,11 +166,11 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                                 %>  
                                                 <form method="post" action="Productos">
                                                     <label for="textid_producto">
-                                                        Código Producto:
+                                                        ID:
                                                     </label>
                                                     <input readonly type="text" name="textid_producto" value="<%=proVO.getId_producto()%>" >
                                                     <label for="textid_tipo_producto">
-                                                        Tipo de Producto:
+                                                        Tipo:
                                                     </label>
 
                                                     <input type="text" name="textid_tipo_producto" value="<%=proVO.getId_tipo_producto()%>" >
@@ -201,7 +205,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                                     </select> -->
 
                                                     <label for="nomProducto">
-                                                        Nombre Producto:
+                                                        Nombre:
                                                     </label>
                                                     <input type="text" name="textnombre_producto" value="<%=proVO.getNombre_producto()%>" >
 
@@ -220,7 +224,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                                     </label>
                                                     <input type="text" name="texturl_imagen" value="<%=proVO.getUrl_imagen()%>" >   
                                                     <label>
-                                                        Producto Col:  <br>
+                                                        Color:  <br>
                                                     </label>
                                                     <input type="text" name="textproductocol" value="<%=proVO.getProductocol()%>" >  
 
@@ -233,7 +237,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                                     <input type="text" name="textunidades_existentes" value="<%=proVO.getUnidades_existentes()%>" >   
 
                                                     <label>
-                                                        Precio:  </label>
+                                                        Precio Unitario:  </label>
                                                     <input type="text" name="textprecio" value="<%=proVO.getPrecio()%>" >
                                                     <button> Actualizar
 
@@ -253,7 +257,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                                 </div>
                                                 <%}
                                                 %>  
-                                                <a href="registrarProducto.jsp" >  <button class="btn1" >Volver</button></a>
+                                                <a href="productoActualizar.jsp" >  <button class="btn1" >Volver</button></a>
                                             </div>
                                         </div>                                 
                                     </table> 

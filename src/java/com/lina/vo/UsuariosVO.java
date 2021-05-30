@@ -3,7 +3,19 @@ package com.lina.vo;
 public class UsuariosVO {
 
     private String Ucorreo, Uclave,nombre,documento,dirreccion,telefonoMovil,telefonoFijo;
-    private int idTipoUsuario,idTipoDocumento, idUsusario;
+    private int idTipoUsuario,idTipoDocumento, idUsusario, idEstado;
+
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    public UsuariosVO(int idEstado) {
+        this.idEstado = idEstado;
+    }
     
     //Enviar
     public UsuariosVO() {

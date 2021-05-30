@@ -61,13 +61,14 @@
                             </ul>
                         </li>
 
+
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-envira"></i>Productos</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Registrar Productos </a></li>
-                                <li><i class="fa fa-envira"></i><a href="ProductoActualizar.jsp">Actualizar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Actualizar Productos </a></li>
                                 <li><i class="fa fa-envira"></i><a href="eliminarProducto.jsp">Eliminar Productos </a></li>
-                            <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>
+                            <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>                            
                             </ul>
                         </li>
                         <li class="menu-item-has-children active dropdown">
@@ -125,7 +126,7 @@
                         <div class="col-sm-4">
                             <div class="page-header float-left">
                                 <div class="page-title">
-                                    <h1>Registro De Productos</h1>
+                                    <h1>Actualización De Productos</h1>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +136,7 @@
                                     <ol class="breadcrumb text-right">
                                         <li><a href="#">Menu</a></li>
                                         <li><a href="#">Productos</a></li>
-                                        <li class="active"><a href="#">Registrar Productos</a></li>
+                                        <li class="active"><a href="#">Actualizar Productos</a></li>
 
                                     </ol>
                                 </div>
@@ -148,115 +149,24 @@
             <div class="content">
                 <div class="animated fadeIn">
                     <div class="row">
-
-                        <div class="col-lg-5">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-header">
-                                    <strong class="card-title">Registrar</strong>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table">
-                                        <div class="contenedor">
-                                            <!-- agrupar contenido en bloques -->
-                                            <!-- contenedor Informacion -->
-                                            <div class="ContenedorFormulario">
-                                                <!-- contenedor formulario -->
-                                                <!-- insertar logo -->
-                                                <!-- dividir elementos en categorias, se asigna una clase para el elemento ejemplo h1 -->
-                                                <form method="post" action="Productos"> 
-
-                                                    <label for="tipoProducto">
-                                                        Tipo de Producto:
-                                                    </label>
-                                                    <select name="textid_tipo_producto"><br> <br>
-                                                        <option>Seleccione...</option> 
-                                                        <%
-                                                            TipoProductoDAO tipProDao = new TipoProductoDAO(); //ella tiene el metodo
-                                                            for (TipoProductoVO tipProVO : tipProDao.listar()) {
-                                                        %>
-
-                                                        <option value="<%=tipProVO.getId_tipo_producto()%>"><%=tipProVO.getNombre_tipo()%> </option>
-
-                                                        <%}%>
-                                                    </select> 
-                                                    <!-- id amarrar input a label-->
-                                                    <!--type clave-->
-                                                    <label for="Categoria">
-                                                        Categoria:
-                                                    </label>
-                                                    <select name="textid_categoria"><br> <br>
-                                                        <option>Seleccione...</option> 
-                                                        <%
-                                                            CategoriaProductoDAO catProDao = new CategoriaProductoDAO(); //ella tiene el metodo
-                                                            for (CategoriaProductoVO catVO : catProDao.listar()) {
-                                                        %>
-
-                                                        <option value="<%=catVO.getId_categoria()%>"><%=catVO.getNombre_categoria()%> </option>
-
-                                                        <%}%>
-                                                    </select>
-                                                    <label for="nomProducto">
-                                                        Nombre:
-                                                    </label>
-                                                    <input type="text" name="textnombre_producto"> 
-                                                    <label for="plaMaq">
-                                                        Planta Maquilado: 
-                                                    </label>
-                                                    <input type="text" name="textid_planta"> <br>
-
-                                                    <label>
-                                                        Peso:  <br>
-                                                    </label>
-                                                    <input type="text" name="textpeso"> 
-
-                                                    <label>
-                                                        Imagen: <br>
-                                                    </label>
-                                                    <input type="text" name="texturl_imagen">   
-
-                                                    <label>
-                                                        Color:  <br>
-                                                    </label>
-                                                    <input type="text" name="textproductocol"> 
-
-                                                    <label>
-                                                        Muestreo:  <br></label>
-                                                    <input type="text" name="textid_muestreo"> 
-
-                                                    <label>
-                                                        Stock:</label>
-                                                    <input type="text" name="textunidades_existentes"> 
-
-                                                    <label>
-                                                        Precio Unitario:  </label>
-                                                    <input type="text" name="textprecio"> 
-
-                                                    <button> Registrar
-
-                                                    </button>
-                                                    <input type="hidden" value="1" name="opcion" > <%-- 39 value es el numero de caso, contenido oculto, opcion valor a recoger --%>
-                                                </form>
-                                            </div>
-                                        </div>
-
-                                    </table>
-
-                                </div>
+                                    <form action="Productos" method="post">
+                                        <strong class="card-title">Código Producto</strong>
+                                        <input type="text" name="textid_producto">
+                                        <button class="btn1">Actualizar</button>
+                                        <input type="hidden" value="3" name="opcion" > 
+                                    </form>
+                                </div> 
                             </div>
                         </div>
-
-                        <div class="col-md-7">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-
-
-
                                     <strong class="card-title">Productos</strong> 
-                                                    <a href="ProductoActualizar.jsp"> <button class="btn1">Actualizar Productos</button></a>
-                                    <a href="eliminarProducto.jsp"> <button class="btn2">Eliminar Productos</button></a>
-                                    <a href="detalleProducto.jsp"> <button class="btn1">Ver Detalle De Productos</button></a>
-                    
- 
+
+
                                 </div>
 
                                 <div class="card-body">
@@ -264,9 +174,16 @@
                                         <thead>
                                             <tr>
                                                 <th>ID </th>
-                                                <th>Nombre </th>
+                                                <th>Tipo</th>
+                                                <th>Categoria</th>
+                                                <th>Nombre</th>
+                                                <th>Planta Maquilado</th>
+                                                <th>Peso</th>
+                                                <th>Imagen</th>
+                                                <th>Color</th>
+                                                <th>Muestreo</th>
                                                 <th>Stock</th>
-                                                <th>Precio Unitario</th>
+                                                <th>Precio Unitario</th>                                                                              
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -283,7 +200,14 @@
                                             %>
                                             <tr>
                                                 <td><%=proVO.getId_producto()%></td>
+                                                <td><%=proVO.getId_tipo_producto()%></td>
+                                                <td><%=proVO.getId_categoria()%></td>
                                                 <td><%=proVO.getNombre_producto()%></td>
+                                                <td><%=proVO.getId_planta()%></td>
+                                                <td><%=proVO.getPeso()%></td>
+                                                <td><%=proVO.getUrl_imagen()%></td>
+                                                <td><%=proVO.getProductocol()%></td>
+                                                <td><%=proVO.getId_muestreo()%></td>
                                                 <td><%=proVO.getUnidades_existentes()%></td>
                                                 <td><%=proVO.getPrecio()%></td>
                                             </tr>

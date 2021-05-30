@@ -251,4 +251,36 @@ public class ProductoDAO extends Conexion implements Crud {
         return listaProductos;
     }
 
+    public Boolean Eliminar(){
+        try {
+            sql = "delete from producto WHERE id_producto =?";               
+
+            //? viene un parametro pero no se conoce cual es, para que no sea vulnerable a inyeccion de codigo
+            // veh placa no se actualiza porque es la llave primaria
+
+            puente = conexion.prepareStatement(sql);//crearpuente a la base de datos 
+            //16. asigne el primer ? lo que este en la variable usulogin 
+            puente.setString(1, id_producto);
+            puente.executeUpdate(); //actualizar db
+            operacion = true; //si cumple todo cambia a true
+            //para que permita ingresar se debe registar primero datos en la clase de la foranea
+
+        } catch (SQLException e) {
+
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            //18. independiente que pase en try catch haga finally
+        } finally {
+
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;//retorna ya que es un método booleano
+
+    }
+    
+    
 }

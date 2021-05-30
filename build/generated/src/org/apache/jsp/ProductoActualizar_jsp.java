@@ -3,10 +3,6 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import com.lina.vo.TipoUsuarioVO;
-import com.lina.modelo.TipoUsuarioDAO;
-import com.lina.vo.TipoDocumentoVO;
-import com.lina.modelo.TipoDocumentoDAO;
 import com.lina.vo.CategoriaProductoVO;
 import com.lina.modelo.CategoriaProductoDAO;
 import com.lina.vo.TipoProductoVO;
@@ -16,7 +12,7 @@ import com.lina.modelo.ProductoDAO;
 import com.lina.vo.productoVO;
 import com.lina.vo.UsuariosVO;
 
-public final class RegistroUsuario_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class ProductoActualizar_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -42,7 +38,7 @@ public final class RegistroUsuario_jsp extends org.apache.jasper.runtime.HttpJsp
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("text/html; charset=UTF-8");
+      response.setContentType("text/html");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -61,19 +57,15 @@ public final class RegistroUsuario_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
   //validamos si existe sesion, de lo contrario redirigimos al login
-HttpSession misession= (HttpSession) request.getSession();
-if(misession==null || misession.getAttribute("usuarioSesion")==null ){ 
-    request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
-    request.getRequestDispatcher("Login.jsp").forward(request, response);
-}
- UsuariosVO userSesion= (UsuariosVO) misession.getAttribute("usuarioSesion");
+    HttpSession misession = (HttpSession) request.getSession();
+    if (misession == null || misession.getAttribute("usuarioSesion") == null) {
+        request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
+    }
+    UsuariosVO userSesion = (UsuariosVO) misession.getAttribute("usuarioSesion");
 
-      out.write(" \n");
+      out.write("    \n");
       out.write("\n");
       out.write("<!doctype html>\n");
       out.write("<!--[if lt IE 7]>      <html class=\"no-js lt-ie9 lt-ie8 lt-ie7\" lang=\"\"> <![endif]-->\n");
@@ -83,9 +75,9 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("    <head>\n");
       out.write("        <meta charset=\"utf-8\">\n");
       out.write("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n");
-      out.write("        <title>Registro de Usuarios </title>\n");
-      out.write("        <script type=\"text/javascript\" src=\"js/formulario.js\"></script> \n");
+      out.write("        <title>Lina </title>\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
+      out.write("\n");
       out.write("        <link rel=\"shortcut icon\" href=\"colocarL\">\n");
       out.write("\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css\">\n");
@@ -97,13 +89,13 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("        <link rel=\"stylesheet\" href=\"assets/css/cs-skin-elastic.css\">\n");
       out.write("        <link rel=\"stylesheet\" href=\"assets/css/lib/datatable/dataTables.bootstrap.min.css\">\n");
       out.write("        <link rel=\"stylesheet\" href=\"assets/css/style.css\">\n");
-      out.write("        <link href=\"css/EstiloRe.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
+      out.write("        <link href=\"css/EstiloProd.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
       out.write("        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>\n");
       out.write("\n");
       out.write("        <!-- <script type=\"text/javascript\" src=\"https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js\"></script> -->\n");
       out.write("\n");
       out.write("    </head>\n");
-      out.write("    <body oncopy=\"return false\" onpaste=\"return false\">\n");
+      out.write("    <body>\n");
       out.write("        <!-- Left Panel -->\n");
       out.write("\n");
       out.write("        <aside id=\"left-panel\" class=\"left-panel\">\n");
@@ -126,7 +118,6 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                            <ul class=\"sub-menu children dropdown-menu\">\n");
       out.write("                                <li><i class=\"fa fa-envira\"></i><a href=\"registrarProducto.jsp\">Registrar Productos </a></li>\n");
       out.write("                                <li><i class=\"fa fa-envira\"></i><a href=\"ProductoActualizar.jsp\">Actualizar Productos </a></li>\n");
-      out.write("                                <li><i class=\"fa fa-envira\"></i><a href=\"eliminarProducto.jsp\">Eliminar Productos </a></li>\n");
       out.write("                            </ul>\n");
       out.write("                        </li>\n");
       out.write("                        <li class=\"menu-item-has-children active dropdown\">\n");
@@ -208,186 +199,103 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("            <div class=\"content\">\n");
       out.write("                <div class=\"animated fadeIn\">\n");
       out.write("                    <div class=\"row\">\n");
-      out.write("\n");
-      out.write("                        <div class=\"col-lg-12\">\n");
+      out.write("                        <div class=\"col-lg-7\">\n");
       out.write("                            <div class=\"card\">\n");
       out.write("                                <div class=\"card-header\">\n");
-      out.write("                                    <strong class=\"card-title\">Registrar</strong>\n");
+      out.write("                                    <form action=\"Productos\" method=\"post\">\n");
+      out.write("                                        <strong class=\"card-title\">Código Producto</strong>\n");
+      out.write("                                        <input type=\"text\" name=\"textid_producto\">\n");
+      out.write("                                        <button class=\"btn1\">Actualizar</button>\n");
+      out.write("                                        <input type=\"hidden\" value=\"3\" name=\"opcion\" > \n");
+      out.write("                                    </form>\n");
+      out.write("                                </div> \n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                        <div class=\"col-md-12\">\n");
+      out.write("                            <div class=\"card\">\n");
+      out.write("                                <div class=\"card-header\">\n");
+      out.write("                                    <strong class=\"card-title\">Productos</strong> \n");
+      out.write("\n");
+      out.write("\n");
       out.write("                                </div>\n");
+      out.write("\n");
       out.write("                                <div class=\"card-body\">\n");
-      out.write("                                    <table class=\"table\">\n");
-      out.write("                                        <div class=\"contenedor\">\n");
-      out.write("                                            <!-- agrupar contenido en bloques -->\n");
-      out.write("                                            <!-- contenedor Informacion -->\n");
-      out.write("                                            <div class=\"ContenedorFormulario\">\n");
-      out.write("                                                <!-- contenedor formulario -->\n");
-      out.write("                                                <!-- insertar logo -->\n");
-      out.write("                                                <!-- dividir elementos en categorias, se asigna una clase para el elemento ejemplo h1 -->\n");
-      out.write("                                                <form action=\"Registrar\" method=\"post\">\n");
-      out.write("                                                    <label for=\"textDocumento\">\n");
-      out.write("                                                            Tipo De Usuario:\n");
-      out.write("                                                        </label>\n");
-      out.write("                                                    <select id=\"textTipoUsuario\" \n");
-      out.write("                                                                name=\"textTipoUsuario\">\n");
-      out.write("                                                            <option>...</option> \n");
-      out.write("                                                            ");
+      out.write("                                    <table id=\"bootstrap-data-table\" class=\"table table-striped table-bordered\">\n");
+      out.write("                                        <thead>\n");
+      out.write("                                            <tr>\n");
+      out.write("                                                <th>ID </th>\n");
+      out.write("                                                <th>Tipo</th>\n");
+      out.write("                                                <th>Categoria</th>\n");
+      out.write("                                                <th>Nombre</th>\n");
+      out.write("                                                <th>Planta Maquilado</th>\n");
+      out.write("                                                <th>Peso</th>\n");
+      out.write("                                                <th>Imagen</th>\n");
+      out.write("                                                <th>Color</th>\n");
+      out.write("                                                <th>Muestreo</th>\n");
+      out.write("                                                <th>Stock</th>\n");
+      out.write("                                                <th>Precio Unitario</th>                                                                              \n");
+      out.write("                                            </tr>\n");
+      out.write("                                        </thead>\n");
+      out.write("                                        <tbody>\n");
+      out.write("                                            ");
 
-                                                                TipoUsuarioDAO tipoUsuDao = new TipoUsuarioDAO(); //ella tiene el metodo
-                                                                for (TipoUsuarioVO tipoUsuVO : tipoUsuDao.listar()) {
-                                                            
-      out.write("\n");
-      out.write("\n");
-      out.write("                                                            <option value=\"");
-      out.print(tipoUsuVO.getId_tipo_usuario());
-      out.write('"');
-      out.write('>');
-      out.print(tipoUsuVO.getNombre_tipo_usuario());
-      out.write(" </option>\n");
-      out.write("\n");
-      out.write("                                                            ");
-}
-      out.write("\n");
-      out.write("                                                    </select><br>\n");
-      out.write("                                                    <label for=\"usuario\">\n");
-      out.write("                                                        Nombre Completo:\n");
-      out.write("                                                    </label>\n");
-      out.write("                                                    <input id=\"usuario\" name=\"textNombre\" \n");
-      out.write("                                                           placeholder=\"usuario\" required \n");
-      out.write("                                                           type=\"text\"\n");
-      out.write("                                                           pattern=\"[a-zA-Z ]{10,20}\"\n");
-      out.write("                                                           required autofocus><br>\n");
-      out.write("                                                    <!-- id amarrar input a label-->\n");
-      out.write("                                                    <!--type clave-->\n");
-      out.write("                                                    <label for=\"correo\">\n");
-      out.write("                                                        Correo Electronico:\n");
-      out.write("                                                    </label>\n");
-      out.write("                                                    <input id=\"correo\" name=\"textCorreo\" \n");
-      out.write("                                                           placeholder=\"cuenta@example.com\" required\n");
-      out.write("                                                           type=\"email\" onkeyup='checkmail();'\n");
-      out.write("                                                           pattern=\"[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}\"\n");
-      out.write("                                                           title=\"Carácter permitidos(_.)\"><br>\n");
-      out.write("\n");
-      out.write("                                                    <label for=\"ccorreo\">\n");
-      out.write("                                                        Confirmar Correo:\n");
-      out.write("                                                    </label>\n");
-      out.write("                                                    <input id=\"ccorreo\" name=\"textCcorreo\" \n");
-      out.write("                                                           placeholder=\"Confirme su correo\" required\n");
-      out.write("                                                           type=\"email\" onkeyup='checkmail();'\n");
-      out.write("                                                           autocomplete=\"none\"\n");
-      out.write("                                                           pattern=\"[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}\"\n");
-      out.write("                                                           title=\"Solo se permiten los siguientes cáracteres (_.)\">\n");
-      out.write("                                                    <div class=\"alert\"> <span id=\"alertamail\"></span></div>\n");
-      out.write("                                                    <div class=\"cdocument\"> \n");
-      out.write("                                                        <label for=\"textDocumento\">\n");
-      out.write("                                                            Documento:\n");
-      out.write("                                                        </label>\n");
-      out.write("                                                        <select id=\"textTipoDocumento\" \n");
-      out.write("                                                                name=\"textTipoDocumento\">\n");
-      out.write("                                                            <option>...</option> \n");
-      out.write("                                                            ");
 
-                                                                TipoDocumentoDAO tipoDocDao = new TipoDocumentoDAO(); //ella tiene el metodo
-                                                                for (TipoDocumentoVO tipoDocVO : tipoDocDao.listar()) {
-                                                            
-      out.write("\n");
-      out.write("\n");
-      out.write("                                                            <option value=\"");
-      out.print(tipoDocVO.getId_tipo_Documento());
-      out.write('"');
-      out.write('>');
-      out.print(tipoDocVO.getNombre_Documento());
-      out.write(" </option>\n");
-      out.write("\n");
-      out.write("                                                            ");
-}
-      out.write("\n");
-      out.write("                                                        </select>\n");
-      out.write("                                                        <input id=\"textDocumento\" name=\"textDocumento\" \n");
-      out.write("                                                               placeholder=\"Ingrese su documento\" \n");
-      out.write("                                                               required type=\"text\"\n");
-      out.write("                                                               pattern=\"[0-9]{6,30}\"\n");
-      out.write("                                                               ti    tle=\"Ingrese solo números\">\n");
-      out.write("                                                    </div>\n");
-      out.write("\n");
-      out.write("                                                    <label for=\"textDireccion\">\n");
-      out.write("                                                        Dirección:\n");
-      out.write("                                                    </label>\n");
-      out.write("                                                    <input id=\"textDireccion\" name=\"textDireccion\" \n");
-      out.write("                                                           placeholder=\"Ingrese su dirección\" required\n");
-      out.write("                                                           type=\"text\" pattern=\"^[a-zA-Z0-9\\#\\\\-]{4,16}$\"><br>\n");
-      out.write("\n");
-      out.write("                                                    <label for=\"textCelular\">\n");
-      out.write("                                                        Celular:\n");
-      out.write("                                                    </label>\n");
-      out.write("                                                    <input id=\"textCelular\" name=\"textCelular\" \n");
-      out.write("                                                           placeholder=\"Número de Celular\" \n");
-      out.write("                                                           required=\"\" type=\"text\" pattern=\"^[3]\\d{9}$\"\n");
-      out.write("                                                           title=\"El número ingresado debe iniciar en 3, minimo 10 carácteres\"><br>\n");
-      out.write("\n");
-      out.write("                                                                              <label for=\"textCelular\">\n");
-      out.write("                                                        Telefono Fijo:\n");
-      out.write("                                                    </label>\n");
-      out.write("                                                    <input id=\"textFijo\" name=\"textFijo\" \n");
-      out.write("                                                           placeholder=\"Número Fijo\" \n");
-      out.write("                                                           required=\"\" type=\"text\" pattern=\"^[3]\\d{9}$\"\n");
-      out.write("                                                           title=\"El número ingresado debe iniciar en 3, minimo 10 carácteres\"><br>\n");
-      out.write("                                                    \n");
-      out.write("                                                    <label for=\"password\">\n");
-      out.write("                                                        Contraseña:\n");
-      out.write("                                                    </label>\n");
-      out.write("                                                    <input id=\"password\" name=\"textClaveR\" \n");
-      out.write("                                                           placeholder=\"Contraseña\" required\n");
-      out.write("                                                           type=\"password\" onkeyup='check();'\n");
-      out.write("                                                           pattern=\"[a-zA-Z0-9_*.%]{12,30}\"\n");
-      out.write("                                                           title=\"La contraseña debe tener minimo 12 digitos,\n");
-      out.write("                                                           letras, números y carácteres especiales(_*.%)\"><br>\n");
-      out.write("\n");
-      out.write("                                                    <label for=\"password2\">\n");
-      out.write("                                                        Confirmar Contraseña:\n");
-      out.write("                                                    </label>\n");
-      out.write("\n");
-      out.write("                                                    <input id=\"password2\" name=\"textClaveR2\" \n");
-      out.write("                                                           placeholder=\"Confirmar Contraseña\" \n");
-      out.write("                                                           required type=\"password\" onkeyup='check();'\n");
-      out.write("                                                           pattern=\"[a-zA-Z0-9_*.%]{12,30}\"\n");
-      out.write("                                                           title=\"La contraseña debe tener minimo 12 digitos,\n");
-      out.write("                                                           letras, números y carácteres especiales(_*.%)\"><br>\n");
-      out.write("                                                    <div class=\"alert\"> <span id=\"alerta\"></span></div>\n");
-      out.write("                                                    <div class=\"MensajeE\">\n");
-      out.write("\n");
-      out.write("                                                        ");
+                                                productoVO proVO = new productoVO(); //se deja vacio porque no va a enviar sino recibir, no pasa x controlador
+                                                ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
+                                                //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
+                                                ArrayList<productoVO> listaProductos = proDAO.listar(); //se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
 
-                                                            if (request.getAttribute("mensajeError") != null) {
-                                                        
+                                                for (int i = 0; i < listaProductos.size(); i++) {
+                                                    proVO = listaProductos.get(i);
+
+                                            
       out.write("\n");
-      out.write("                                                        ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\n");
-      out.write("                                                        ");
-} else {
-      out.write("\n");
-      out.write("                                                        ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\n");
-      out.write("                                                        ");
+      out.write("                                            <tr>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getId_producto());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getId_tipo_producto());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getId_categoria());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getNombre_producto());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getId_planta());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getPeso());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getUrl_imagen());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getProductocol());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getId_muestreo());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getUnidades_existentes());
+      out.write("</td>\n");
+      out.write("                                                <td>");
+      out.print(proVO.getPrecio());
+      out.write("</td>\n");
+      out.write("                                            </tr>\n");
+      out.write("                                            ");
 }
       out.write("\n");
       out.write("\n");
-      out.write("                                                    </div>\n");
-      out.write("\n");
-      out.write("                                                    <!--type submit-->\n");
-      out.write("                                                    <input name=\"btnenviar\" type=\"submit\" value=\"Registrar\">\n");
-      out.write("                                                    <br>\n");
-      out.write("                                                    <br>\n");
-      out.write("                                                </form>\n");
-      out.write("                                            </div>\n");
-      out.write("                                        </div>\n");
-      out.write("\n");
+      out.write("                                        </tbody>\n");
       out.write("                                    </table>\n");
-      out.write("\n");
       out.write("                                </div>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
+      out.write("\n");
+      out.write("\n");
       out.write("                    </div>\n");
       out.write("                </div><!-- .animated -->\n");
       out.write("            </div><!-- .content -->\n");

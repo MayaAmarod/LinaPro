@@ -56,7 +56,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                 <div id="main-menu" class="main-menu collapse navbar-collapse">
                     <ul class="nav navbar-nav">
 
-                    <li class="menu-title">Menu</li><!-- /.menu-title -->
+                        <li class="menu-title">Menu</li><!-- /.menu-title -->
 
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
@@ -68,16 +68,21 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-envira"></i>Productos</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Gestionar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Registrar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="ProductoActualizar.jsp">Actualizar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="eliminarProducto.jsp">Eliminar Productos </a></li>
+                            <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>
                             </ul>
                         </li>
-                                                <li class="menu-item-has-children active dropdown">
+                        <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-circle-o"></i>Usuarios</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
+                                                                                           <li><i class="fa fa-user-circle-o "></i><a href="UsuariosActivos.jsp">Usuarios Activos </a></li>
+
                             </ul>
                         </li>
-                </ul>
+                    </ul>
                 </div><!-- /.navbar-collapse -->
             </nav>
         </aside><!-- /#left-panel -->
@@ -98,19 +103,21 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                     </div>
                 </div>
                 <div class="top-right">
+
                     <div class="header-menu">
                         <div class="header-left">
-
+                            <labe class="nombreSesion" > <%=userSesion.getNombre()%></label>  
                         </div>
 
                         <div class="user-area dropdown float-right">
+
                             <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
                             </a>
 
                             <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
-                                <a class="nav-link" href="Login.jsp"><i class="fa fa-power-off"></i>Logout</a>
+                                <a class="nav-link" href="#"><i class="fa fa-user"></i>Perfil</a>
+                                <a class="nav-link" href="Login.jsp"><i class="fa fa-power-off"></i>Salir</a>
                             </div>
                         </div>
                     </div>
@@ -124,7 +131,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <div class="col-sm-4">
                             <div class="page-header float-left">
                                 <div class="page-title">
-                                    <h1>Registar Productos</h1>
+                                    <h1>Registro De Usuarios</h1>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +141,8 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                     <ol class="breadcrumb text-right">
                                         <li><a href="#">Menu</a></li>
                                         <li><a href="#">Usuarios</a></li>
-                                        <li class="active">Registrar Usuarios</li>
+                                        <li class="active"><a href="#">Registrar Usuarios</a></li>
+
                                     </ol>
                                 </div>
                             </div>
@@ -143,12 +151,10 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                 </div>
             </div>
 
-
-
-
             <div class="content">
                 <div class="animated fadeIn">
                     <div class="row">
+
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
@@ -304,6 +310,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                 </div><!-- .animated -->
             </div><!-- .content -->
 
+
             <div class="clearfix"></div>
 
             <footer class="site-footer">
@@ -329,6 +336,25 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
         <script src="assets/js/main.js"></script>
+
+
+        <script src="assets/js/lib/data-table/datatables.min.js"></script>
+        <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+        <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+        <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+        <script src="assets/js/lib/data-table/jszip.min.js"></script>
+        <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+        <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+        <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+        <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+        <script src="assets/js/init/datatables-init.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#bootstrap-data-table-export').DataTable();
+            });
+        </script>
 
 
     </body>

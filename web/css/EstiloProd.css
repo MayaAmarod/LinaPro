@@ -3,15 +3,21 @@
 
 .contenedor	{ 
 width: 100%;
-max-width: 350px;
+max-width: 900px;
 margin: auto; 
 display: flex; 
-border-radius: 20px;
 overflow: hidden;
-box-shadow: 0px -0px 10px #999999; 
+box-shadow: 0px -0px 5px #999999; 
 }
-.btn1{
-    width: 15%;
+
+.ContenedorFormulario{ 
+width: 90%;
+padding: 20px;
+margin: auto;
+background: #ffffff;
+}
+.btn1, .btn2{
+    width: 25%;
     height: 25px;
     margin-top: 10px;  
     color: white;
@@ -20,25 +26,12 @@ box-shadow: 0px -0px 10px #999999;
     font-weight: 300;
     cursor: pointer; 
     font-size: 10px;
+    float: right;
 }
-
 .btn2{
-    width: 15%;
-    height: 25px;
-     color: white;
-    border: 0px;
-    background: #ff3333;
-    opacity: 0.8;
-    font-weight: 300;
-    cursor: pointer; 
-    font-size: 10px;
+    background: #f97716;
+    opacity: 0.6;
 }
-.ContenedorFormulario{ 
-width: 90%;
-padding: 20px;
-background: #ffffff;
-}
-
 .navbar-brand img{
   	width: 50px;
 	display: block;
@@ -49,7 +42,7 @@ background: #ffffff;
 	max-width: 70px;
 	display: inline-block;
 	width: 100%;
-	font-size: 0.7em;
+	font-size: 12px;
 	color: #7a7a7a;
         font-weight: bold;
 
@@ -81,7 +74,6 @@ input:focus::placeholder {
   color: transparent;
 }
 
-
 button{
     width: 100%;
     height: 40px;
@@ -94,29 +86,20 @@ button{
     font-size: 18px;
 }
 
+.alert{
+padding: 0px;
+text-align: center;
+font-size: 10px;
+font-weight: bold;
+margin-left: 120px;
+}
+
 .MensajeE{
 text-align: center;
 color: #ff3333;
 font-size: 12px;
 font-weight: bold;
 }
-
-.Ocontrasena a {
-color: #8EC044;
-font-weight: 400;
-}
-
-.registrarse{
-display: block;
-margin-top: 50px; 
-text-align: center;
-}
-
-.registrarse a {
-color: #8EC044;
-font-weight: 500;
-}
-
 
 @media screen and (max-width: 800px){
 

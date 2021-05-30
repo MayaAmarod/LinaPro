@@ -66,6 +66,36 @@ public ArrayList<CategoriaProductoVO> listar() {  // ALMACENAR objetos VO, lo al
         return listaCategorias;
     }
 
+//metodo guardar dato string y no value en db
+public String consultarNombreCategoria(String id){
+    String nombreCategoria=null;
+    
+     try {
+            conexion = this.obtenerConexion();
+
+            sql = "SELECT * FROM categoria_producto WHERE id_categoria=?;"; //query
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id); //enviar en el primer ? el id que se recibe
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                nombreCategoria = mensajero.getString(2); //asignar lo que el mensajero encuentre, valor columa 2
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(CategoriaProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+//            try {
+//                this.cerrarConexion(); // no se puede cerrar porque consulta varias veces
+//            } catch (Exception e) {
+//
+//                Logger.getLogger(CategoriaProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+//
+//            }
+        }
+        return nombreCategoria;
+}
 }
 
 //directo a jsp

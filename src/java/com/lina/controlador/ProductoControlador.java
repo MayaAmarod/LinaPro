@@ -73,8 +73,8 @@ public class ProductoControlador extends HttpServlet {
                  request.setAttribute("mensajeError", "El producto NO se registro correctamente");
              }
         //36. Redireccionar mensaje a la vista, cuando se estan mandando atributos
-             
-      request.getRequestDispatcher("LinaHome.jsp").forward(request, response);
+             response.sendRedirect("registrarProducto.jsp");
+      //request.getRequestDispatcher("LinaHome.jsp").forward(request, response);
          //forward  manejar peticiones request o response en el jsp para que reciba los mensajes    
              break;
              
@@ -82,11 +82,11 @@ public class ProductoControlador extends HttpServlet {
                 
              if (proDAO.actualizarRegistro()) { //si el metodo es verdadero se envia mensaje
                  request.setAttribute("mensajeExito", "El producto se actualizo correctamente");
-                 request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
+                 request.getRequestDispatcher("ProductoActualizar.jsp").forward(request, response);
                  //obtenga un atributo que se llama mensaje exito, (nombredelatributo, mensaje enviado)
              }else{
                  request.setAttribute("mensajeError", "El producto NO se actualizo correctamente");
-                 request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
+                 request.getRequestDispatcher("ProductoActualizar.jsp").forward(request, response);
              }
         //36. Redireccionar mensaje a la vista, cuando se estan mandando atributos
      
@@ -100,15 +100,26 @@ public class ProductoControlador extends HttpServlet {
 
              if (proVO != null) { //si retorna no nulo significa que si lleno 
                  request.setAttribute("Datos Consultados", proVO); //el objeto se llama datos consultados, se envia VO lleno
-                 request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response); //aqui va a llenar
+                 request.getRequestDispatcher("RellenoProducto.jsp").forward(request, response); //aqui va a llenar
                  //si va a actualizar luego de la consulta o solo ver
              }else{
                   request.setAttribute("mensajeError", "El producto NO existe");
-                  request.getRequestDispatcher("consultarProducto.jsp").forward(request, response); 
+                  request.getRequestDispatcher("registrarProducto.jsp").forward(request, response); 
              }
              break;
              //37 VISTAS WEB PAGES, Nuevo jsp  
              //38. nuevo java class categoriaVO, despues, para crear foraneas
+             
+         case 4: 
+             if (proDAO.Eliminar()) { //si el metodo es verdadero se envia mensaje
+                 request.setAttribute("mensajeExito", "El producto se elimino correctamente");
+                    response.sendRedirect("eliminarProducto.jsp");
+                 //obtenga un atributo que se llama mensaje exito, (nombredelatributo, mensaje enviado)
+             }else{
+                 request.setAttribute("mensajeError", "El producto NO se elimino correctamente");
+                     response.sendRedirect("eliminarProducto.jsp");
+             }
+             break;
      } 
         
         

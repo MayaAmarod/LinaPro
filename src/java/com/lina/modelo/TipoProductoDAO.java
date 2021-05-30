@@ -65,7 +65,36 @@ public class TipoProductoDAO extends Conexion{
         }
         return listaTiposProducto;
     }
+//metodo guardar dato string y no value en db
+public String consultarNombreTipoProducto(String id){
+    String nombreTipoProducto=null;
+    
+     try {
+            conexion = this.obtenerConexion();
 
+            sql = "SELECT * FROM tipo_producto WHERE id_tipo_producto=?;"; //query
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id); //enviar en el primer ? el id que se recibe
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                nombreTipoProducto = mensajero.getString(2); //asignar lo que el mensajero encuentre, valor columa 2
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(CategoriaProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+//            try {
+//                this.cerrarConexion(); // no se puede cerrar porque consulta varias veces
+//            } catch (Exception e) {
+//
+//                Logger.getLogger(CategoriaProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+//
+//            }
+        }
+        return nombreTipoProducto;
+}
 }
 
 //directo a jsp

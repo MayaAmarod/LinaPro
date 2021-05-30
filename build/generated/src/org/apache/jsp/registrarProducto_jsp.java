@@ -58,14 +58,15 @@ public final class registrarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\r\n");
       out.write("\r\n");
   //validamos si existe sesion, de lo contrario redirigimos al login
-HttpSession misession= (HttpSession) request.getSession();
-if(misession==null || misession.getAttribute("usuarioSesion")==null ){ 
-    request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
-    request.getRequestDispatcher("Login.jsp").forward(request, response);
-}
- UsuariosVO userSesion= (UsuariosVO) misession.getAttribute("usuarioSesion");
+    HttpSession misession = (HttpSession) request.getSession();
+    if (misession == null || misession.getAttribute("usuarioSesion") == null) {
+        request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
+    }
+    UsuariosVO userSesion = (UsuariosVO) misession.getAttribute("usuarioSesion");
 
-      out.write(" \r\n");
+      out.write("    \r\n");
+      out.write("\r\n");
       out.write("<!doctype html>\r\n");
       out.write("<!--[if lt IE 7]>      <html class=\"no-js lt-ie9 lt-ie8 lt-ie7\" lang=\"\"> <![endif]-->\r\n");
       out.write("<!--[if IE 7]>         <html class=\"no-js lt-ie9 lt-ie8\" lang=\"\"> <![endif]-->\r\n");
@@ -74,9 +75,9 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("    <head>\r\n");
       out.write("        <meta charset=\"utf-8\">\r\n");
       out.write("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n");
-      out.write("        <title>Registrar Producto </title>\r\n");
-      out.write("        <meta name=\"description\" content=\"Ela Admin - HTML5 Admin Template\">\r\n");
+      out.write("        <title>Lina </title>\r\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
+      out.write("\r\n");
       out.write("        <link rel=\"shortcut icon\" href=\"colocarL\">\r\n");
       out.write("\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css\">\r\n");
@@ -101,9 +102,9 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("            <nav class=\"navbar navbar-expand-sm navbar-default\">\r\n");
       out.write("\r\n");
       out.write("                <div id=\"main-menu\" class=\"main-menu collapse navbar-collapse\">\r\n");
-      out.write("                                    <ul class=\"nav navbar-nav\">\r\n");
+      out.write("                    <ul class=\"nav navbar-nav\">\r\n");
       out.write("\r\n");
-      out.write("                    <li class=\"menu-title\">Menu</li><!-- /.menu-title -->\r\n");
+      out.write("                        <li class=\"menu-title\">Menu</li><!-- /.menu-title -->\r\n");
       out.write("\r\n");
       out.write("                        <li class=\"menu-item-has-children active dropdown\">\r\n");
       out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"> <i class=\"menu-icon fa fa-truck\"></i>Pedidos</a>\r\n");
@@ -115,16 +116,19 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                        <li class=\"menu-item-has-children active dropdown\">\r\n");
       out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"> <i class=\"menu-icon fa fa-envira\"></i>Productos</a>\r\n");
       out.write("                            <ul class=\"sub-menu children dropdown-menu\">\r\n");
-      out.write("                                <li><i class=\"fa fa-envira\"></i><a href=\"registrarProducto.jsp\">Gestionar Productos </a></li>\r\n");
+      out.write("                                <li><i class=\"fa fa-envira\"></i><a href=\"registrarProducto.jsp\">Registrar Productos </a></li>\r\n");
+      out.write("                                <li><i class=\"fa fa-envira\"></i><a href=\"ProductoActualizar.jsp\">Actualizar Productos </a></li>\r\n");
+      out.write("                                <li><i class=\"fa fa-envira\"></i><a href=\"eliminarProducto.jsp\">Eliminar Productos </a></li>\r\n");
+      out.write("                            <li><i class=\"fa fa-envira\"></i><a href=\"detalleProducto.jsp\">Imprimir Listado Productos </a></li>\r\n");
       out.write("                            </ul>\r\n");
       out.write("                        </li>\r\n");
-      out.write("                                                <li class=\"menu-item-has-children active dropdown\">\r\n");
+      out.write("                        <li class=\"menu-item-has-children active dropdown\">\r\n");
       out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"> <i class=\"menu-icon fa fa-user-circle-o\"></i>Usuarios</a>\r\n");
       out.write("                            <ul class=\"sub-menu children dropdown-menu\">\r\n");
       out.write("                                <li><i class=\"fa fa-user-circle-o \"></i><a href=\"RegistroUsuario.jsp\">Registrar Usuarios </a></li>\r\n");
       out.write("                            </ul>\r\n");
       out.write("                        </li>\r\n");
-      out.write("                </ul>\r\n");
+      out.write("                    </ul>\r\n");
       out.write("                </div><!-- /.navbar-collapse -->\r\n");
       out.write("            </nav>\r\n");
       out.write("        </aside><!-- /#left-panel -->\r\n");
@@ -145,19 +149,23 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
       out.write("                <div class=\"top-right\">\r\n");
+      out.write("\r\n");
       out.write("                    <div class=\"header-menu\">\r\n");
       out.write("                        <div class=\"header-left\">\r\n");
-      out.write("\r\n");
+      out.write("                            <labe class=\"nombreSesion\" > ");
+      out.print(userSesion.getNombre());
+      out.write("</label>  \r\n");
       out.write("                        </div>\r\n");
       out.write("\r\n");
       out.write("                        <div class=\"user-area dropdown float-right\">\r\n");
+      out.write("\r\n");
       out.write("                            <a href=\"#\" class=\"dropdown-toggle active\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n");
       out.write("                                <img class=\"user-avatar rounded-circle\" src=\"images/admin.jpg\" alt=\"User Avatar\">\r\n");
       out.write("                            </a>\r\n");
       out.write("\r\n");
       out.write("                            <div class=\"user-menu dropdown-menu\">\r\n");
-      out.write("                                <a class=\"nav-link\" href=\"#\"><i class=\"fa fa-user\"></i>My Profile</a>\r\n");
-      out.write("                                <a class=\"nav-link\" href=\"Login.jsp\"><i class=\"fa fa-power-off\"></i>Logout</a>\r\n");
+      out.write("                                <a class=\"nav-link\" href=\"#\"><i class=\"fa fa-user\"></i>Perfil</a>\r\n");
+      out.write("                                <a class=\"nav-link\" href=\"Login.jsp\"><i class=\"fa fa-power-off\"></i>Salir</a>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
@@ -171,7 +179,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                        <div class=\"col-sm-4\">\r\n");
       out.write("                            <div class=\"page-header float-left\">\r\n");
       out.write("                                <div class=\"page-title\">\r\n");
-      out.write("                                    <h1>Registar Productos</h1>\r\n");
+      out.write("                                    <h1>Registro De Productos</h1>\r\n");
       out.write("                                </div>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
@@ -181,7 +189,8 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                                    <ol class=\"breadcrumb text-right\">\r\n");
       out.write("                                        <li><a href=\"#\">Menu</a></li>\r\n");
       out.write("                                        <li><a href=\"#\">Productos</a></li>\r\n");
-      out.write("                                        <li class=\"active\">Registrar Productos</li>\r\n");
+      out.write("                                        <li class=\"active\"><a href=\"#\">Registrar Productos</a></li>\r\n");
+      out.write("\r\n");
       out.write("                                    </ol>\r\n");
       out.write("                                </div>\r\n");
       out.write("                            </div>\r\n");
@@ -190,82 +199,9 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("            <div class=\"content\">\r\n");
       out.write("                <div class=\"animated fadeIn\">\r\n");
       out.write("                    <div class=\"row\">\r\n");
-      out.write("                        <div class=\"col-lg-7\">\r\n");
-      out.write("                            <div class=\"card\">\r\n");
-      out.write("                                <div class=\"card-header\">\r\n");
-      out.write("                                    <form action=\"Productos\" method=\"post\">\r\n");
-      out.write("                                        <strong class=\"card-title\">Código Producto</strong>\r\n");
-      out.write("                                        <input type=\"text\" name=\"textid_producto\">\r\n");
-      out.write("                                        <button class=\"btn1\">Actualizar</button>\r\n");
-      out.write("                                        <input type=\"hidden\" value=\"3\" name=\"opcion\" > \r\n");
-      out.write("                                        <button class=\"btn2\">Eliminar</button>\r\n");
-      out.write("                                        <input type=\"hidden\" value=\"4\" name=\"opcion\" > \r\n");
-      out.write("                                    </form>\r\n");
-      out.write("                                </div> \r\n");
-      out.write("\r\n");
-      out.write("                                <div class=\"table-stats order-table ov-h\">\r\n");
-      out.write("                                    <table class=\"table \">\r\n");
-      out.write("                                        <thead>\r\n");
-      out.write("                                            <tr>\r\n");
-      out.write("                                                <th>Código</th>\r\n");
-      out.write("                                                <th>Nombre Producto</th>\r\n");
-      out.write("                                                <th>Planta</th>\r\n");
-      out.write("                                                <th>Peso</th>\r\n");
-      out.write("                                                <th>Unidades Existentes</th>\r\n");
-      out.write("                                                <th>Precio</th>\r\n");
-      out.write("                                            </tr>\r\n");
-      out.write("                                        </thead>\r\n");
-      out.write("                                        <tbody>\r\n");
-      out.write("                                            </tr>\r\n");
-      out.write("\r\n");
-      out.write("                                            ");
-
-                                                productoVO proVO = new productoVO(); //se deja vacio porque no va a enviar sino recibir, no pasa x controlador
-                                                ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
-                                                //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
-                                                ArrayList<productoVO> listaProductos = proDAO.listar(); //se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
-                                                for (int i = 0; i < listaProductos.size(); i++) {
-                                                    proVO = listaProductos.get(i);
-                                            
-      out.write("            \r\n");
-      out.write("                                            <tr>\r\n");
-      out.write("                                                <td>");
-      out.print(proVO.getId_producto());
-      out.write("</td>\r\n");
-      out.write("                                                <td>");
-      out.print(proVO.getNombre_producto());
-      out.write("</td>\r\n");
-      out.write("                                                <td>");
-      out.print(proVO.getId_planta());
-      out.write("</td>\r\n");
-      out.write("                                                <td>");
-      out.print(proVO.getPeso());
-      out.write("</td>\r\n");
-      out.write("                                                <td>");
-      out.print(proVO.getUnidades_existentes());
-      out.write("</td>\r\n");
-      out.write("                                                <td>");
-      out.print(proVO.getPrecio());
-      out.write("</td>\r\n");
-      out.write("                                            </tr>\r\n");
-      out.write("                                            ");
-}
-      out.write("                  \r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                        </tbody>\r\n");
-      out.write("                                    </table>\r\n");
-      out.write("                                </div> <!-- /.table-stats -->\r\n");
-      out.write("                            </div>\r\n");
-      out.write("                            <a href=\"LinaHome.jsp\"><button> Ver Detalle de Productos</button></a>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("\r\n");
       out.write("\r\n");
       out.write("                        <div class=\"col-lg-5\">\r\n");
       out.write("                            <div class=\"card\">\r\n");
@@ -332,11 +268,11 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("\r\n");
       out.write("                                                    </select>\r\n");
       out.write("                                                    <label for=\"nomProducto\">\r\n");
-      out.write("                                                        Nombre Producto:\r\n");
+      out.write("                                                        Nombre:\r\n");
       out.write("                                                    </label>\r\n");
       out.write("                                                    <input type=\"text\" name=\"textnombre_producto\"> \r\n");
       out.write("                                                    <label for=\"plaMaq\">\r\n");
-      out.write("                                                        Planta Maquilado : \r\n");
+      out.write("                                                        Planta Maquilado: \r\n");
       out.write("                                                    </label>\r\n");
       out.write("                                                    <input type=\"text\" name=\"textid_planta\"> <br>\r\n");
       out.write("\r\n");
@@ -351,7 +287,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                                                    <input type=\"text\" name=\"texturl_imagen\">   \r\n");
       out.write("\r\n");
       out.write("                                                    <label>\r\n");
-      out.write("                                                        Producto Col:  <br>\r\n");
+      out.write("                                                        Color:  <br>\r\n");
       out.write("                                                    </label>\r\n");
       out.write("                                                    <input type=\"text\" name=\"textproductocol\"> \r\n");
       out.write("\r\n");
@@ -364,7 +300,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                                                    <input type=\"text\" name=\"textunidades_existentes\"> \r\n");
       out.write("\r\n");
       out.write("                                                    <label>\r\n");
-      out.write("                                                        Precio:  </label>\r\n");
+      out.write("                                                        Precio Unitario:  </label>\r\n");
       out.write("                                                    <input type=\"text\" name=\"textprecio\"> \r\n");
       out.write("\r\n");
       out.write("                                                    <button> Registrar\r\n");
@@ -381,9 +317,74 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("                                </div>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
+      out.write("\r\n");
+      out.write("                        <div class=\"col-md-7\">\r\n");
+      out.write("                            <div class=\"card\">\r\n");
+      out.write("                                <div class=\"card-header\">\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                                    <strong class=\"card-title\">Productos</strong> \r\n");
+      out.write("                                                    <a href=\"ProductoActualizar.jsp\"> <button class=\"btn1\">Actualizar Productos</button></a>\r\n");
+      out.write("                                    <a href=\"eliminarProducto.jsp\"> <button class=\"btn2\">Eliminar Productos</button></a>\r\n");
+      out.write("                                    <a href=\"detalleProducto.jsp\"> <button class=\"btn1\">Ver Detalle De Productos</button></a>\r\n");
+      out.write("                    \r\n");
+      out.write(" \r\n");
+      out.write("                                </div>\r\n");
+      out.write("\r\n");
+      out.write("                                <div class=\"card-body\">\r\n");
+      out.write("                                    <table id=\"bootstrap-data-table\" class=\"table table-striped table-bordered\">\r\n");
+      out.write("                                        <thead>\r\n");
+      out.write("                                            <tr>\r\n");
+      out.write("                                                <th>ID Producto</th>\r\n");
+      out.write("                                                <th>Nombre Producto</th>\r\n");
+      out.write("                                                <th>Unidades Existentes</th>\r\n");
+      out.write("                                                <th>Precio</th>\r\n");
+      out.write("                                            </tr>\r\n");
+      out.write("                                        </thead>\r\n");
+      out.write("                                        <tbody>\r\n");
+      out.write("                                            ");
+
+
+                                                productoVO proVO = new productoVO(); //se deja vacio porque no va a enviar sino recibir, no pasa x controlador
+                                                ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
+                                                //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
+                                                ArrayList<productoVO> listaProductos = proDAO.listar(); //se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
+
+                                                for (int i = 0; i < listaProductos.size(); i++) {
+                                                    proVO = listaProductos.get(i);
+
+                                            
+      out.write("\r\n");
+      out.write("                                            <tr>\r\n");
+      out.write("                                                <td>");
+      out.print(proVO.getId_producto());
+      out.write("</td>\r\n");
+      out.write("                                                <td>");
+      out.print(proVO.getNombre_producto());
+      out.write("</td>\r\n");
+      out.write("                                                <td>");
+      out.print(proVO.getUnidades_existentes());
+      out.write("</td>\r\n");
+      out.write("                                                <td>");
+      out.print(proVO.getPrecio());
+      out.write("</td>\r\n");
+      out.write("                                            </tr>\r\n");
+      out.write("                                            ");
+}
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                                        </tbody>\r\n");
+      out.write("                                    </table>\r\n");
+      out.write("                                </div>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div><!-- .animated -->\r\n");
       out.write("            </div><!-- .content -->\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("            <div class=\"clearfix\"></div>\r\n");
       out.write("\r\n");
@@ -412,8 +413,27 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
       out.write("        <script src=\"assets/js/main.js\"></script>\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("        <script src=\"assets/js/lib/data-table/datatables.min.js\"></script>\r\n");
+      out.write("        <script src=\"assets/js/lib/data-table/dataTables.bootstrap.min.js\"></script>\r\n");
+      out.write("        <script src=\"assets/js/lib/data-table/dataTables.buttons.min.js\"></script>\r\n");
+      out.write("        <script src=\"assets/js/lib/data-table/buttons.bootstrap.min.js\"></script>\r\n");
+      out.write("        <script src=\"assets/js/lib/data-table/jszip.min.js\"></script>\r\n");
+      out.write("        <script src=\"assets/js/lib/data-table/vfs_fonts.js\"></script>\r\n");
+      out.write("        <script src=\"assets/js/lib/data-table/buttons.html5.min.js\"></script>\r\n");
+      out.write("        <script src=\"assets/js/lib/data-table/buttons.print.min.js\"></script>\r\n");
+      out.write("        <script src=\"assets/js/lib/data-table/buttons.colVis.min.js\"></script>\r\n");
+      out.write("        <script src=\"assets/js/init/datatables-init.js\"></script>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("        <script type=\"text/javascript\">\r\n");
+      out.write("            $(document).ready(function () {\r\n");
+      out.write("                $('#bootstrap-data-table-export').DataTable();\r\n");
+      out.write("            });\r\n");
+      out.write("        </script>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("    </body>\r\n");
-      out.write("</html>");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
