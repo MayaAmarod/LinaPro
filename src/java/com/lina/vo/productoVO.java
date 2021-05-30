@@ -21,6 +21,8 @@ public class productoVO {
 private String id_producto, id_tipo_producto, id_categoria, nombre_producto, 
                 id_planta, peso,url_imagen,productocol,id_muestreo,
                 unidades_existentes,precio;
+	private int cantidadAComprar;
+private Double subtotal;
 //privadas, el constructor las vuelve publicas para el uso de get and set
     
   //15. crear constructor clic derecho, insertar codigo, constructor, seleccionar variables
@@ -133,5 +135,21 @@ public String getId_producto() {
 
 //18.hacer DAO, nuevo paquete, modelo DAO, Nuevo Java CLASS, 
 //que hara las operaciones del sistema
+
+    public int getCantidadAComprar() {
+        return cantidadAComprar;
+    }
+
+    public void setCantidadAComprar(int cantidadAComprar) {
+        this.cantidadAComprar = cantidadAComprar;
+    }
+
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
+    }
     
 }

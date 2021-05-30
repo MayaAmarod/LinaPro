@@ -61,7 +61,8 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-truck"></i><a href="registarPedido.jsp">Gestionar Pedidos</a></li>
+                           <li><i class="fa fa-table"></i><a href="RealizarPedidos.jsp">Nuevo Pedido</a></li>
+                                <li><i class="fa fa-table"></i><a href="detallePedidos.jsp">Listar Pedidos</a></li>
                             </ul>
                         </li>
 

@@ -186,4 +186,31 @@ public class UsuarioDAO extends Conexion {
             throw new RuntimeException(ex);
         }
     }
+    
+     public UsuariosVO getUsuarioPorId(int idUsuario) {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            String consulta = "select * from usuario where id_usuario= ?";
+            pst = obtenerConexion().prepareStatement(consulta);
+            pst.setInt(1, idUsuario);
+
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                UsuariosVO user=new UsuariosVO();
+                user.setNombre(rs.getString("nombre"));
+                user.setUcorreo(rs.getString("correo"));
+                user.setDirreccion(rs.getString("direccion"));
+                user.setTelefonoFijo(rs.getString("telefono_fijo"));
+                user.setTelefonoMovil(rs.getString("telefono_movil"));
+                user.setIdTipoDocumento(rs.getInt("id_tipo_documento"));
+                 user.setIdTipoUsuario(rs.getInt("id_tipo_usuario"));
+                 return user;
+            }
+        } catch (Exception ex) {
+            System.err.println("ERROR " + ex);
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

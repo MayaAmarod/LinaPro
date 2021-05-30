@@ -282,5 +282,45 @@ public class ProductoDAO extends Conexion implements Crud {
 
     }
     
+      public ArrayList<productoVO> listarProductosPorPedido(int idPedido) {  // ALMACENAR objetos VO, lo almacena en posiciones
+        //se puede listar directamente en jsp y no en controlador ya que no pide datos
+
+        productoVO proVo = null; //declarar VO
+        ArrayList<productoVO> listaProductos = new ArrayList<>(); //crear arraylist        
+
+        try {
+            conexion = this.obtenerConexion();
+
+            sql = "select p.id_producto, p.nombre_producto, d.cantidad_pedido, p.precio, d.cantidad from producto p"
+                    + " inner join detalle_pedido d on d.id_producto=p.id_producto "
+                    + "where d.id_pedido=?"; //query
+            puente = conexion.prepareStatement(sql);
+            puente.setInt(1, idPedido);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                proVo = new productoVO();
+                proVo.setId_producto(mensajero.getString("id_producto"));
+                proVo.setNombre_producto(mensajero.getString("nombre_producto"));
+                proVo.setPrecio(mensajero.getString("precio"));
+                proVo.setSubtotal(mensajero.getDouble("cantidad_pedido"));
+                proVo.setCantidadAComprar(mensajero.getInt("cantidad"));
+                listaProductos.add(proVo); //lo agrega a la posicion del arreglo hasta que ya no encuentre
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                this.cerrarConexion(); // independiente que pase en try catch haga finally
+            } catch (Exception e) {
+
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
+        }
+        return listaProductos;
+    }
     
 }

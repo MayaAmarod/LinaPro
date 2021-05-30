@@ -43,6 +43,36 @@ public class PedidoDAO extends Conexion  {
         super();
 
     }
+    
+    public PedidoVO obtenerUltimoPedidoGuardado() {
+        PedidoVO pedVo = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from pedido where id_pedido=(select max(id_pedido) from pedido)"; //query
+           
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+             
+            while (mensajero.next()) {
+                pedVo = new PedidoVO(mensajero.getInt(1), mensajero.getInt(2),
+                        mensajero.getDate(3), mensajero.getDate(4),
+                        mensajero.getString(5));
+                pedVo.setNombreUsuario(mensajero.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+
+                Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
+        }
+        return pedVo;
+    }
 
 
     public boolean agregarRegistro(PedidoVO pedVO) {
