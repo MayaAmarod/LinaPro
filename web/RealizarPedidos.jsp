@@ -246,23 +246,23 @@
                                                         <%}%>
                                                     </select> 
 
-                                                    <br>
+                                                    <br> <br>
 
                                                     <label>
                                                         Fecha entrega:  <br>
                                                     </label>
-                                                    <input type="date" name="textfecha_entrega" required="true" >
+                                                    <input type="date" name="textfecha_entrega" required="true" ><br> <br>
 
                                                     <label>
                                                         Forma de envio: <br>
                                                     </label>
 
-                                                    <select name="textforma_envio" required="true" ><br> <br>
+                                                    <select name="textforma_envio" required="true" >
                                                         <option disabled selected value>Seleccione...</option> 
                                                         <option value="Envio Normal">Envio Normal</option>
                                                         <option value="Envio Express">Envio Express</option>
                                                         <option value="Recoge en Tienda">Recoge en Tienda</option>
-                                                    </select> 
+                                                    </select> <br> <br>
 
 
 
