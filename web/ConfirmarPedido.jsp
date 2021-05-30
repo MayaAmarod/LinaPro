@@ -234,7 +234,7 @@
                                       <%  if (opcionConfirmarPedido) { %>
                                            <a href="LinaHome.jsp"><button class="btn btn-green" >Confirmar Pedido</button></a>
                                             <% } else { %>
-                                          <a href="detallePedidos.jsp"><button class="btn btn-green" >Regrasar</button></a>
+                                          <a href="detallePedidos.jsp">Regrasar</a>
                                             <% }   %>
                              
                             </div>

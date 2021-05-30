@@ -164,7 +164,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Imagen</th>
-                                                    <th>C�digo Producto</th>
+                                                    <th>Codigo Producto</th>
                                                     <th>Nombre Producto</th>
                                                     <th>Precio</th>
                                                     <th>Cantidad </th>
