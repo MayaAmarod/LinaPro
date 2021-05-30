@@ -160,10 +160,18 @@
                                             } %>
 
                                     </div>
+                                    <div class="card-header">
+                                        <form method="post" action="Pedido">
+                                            <strong class="card-title">Código Pedido</strong>
+                                            <input type="text" name="textid_pedido">
+                                            <button class="btn1">Actualizar</button>
+                                            <input type="hidden" value="3" name="opcion" > 
+                                        </form>
+                                    </div> 
                                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                               <th>ID Pedido</th>
+                                                <th>ID Pedido</th>
                                                 <th>Nombre Usuario</th>
                                                 <th>Fecha de Pedido</th>
                                                 <th>Fecha de Entrega</th>
@@ -183,16 +191,16 @@
 
                                             %>
                                             <tr>
-                                                  <td><%=pedVO.getId_Pedido()%></td>
+                                                <td><%=pedVO.getId_Pedido()%></td>
                                                 <td><%=pedVO.getNombreUsuario()%></td>
                                                 <td><%=pedVO.getFecha_Pedido()%></td>
                                                 <td><%=pedVO.getFecha_Entrega()%></td>
                                                 <td><%=pedVO.getForma_Envio()%></td>
-                                        <td><form method="post" action="RealizarPedidoControlador">
-                                            <input type="hidden" name="textid_pedido" value="<%=pedVO.getId_Pedido()%>" >
-                                            <input type="hidden" name="opcion" value="detalle_pedido" >
-                                            <button >Ver Detalle</button>
-                                        </form></td>
+                                                <td><form method="post" action="RealizarPedidoControlador">
+                                                        <input type="hidden" name="textid_pedido" value="<%=pedVO.getId_Pedido()%>" >
+                                                        <input type="hidden" name="opcion" value="detalle_pedido" >
+                                                        <button >Ver Detalle</button>
+                                                    </form></td>
                                             </tr>
                                             <%}%>
 
