@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author wilso
+ * @author Nidia herrera
  */
 @WebServlet(name = "ConfirmarPedidoControlador", urlPatterns = {"/ConfirmarPedidoControlador"})
 public class ConfirmarPedidoControlador extends HttpServlet {

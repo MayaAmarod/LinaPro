@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author wilso
+ * @author neherrera0@misena.edu.co  
  */
 @WebServlet(name = "RealizarPedidoControlador", urlPatterns = {"/RealizarPedidoControlador"})
 public class RealizarPedidoControlador extends HttpServlet {

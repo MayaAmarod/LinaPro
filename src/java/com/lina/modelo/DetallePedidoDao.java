@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author wilso
+ * @author Nidia Herrera
  */
 public class DetallePedidoDao extends Conexion  {
 
