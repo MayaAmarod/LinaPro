@@ -10,6 +10,7 @@ import com.lina.modelo.UsuarioDAO;
 import com.lina.vo.PersonasVO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -57,11 +58,16 @@ public class EnvioCorreo extends HttpServlet {
         PersonasVO personaVO = new PersonasVO();
         personaVO.setPcorreo(request.getParameter("textCorreo"));
         personaVO.setPdocumento(request.getParameter("textDocumento"));
+        UsuarioDAO usuDAO = new UsuarioDAO();
 
         Pcorreo = personaVO.getPcorreo();
         Pdocumento = personaVO.getPdocumento();
-        
-        Pusuario = personaVO.getPusuario();
+
+        ArrayList<PersonasVO> listaUsuarios = usuDAO.listarC(Pcorreo, Pdocumento);
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            personaVO = listaUsuarios.get(i);
+            Pusuario = personaVO.getPusuario();
+        }
         
         String receptor = Pcorreo;//-> Receptor estaba con "s"
         String asunto = "Recuperación de Contraseña - LINA";

@@ -11,12 +11,12 @@
 <%@page import="com.lina.vo.productoVO"%>
 <%@page import="com.lina.vo.UsuariosVO"%>
 <%  //validamos si existe sesion, de lo contrario redirigimos al login
-HttpSession misession= (HttpSession) request.getSession();
-if(misession==null || misession.getAttribute("usuarioSesion")==null ){ 
-    request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
-    request.getRequestDispatcher("Login.jsp").forward(request, response);
-}
- UsuariosVO userSesion= (UsuariosVO) misession.getAttribute("usuarioSesion");
+    HttpSession misession = (HttpSession) request.getSession();
+    if (misession == null || misession.getAttribute("usuarioSesion") == null) {
+        request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
+    }
+    UsuariosVO userSesion = (UsuariosVO) misession.getAttribute("usuarioSesion");
 %> 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
@@ -61,7 +61,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
                             <ul class="sub-menu children dropdown-menu">
-                              <li><i class="fa fa-table"></i><a href="RealizarPedidos.jsp">Nuevo Pedido</a></li>
+                                <li><i class="fa fa-table"></i><a href="RealizarPedidos.jsp">Nuevo Pedido</a></li>
                                 <li><i class="fa fa-table"></i><a href="detallePedidos.jsp">Listar Pedidos</a></li>
                             </ul>
                         </li>
@@ -72,7 +72,7 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Registrar Productos </a></li>
                                 <li><i class="fa fa-envira"></i><a href="ProductoActualizar.jsp">Actualizar Productos </a></li>
                                 <li><i class="fa fa-envira"></i><a href="eliminarProducto.jsp">Eliminar Productos </a></li>
-                            <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>
                             </ul>
                         </li>
                         <li class="menu-item-has-children active dropdown">
@@ -173,19 +173,19 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                                 <!-- dividir elementos en categorias, se asigna una clase para el elemento ejemplo h1 -->
                                                 <form action="Registrar" method="post">
                                                     <label for="textDocumento">
-                                                            Tipo De Usuario:
-                                                        </label>
+                                                        Tipo De Usuario:
+                                                    </label>
                                                     <select id="textTipoUsuario" 
-                                                                name="textTipoUsuario">
-                                                            <option>...</option> 
-                                                            <%
-                                                                TipoUsuarioDAO tipoUsuDao = new TipoUsuarioDAO(); //ella tiene el metodo
-                                                                for (TipoUsuarioVO tipoUsuVO : tipoUsuDao.listar()) {
-                                                            %>
+                                                            name="textTipoUsuario">
+                                                        <option>...</option> 
+                                                        <%
+                                                            TipoUsuarioDAO tipoUsuDao = new TipoUsuarioDAO(); //ella tiene el metodo
+                                                            for (TipoUsuarioVO tipoUsuVO : tipoUsuDao.listar()) {
+                                                        %>
 
-                                                            <option value="<%=tipoUsuVO.getId_tipo_usuario()%>"><%=tipoUsuVO.getNombre_tipo_usuario()%> </option>
+                                                        <option value="<%=tipoUsuVO.getId_tipo_usuario()%>"><%=tipoUsuVO.getNombre_tipo_usuario()%> </option>
 
-                                                            <%}%>
+                                                        <%}%>
                                                     </select><br>
                                                     <label for="usuario">
                                                         Nombre Completo:
@@ -254,14 +254,14 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                                            required="" type="text" pattern="^[3]\d{9}$"
                                                            title="El número ingresado debe iniciar en 3, minimo 10 carácteres"><br>
 
-                                                                              <label for="textCelular">
+                                                    <label for="textCelular">
                                                         Telefono Fijo:
                                                     </label>
                                                     <input id="textFijo" name="textFijo" 
                                                            placeholder="Número Fijo" 
                                                            required="" type="text" pattern="^[3]\d{9}$"
                                                            title="El número ingresado debe iniciar en 3, minimo 10 carácteres"><br>
-                                                    
+
                                                     <label for="password">
                                                         Contraseña:
                                                     </label>
@@ -294,9 +294,10 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                                                         <%}%>
 
                                                     </div>
+                                                    <button> Registrar
 
-                                                    <!--type submit-->
-                                                    <input name="btnenviar" type="submit" value="Registrar">
+                                                    </button>
+                                                    <input type="hidden" value="1" name="opcion" >
                                                     <br>
                                                     <br>
                                                 </form>
@@ -353,9 +354,9 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
 
 
         <script type="text/javascript">
-            $(document).ready(function () {
-                $('#bootstrap-data-table-export').DataTable();
-            });
+                                                               $(document).ready(function () {
+                                                                   $('#bootstrap-data-table-export').DataTable();
+                                                               });
         </script>
 
 

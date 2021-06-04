@@ -30,13 +30,14 @@ public class UsuarioDAO extends Conexion {
     public String sql;
     private PreparedStatement puente;
     public boolean operacion = false;
-    
-    private String Pid_usuario ="", Pusuario="", Pdocumento="", Pcorreo="", Pdireccion="", Pcontraseña="",
-            PtelefonoFijo="", Pcelular="", PtipoUsuario="", Ptipodocumento="", Pid_estado="";
+
+    private String Pid_usuario = "", Pusuario = "", Pdocumento = "", Pcorreo = "", Pdireccion = "", Pcontraseña = "",
+            PtelefonoFijo = "", Pcelular = "", PtipoUsuario = "", Ptipodocumento = "", Pid_estado = "";
+
     public UsuarioDAO() {
     }
-    
-    public UsuarioDAO(PersonasVO perVO) {        
+
+    public UsuarioDAO(PersonasVO perVO) {
         super(); // se usa super se traen variables de una superClase, ya que no se puede hacer doble herencia       
         try {
             conexion = this.obtenerConexion(); //10.extends Conexion heredar conexion 
@@ -57,8 +58,8 @@ public class UsuarioDAO extends Conexion {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
             //obtener log del error de la clase y categorizar
         }
-    }    
-    
+    }
+
     /**
      * valida si el usuario y la clave existen en base de datos
      *
@@ -66,7 +67,7 @@ public class UsuarioDAO extends Conexion {
      * @param clave
      * @return
      */
-   	public UsuariosVO autenticacion(String correo, String clave) {
+    public UsuariosVO autenticacion(String correo, String clave) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -79,24 +80,23 @@ public class UsuarioDAO extends Conexion {
 
             rs = pst.executeQuery();
             if (rs.next()) {
-                UsuariosVO user=new UsuariosVO();
+                UsuariosVO user = new UsuariosVO();
                 user.setNombre(rs.getString("nombre"));
                 user.setUcorreo(rs.getString("correo"));
                 user.setDirreccion(rs.getString("direccion"));
                 user.setTelefonoFijo(rs.getString("telefono_fijo"));
                 user.setTelefonoMovil(rs.getString("telefono_movil"));
                 user.setIdTipoDocumento(rs.getInt("id_tipo_documento"));
-                 user.setIdTipoUsuario(rs.getInt("id_tipo_usuario"));
-                 return user;
+                user.setIdTipoUsuario(rs.getInt("id_tipo_usuario"));
+                return user;
             }
         } catch (Exception ex) {
             System.err.println("ERROR " + ex);
         }
         return null;
     }
-	
-    
-     public boolean verificarCorreo(String correo, String numeroDocumento) {
+
+    public boolean verificarCorreo(String correo, String numeroDocumento) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -137,10 +137,42 @@ public class UsuarioDAO extends Conexion {
         }
         return false;
     }
-    
+
+    public ArrayList<PersonasVO> listarC(String correo, String numeroDocumento) {
+        PersonasVO perVo = null;
+        ArrayList<PersonasVO> listaUsuarios = new ArrayList<>(); //crear arraylist      
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuario where correo= ? and documento= ?"; //query
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, correo);
+            puente.setString(2, numeroDocumento);
+
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                perVo = new PersonasVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6),
+                        mensajero.getString(7), mensajero.getString(8),
+                        mensajero.getString(9), mensajero.getString(10),
+                        mensajero.getString(11));
+                listaUsuarios.add(perVo); //lo agrega a la posicion del arreglo hasta que ya no encuentre
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion(); // independiente que pase en try catch haga finally
+            } catch (Exception e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return listaUsuarios;
+    }
+
     public ArrayList<PersonasVO> listar() {  // ALMACENAR objetos VO, lo almacena en posiciones
         //se puede listar directamente en jsp y no en controlador ya que no pide datos
-        
+
         PersonasVO perVo = null; //declarar VO
         ArrayList<PersonasVO> listaUsuarios = new ArrayList<>(); //crear arraylist      
         try {
@@ -169,16 +201,16 @@ public class UsuarioDAO extends Conexion {
         return listaUsuarios;
     }
 
-     public List<UsuariosVO> listarUsuarios() {
-        List<UsuariosVO> usuarios=new ArrayList<>();
+    public List<UsuariosVO> listarUsuarios() {
+        List<UsuariosVO> usuarios = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
             String consulta = "select * from usuario";
             pst = obtenerConexion().prepareStatement(consulta);
             rs = pst.executeQuery();
-           while (rs.next()) {
-                UsuariosVO usuario=new UsuariosVO();
+            while (rs.next()) {
+                UsuariosVO usuario = new UsuariosVO();
                 usuario.setIdUsusario(rs.getInt("id_usuario"));
                 usuario.setNombre(rs.getString("nombre"));
                 usuarios.add(usuario);
@@ -188,6 +220,7 @@ public class UsuarioDAO extends Conexion {
         }
         return usuarios;
     }
+
     /**
      * registra un nuevo usuario en la base de datos
      *
@@ -250,8 +283,8 @@ public class UsuarioDAO extends Conexion {
             throw new RuntimeException(ex);
         }
     }
-    
-     public UsuariosVO getUsuarioPorId(int idUsuario) {
+
+    public UsuariosVO getUsuarioPorId(int idUsuario) {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
@@ -261,23 +294,23 @@ public class UsuarioDAO extends Conexion {
 
             rs = pst.executeQuery();
             if (rs.next()) {
-                UsuariosVO user=new UsuariosVO();
+                UsuariosVO user = new UsuariosVO();
                 user.setNombre(rs.getString("nombre"));
                 user.setUcorreo(rs.getString("correo"));
                 user.setDirreccion(rs.getString("direccion"));
                 user.setTelefonoFijo(rs.getString("telefono_fijo"));
                 user.setTelefonoMovil(rs.getString("telefono_movil"));
                 user.setIdTipoDocumento(rs.getInt("id_tipo_documento"));
-                 user.setIdTipoUsuario(rs.getInt("id_tipo_usuario"));
-                 return user;
+                user.setIdTipoUsuario(rs.getInt("id_tipo_usuario"));
+                return user;
             }
         } catch (Exception ex) {
             System.err.println("ERROR " + ex);
             ex.printStackTrace();
         }
         return null;
-    }     
-     
+    }
+
     public boolean actualizarRegistro() {
         try {
             sql = "update usuario set nombre=?, documento=?, "
@@ -317,7 +350,7 @@ public class UsuarioDAO extends Conexion {
         }
         return operacion;//retorna ya que es un método booleano
     }
-    
+
     public Boolean Eliminar() {
         try {
             sql = "delete from usuario where id_usuario =?";
@@ -341,7 +374,7 @@ public class UsuarioDAO extends Conexion {
         }
         return operacion;//retorna ya que es un método booleano
     }
-    
+
     //19 metodo propio
     public PersonasVO consultar_nombreUsuario(String nombre_usuario) {
         //metodo de tipo objeto retorna datos que estan en el vo
