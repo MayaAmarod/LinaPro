@@ -76,6 +76,9 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-circle-o"></i>Usuarios</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="UsuariosActivos.jsp">Usuarios Activos </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="ActualizarUsuario.jsp">Actualizar Usuarios </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="eliminarUsuario.jsp">Eliminar Usuarios </a></li>
                             </ul>
                         </li>
                     </ul>
