@@ -1,3 +1,5 @@
+<%@page import="com.lina.vo.PersonasVO"%>
+<%@page import="com.lina.modelo.UsuarioDAO"%>
 <%@page import="com.lina.modelo.TipoProductoDAO"%>
 <%@page import="com.lina.modelo.CategoriaProductoDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -74,7 +76,9 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-circle-o"></i>Usuarios</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
-                                                                <li><i class="fa fa-user-circle-o "></i><a href="UsuariosActivos.jsp">Usuarios Activos </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="UsuariosActivos.jsp">Usuarios Activos </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="ActualizarUsuario.jsp">Actualizar Usuarios </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="eliminarUsuarios.jsp">Eliminar Usuarios </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -153,7 +157,10 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-
+                                    <form action="generarPDF.jsp" method="post" target="_blank">
+                                        <strong class="card-title">Usuarios</strong> 
+                                        <button class="btn1">Generar Reporte PDF</button>
+                                    </form>
                                     <!--<form action="generarPDF.jsp" method="post" target="_blank">
 
                                         <strong class="card-title">Productos</strong> 
@@ -188,30 +195,33 @@
                                         </thead>
                                         <tbody>
                                             <%
-
-                                                productoVO proVO = new productoVO(); //se deja vacio porque no va a enviar sino recibir, no pasa x controlador
-                                                ProductoDAO proDAO = new ProductoDAO(); //no va a hacer iPeraciones con datos del VO
+                                                PersonasVO perVO = new PersonasVO();//se deja vacio porque no va a enviar sino recibir, no pasa x controlador
+                                                UsuarioDAO usuDAO = new UsuarioDAO(); //no va a hacer iPeraciones con datos del VO
                                                 //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
-                                                ArrayList<productoVO> listaProductos = proDAO.listar(); //se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
-                                                CategoriaProductoDAO CatProDAO = new CategoriaProductoDAO(); //instanciar 
-                                                TipoProductoDAO TiProDAO = new TipoProductoDAO();
+                                                ArrayList<PersonasVO> listaUsuarios = usuDAO.listar();//se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
+                                                
+                                                //CategoriaProductoDAO CatProDAO = new CategoriaProductoDAO(); //instanciar 
+                                                /*TipoProductoDAO TiProDAO = new TipoProductoDAO();                                                
                                                 String nombreCateg;
                                                 String nombreTiPro;
                                                 for (int i = 0; i < listaProductos.size(); i++) {
                                                     proVO = listaProductos.get(i);
                                                     nombreCateg = CatProDAO.consultarNombreCategoria(proVO.getId_categoria());
-                                                    nombreTiPro = TiProDAO.consultarNombreTipoProducto(proVO.getId_tipo_producto());
+                                                    nombreTiPro = TiProDAO.consultarNombreTipoProducto(proVO.getId_tipo_producto());*/
+                                                
+                                                    for (int i = 0; i < listaUsuarios.size(); i++) {
+                                                    perVO = listaUsuarios.get(i);
                                             %>
                                             <tr>
-                                                <td><%=proVO.getId_producto()%></td>
-                                                <td><%=nombreTiPro%></td>
-                                                <td><%=nombreCateg%></td>
-                                                <td><%=proVO.getNombre_producto()%></td>
-                                                <td><%=proVO.getId_planta()%></td>
-                                                <td><%=proVO.getPeso()%></td>
-                                                <td><%=proVO.getUrl_imagen()%></td>
-                                                <td><%=proVO.getUnidades_existentes()%></td>
-                                                <td><%=proVO.getPrecio()%></td>
+                                                <td><%=perVO.getPid_usuario()%></td>
+                                                <td><%=perVO.getPusuario()%></td>
+                                                <td><%=perVO.getPdocumento()%></td>
+                                                <td><%=perVO.getPcorreo()%></td>
+                                                <td><%=perVO.getPdireccion()%></td>
+                                                <td><%=perVO.getPtelefonoFijo()%></td>
+                                                <td><%=perVO.getPcelular()%></td>
+                                                <td><%=perVO.getPtipoUsuario()%></td>    
+                                                <td><%=perVO.getPtipodocumento()%></td>  
                                             </tr>
                                             <%}%>
 
