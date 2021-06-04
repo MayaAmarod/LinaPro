@@ -9,12 +9,12 @@
 <%@page import="com.lina.vo.PedidoVO"%>
 <%@page import="com.lina.vo.UsuariosVO"%>
 <%  //validamos si existe sesion, de lo contrario redirigimos al login
-HttpSession misession= (HttpSession) request.getSession();
-if(misession==null || misession.getAttribute("usuarioSesion")==null ){ 
-    request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
-    request.getRequestDispatcher("Login.jsp").forward(request, response);
-}
- UsuariosVO userSesion= (UsuariosVO) misession.getAttribute("usuarioSesion");
+    HttpSession misession = (HttpSession) request.getSession();
+    if (misession == null || misession.getAttribute("usuarioSesion") == null) {
+        request.setAttribute("MensajeU", "¡No se encontro ninguna sesion activa por favor inicia nuevamente.!");
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
+    }
+    UsuariosVO userSesion = (UsuariosVO) misession.getAttribute("usuarioSesion");
 %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -69,13 +69,19 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-envira"></i>Productos</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Gestionar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Registrar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Actualizar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="eliminarProducto.jsp">Eliminar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>                            
                             </ul>
                         </li>
-                                                                        <li class="menu-item-has-children active dropdown">
+                        <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-circle-o "></i>Usuarios</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="UsuariosActivos.jsp">Usuarios Activos </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="ActualizarUsuario.jsp">Actualizar Usuarios </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="eliminarUsuario.jsp">Eliminar Usuarios </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -119,124 +125,124 @@ if(misession==null || misession.getAttribute("usuarioSesion")==null ){
             </header><!-- /header -->
             <!-- Header-->
 
-              <div class="col-lg-5">
-                            <div class="card">
-                                <div class="card-header">
-                                    <strong class="card-title">Actualizar Pedido</strong>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table">
-                                        <div class="contenedor">
-                                            <!-- agrupar contenido en bloques -->
-                                            <!-- contenedor Informacion -->
-                                         
-            
-       
-        <%
-            PedidoVO pedVO = (PedidoVO) request.getAttribute("Datos Consultados");
-            //
-            if (pedVO != null) {
-
-        %>
-
-        <form method="post" action="Pedido">
-
-            <table>
-
-                <tr>
-                    <th>
-
-
-                        ID Usuario  <br>
-
-                        <select name="textid_usuario"  value="<%=pedVO.getId_Usuario()%>" >
-                            <%
-                                UsuarioDAO usuarioDAO = new UsuarioDAO();
-                                for (UsuariosVO user : usuarioDAO.listarUsuarios()) {
-                            %>
-
-                            <option value="<%=user.getIdUsusario()%>"><%=user.getNombre()%> </option>
-
-                            <%}%>
-                        </select> <br> <br>
-
-                        Fecha de Pedido  <br>
-                        <input type="date" name="textfecha_pedido" value="<%=pedVO.getFecha_Pedido()%>" ><br> <br>
-
-                        Fecha de Entrega <br>
-                        <input type="date" name="textfecha_entrega" value="<%=pedVO.getFecha_Entrega()%>" ><br> <br>
-
-                        Forma de Envio <br>
-                        <input type="text" name="textforma_envio" value="<%=pedVO.getForma_Envio()%>" > <br> <br>
+            <div class="col-lg-5">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Actualizar Pedido</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <div class="contenedor">
+                                <!-- agrupar contenido en bloques -->
+                                <!-- contenedor Informacion -->
 
 
 
-                    </th>
+                                <%
+                                    PedidoVO pedVO = (PedidoVO) request.getAttribute("Datos Consultados");
+                                    //
+                                    if (pedVO != null) {
 
-                </tr>
+                                %>
 
-            </table>  <br>
-            <button> Actualizar
+                                <form method="post" action="Pedido">
 
-            </button>
-            <input type="hidden" value="<%=pedVO.getId_Pedido()%>" name="id_pedido" >
-            <input type="hidden" value="2" name="opcion" > <%-- 39 value es el numero de caso, contenido oculto, opcion valor a recoger --%>
-        </form> <br>
+                                    <table>
+
+                                        <tr>
+                                            <th>
 
 
-        <%}
-        %>
-        <a href="registarPedido.jsp" >Volver</a>
-        <div style="color:green"> <%-- codigo java --%>
-            <%
-                if (request.getAttribute("mensajeError") != null) {
-            %>
-            <%-- imprimir mensaje en jsp ${} --%>
+                                                ID Usuario  <br>
 
-            ${mensajeError}
-            <%
+                                                <select name="textid_usuario"  value="<%=pedVO.getId_Usuario()%>" >
+                                                    <%
+                                                        UsuarioDAO usuarioDAO = new UsuarioDAO();
+                                                        for (UsuariosVO user : usuarioDAO.listarUsuarios()) {
+                                                    %>
+
+                                                    <option value="<%=user.getIdUsusario()%>"><%=user.getNombre()%> </option>
+
+                                                    <%}%>
+                                                </select> <br> <br>
+
+                                                Fecha de Pedido  <br>
+                                                <input type="date" name="textfecha_pedido" value="<%=pedVO.getFecha_Pedido()%>" ><br> <br>
+
+                                                Fecha de Entrega <br>
+                                                <input type="date" name="textfecha_entrega" value="<%=pedVO.getFecha_Entrega()%>" ><br> <br>
+
+                                                Forma de Envio <br>
+                                                <input type="text" name="textforma_envio" value="<%=pedVO.getForma_Envio()%>" > <br> <br>
+
+
+
+                                            </th>
+
+                                        </tr>
+
+                                    </table>  <br>
+                                    <button> Actualizar
+
+                                    </button>
+                                    <input type="hidden" value="<%=pedVO.getId_Pedido()%>" name="id_pedido" >
+                                    <input type="hidden" value="2" name="opcion" > <%-- 39 value es el numero de caso, contenido oculto, opcion valor a recoger --%>
+                                </form> <br>
+
+
+                                <%}
+                                %>
+                                <a href="registarPedido.jsp" >Volver</a>
+                                <div style="color:green"> <%-- codigo java --%>
+                                    <%
+                                        if (request.getAttribute("mensajeError") != null) {
+                                    %>
+                                    <%-- imprimir mensaje en jsp ${} --%>
+
+                                    ${mensajeError}
+                                    <%
             } else { %>
-            ${mensajeExito}
-            <%}%>
-        </div>
-
-    </centeR>
-                                     </div>
-                                        </div>
-
-                                    </table>
-
+                                    ${mensajeExito}
+                                    <%}%>
                                 </div>
+
+                                </centeR>
                             </div>
-                        </div>
                     </div>
-               
-   <div class="clearfix"></div>
 
-            <footer class="site-footer">
-                <div class="footer-inner bg-white">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            Copyright &copy; 2021 LinAdmin
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            Diseñado por <a href="#">LinAdmin</a>
-                        </div>
-                    </div>
+                    </table>
+
                 </div>
-            </footer>
+            </div>
+        </div>
+    </div>
 
-        </div><!-- /#right-panel -->
+    <div class="clearfix"></div>
 
-        <!-- Right Panel -->
+    <footer class="site-footer">
+        <div class="footer-inner bg-white">
+            <div class="row">
+                <div class="col-sm-6">
+                    Copyright &copy; 2021 LinAdmin
+                </div>
+                <div class="col-sm-6 text-right">
+                    Diseñado por <a href="#">LinAdmin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-        <script src="assets/js/main.js"></script>
+</div><!-- /#right-panel -->
+
+<!-- Right Panel -->
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+<script src="assets/js/main.js"></script>
 
 
-    </body>
+</body>
 </html>
