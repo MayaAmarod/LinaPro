@@ -157,19 +157,19 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <form action="generarPDF.jsp" method="post" target="_blank">
+                                    <form action="generarPDFusu.jsp" method="post" target="_blank">
                                         <strong class="card-title">Usuarios</strong> 
                                         <button class="btn1">Generar Reporte PDF</button>
                                     </form>
-                                    <!--<form action="generarPDF.jsp" method="post" target="_blank">
+                                    <!--<form action="generarPDFusu.jsp" method="post" target="_blank">
 
-                                        <strong class="card-title">Productos</strong> 
+                                        <strong class="card-title">Usuarios</strong> 
                                         <button class="btn1">Generar Reporte PDF</button>
                                     </form>
 
                                     <form action="reporteParametrizado.jsp" method="post" target="_blank">
                                                                        
-                                    <strong class="card-title">Productos</strong> 
+                                    <strong class="card-title">Usuarios</strong> 
                                     <select name="tipo">
                                         <option value="extra"> extra</option>  
                                         <option value="Hass"> Hass</option> 
