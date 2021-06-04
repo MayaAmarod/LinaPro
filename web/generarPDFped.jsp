@@ -22,7 +22,7 @@
 //llamar un objeto file para indicar que almanece elementos, 
 //realparth contenedores donde esta el reporte
 
-File reporteProductos = new File(application.getRealPath("ReportePedidos.jasper"));
+File reportePedidos = new File(application.getRealPath("ReportePedidos.jasper"));
 
 //hacer un mapeo
 // recorrer y convertir objeto con map
@@ -37,7 +37,7 @@ Conexion conexionBD = new Conexion(); //instanciar conexión
 //convertir reporte en byte
 //jasper librerias no nativas de java, se deben importar bombillo add jasper
 
-byte[] reporteBytes = JasperRunManager.runReportToPdf(reporteProductos.getPath(),parametros,conexion);
+byte[] reporteBytes = JasperRunManager.runReportToPdf(reportePedidos.getPath(),parametros,conexion);
 //convierta en arreglo de bytes, en pdf con administrador, nombre reporte, parametros el mapeo del reporte, conexion para obtener datos
 response.setContentType("application/pdf");
 //asignar tipo de elemento, aplicacion pdf

@@ -306,23 +306,6 @@
             </div><!-- .animated -->
         </div><!-- .content -->   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="clearfix"></div>
         <footer class="site-footer">
             <div class="footer-inner bg-white">

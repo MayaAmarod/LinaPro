@@ -167,9 +167,8 @@
                                     </div>
                                     <div class="card-header">
                                          <form action="generarPDFped.jsp" method="post" target="_blank">
-
-                                        <strong class="card-title">Pedidos</strong> 
-                                        <button class="btn1">Generar Reporte PDF</button>
+                                            <strong class="card-title">Pedidos</strong> 
+                                            <button class="btn1">Generar Reporte PDF</button>
                                          </form><br>
                                          
                                         <form method="post" action="Pedido">
