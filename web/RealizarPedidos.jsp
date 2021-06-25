@@ -65,16 +65,16 @@
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Productos</a>
                             <ul class="sub-menu children dropdown-menu">
-                               <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Registrar Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Registrar Productos </a></li>
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Actualizar Productos </a></li>
                                 <li><i class="fa fa-envira"></i><a href="eliminarProducto.jsp">Eliminar Productos </a></li>
-                            <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li> 
+                                <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li> 
                             </ul>
                         </li>
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-circle-o "></i>Usuarios</a>
                             <ul class="sub-menu children dropdown-menu">
-                               <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
                                 <li><i class="fa fa-user-circle-o "></i><a href="UsuariosActivos.jsp">Usuarios Activos </a></li>
                                 <li><i class="fa fa-user-circle-o "></i><a href="ActualizarUsuario.jsp">Actualizar Usuarios </a></li>
                                 <li><i class="fa fa-user-circle-o "></i><a href="eliminarUsuario.jsp">Eliminar Usuarios </a></li>
@@ -162,10 +162,10 @@
 
 
                                     </div> 
-
-                                    <div class="table-stats order-table ov-h">
+                                    <br>
+                                    <div class="table-stats ov-h">
                                         <input type="hidden" name="opcion" value="confirmar_pedido" >
-                                        <table class="table ">
+                                        <table id="example" class="table " style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>Imagen</th>
@@ -192,7 +192,7 @@
                                                         <%} else {   %>  
                                                     <td><img src="Imagen/productosIcono.png" width="80px" class="rounded-circle border border-light rounded-3"></td>
                                                         <%  }%>  
-                                                    <td><%=proVO.getId_producto()%></td>
+                                                    <td>PRO<%=proVO.getId_producto()%></td>
                                                     <td><%=proVO.getNombre_producto()%></td>
                                                     <td><%=proVO.getPrecio()%></td>
                                                     <td><input type="number" name="cantidad_<%=proVO.getId_producto()%>"  class="form-control" style="width: 80px; float: right" value="0"  min="0" max="<%=proVO.getUnidades_existentes()%>"></td>
@@ -202,7 +202,7 @@
 
                                             </tbody>
                                         </table>
-                                    </div> <!-- /.table-stats -->
+                                    </div> <br><!-- /.table-stats -->
                                     <div style="color:red"> <%-- codigo java --%>
                                         <%
                                             if (request.getAttribute("mensajeError") != null) {
@@ -211,7 +211,7 @@
 
                                         ${mensajeError}
                                         <%
-                                             } else { %>
+                                        } else { %>
                                         ${mensajeExito}
                                         <%}%>
                                     </div>
@@ -227,54 +227,77 @@
                                     </div>
                                     <div class="card-body">
                                         <table class="table">
-                                            <div class="contenedor">
-                                                <!-- agrupar contenido en bloques -->
-                                                <!-- contenedor Informacion -->
-                                                <div class="ContenedorFormulario">
-                                                    <!-- contenedor formulario -->
-                                                    <!-- insertar logo -->
-                                                    <!-- dividir elementos en categorias, se asigna una clase para el elemento ejemplo h1 -->
 
-
-                                                    <label for="idusuario">
-                                                        Usuario
-                                                    </label>
-                                                    <select name="textid_usuario" required="true" ><br> <br>
-                                                        <option disabled selected value>Seleccione...</option> 
-                                                        <%
-                                                            UsuarioDAO usuarioDAO = new UsuarioDAO();
-                                                            for (UsuariosVO user : usuarioDAO.listarUsuarios()) {
-                                                        %>
-
-                                                        <option value="<%=user.getIdUsusario()%>"><%=user.getNombre()%> </option>
-
-                                                        <%}%>
-                                                    </select> 
-
-                                                    <br> <br>
-
-                                                    <label>
-                                                        Fecha entrega:  <br>
-                                                    </label>
-                                                    <input type="date" name="textfecha_entrega" required="true" ><br> <br>
-
-                                                    <label>
-                                                        Forma de envio: <br>
-                                                    </label>
-
-                                                    <select name="textforma_envio" required="true" >
-                                                        <option disabled selected value>Seleccione...</option> 
-                                                        <option value="Envio Normal">Envio Normal</option>
-                                                        <option value="Envio Express">Envio Express</option>
-                                                        <option value="Recoge en Tienda">Recoge en Tienda</option>
-                                                    </select> <br> <br>
-
-
-
-
+                                            <!-- agrupar contenido en bloques -->
+                                            <!-- contenedor Informacion -->
+                                            <div class="">
+                                                <!-- contenedor formulario -->
+                                                <!-- insertar logo -->
+                                                <!-- dividir elementos en categorias, se asigna una clase para el elemento ejemplo h1 -->
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label for="idusuario"  >
+                                                                <b>Usuario:</b>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col">
+                                                            <select name="textid_usuario" required="true" ><br> <br>
+                                                                <option disabled selected value>Seleccione...</option> 
+                                                                <%
+                                                                    UsuarioDAO usuarioDAO = new UsuarioDAO();
+                                                                    for (UsuariosVO user : usuarioDAO.listarUsuarios()) {
+                                                                %>
+                                                                <option value="<%=user.getIdUsusario()%>"><%=user.getNombre()%> </option>
+                                                                <%}%>
+                                                            </select> 
+                                                        </div>
+                                                    </div><br> 
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label>
+                                                                <b> Forma de envio:</b>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col">
+                                                            <select name="textforma_envio" required="true" >
+                                                                <option disabled selected value>Seleccione...</option> 
+                                                                <option value="Envio Normal">Envio Normal</option>
+                                                                <option value="Envio Express">Envio Express</option>
+                                                                <option value="Recoge en Tienda">Recoge en Tienda</option>
+                                                            </select>
+                                                        </div>
+                                                    </div><br> 
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label>
+                                                                <b> Fecha entrega: </b>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col">
+                                                            <input type="date" name="textfecha_entrega" required="true" ><br> <br>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
+
+
+
+
+                                                
+
+
+
+
+
+                                            
+
+
+
+
                                             </div>
+
+
                                     </div>
 
                                     </table>
@@ -330,7 +353,30 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#bootstrap-data-table-export').DataTable();
+        $('#example').DataTable();
     });
+  var table = $('#example').DataTable({
+    language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "_START_ a _END_ de _TOTAL_ Productos",
+        "infoEmpty": "0 to 0 of 0 Productos",
+        "infoFiltered": "(Filtrado de _MAX_ total Productos)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    }
+});
 </script>
 
 

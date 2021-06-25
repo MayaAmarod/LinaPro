@@ -69,7 +69,7 @@
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Registrar Productos </a></li>
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Actualizar Productos </a></li>
                                 <li><i class="fa fa-envira"></i><a href="eliminarProducto.jsp">Eliminar Productos </a></li>
-                            <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>
                             </ul>
                         </li>
                         <li class="menu-item-has-children active dropdown">
@@ -181,7 +181,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Imagen</th>
-                                                    <th>C�digo Producto</th>
+                                                    <th>C&oacutedigo Producto</th>
                                                     <th>Nombre Producto</th>
                                                     <th>Precio</th>
                                                     <th>Cantidad </th>
@@ -236,12 +236,12 @@
                                         <%}%>
                                     </div>
                                 </div>
-                                      <%  if (opcionConfirmarPedido) { %>
-                                           <a href="LinaHome.jsp"><button class="btn btn-green" >Confirmar Pedido</button></a>
-                                            <% } else { %>
-                                          <a href="detallePedidos.jsp">Regrasar</a>
-                                            <% }   %>
-                             
+                                <%  if (opcionConfirmarPedido) { %>
+                                <a href="LinaHome.jsp"><button class="btn btn-green" >Confirmar Pedido</button></a>
+                                <% } else { %>
+                                <a href="detallePedidos.jsp">Regrasar</a>
+                                <% }   %>
+
                             </div>
 
 
@@ -252,10 +252,10 @@
                                     </div>
                                     <div class="card-body">
                                         <table class="table">
-                                            <div class="contenedor">
+                                            <div class="">
                                                 <!-- agrupar contenido en bloques -->
                                                 <!-- contenedor Informacion -->
-                                                <div class="ContenedorFormulario">
+                                                <div class="">
                                                     <!-- contenedor formulario -->
                                                     <!-- insertar logo -->
                                                     <!-- dividir elementos en categorias, se asigna una clase para el elemento ejemplo h1 -->
@@ -264,16 +264,68 @@
                                                         UsuarioDAO usuarioDao = new UsuarioDAO();
                                                         UsuariosVO user = usuarioDao.getUsuarioPorId(pedVO.getId_Usuario());
                                                     %>
-                                                    <label >fecha de pedido: </label>
-                                                    <label ><%=pedVO.getFecha_Pedido()%></label><br> <br>
-                                                    <label >Usuario: </label>
-                                                    <label ><%=user.getNombre()%></label><br> <br>
-                                                    <label >Direccion de entrega: </label>
-                                                    <label ><%=user.getDirreccion()%></label><br> <br>
-                                                    <label >fecha de entrega: </label>
-                                                    <label ><%=pedVO.getFecha_Entrega()%></label><br> <br>
-                                                    <label >Forma de envio: </label>
-                                                    <label ><%=pedVO.getForma_Envio()%></label><br> <br>
+
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                  <label ><b>fecha de pedido:</b> </label>
+                                                            </div>
+                                                            <div class="col">
+                                                                  <label ><%=pedVO.getFecha_Pedido()%></label>
+                                                            </div>
+                                                        </div>
+                                                    </div><br>
+                                                      <div class="container">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                  <label ><b>Usuario: </b></label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label ><%=user.getNombre()%></label>
+                                                            </div>
+                                                        </div>
+                                                    </div><br>
+                                                      <div class="container">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                   <label ><b>Direccion de entrega:</b> </label>
+                                                            </div>
+                                                            <div class="col">
+                                                                 <label ><%=user.getDirreccion()%></label>
+                                                            </div>
+                                                        </div>
+                                                    </div><br>
+                                                      <div class="container">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                 <label ><b>fecha de entrega: </b></label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label ><%=pedVO.getFecha_Entrega()%></label>
+                                                            </div>
+                                                        </div>
+                                                    </div><br>
+                                                      <div class="container">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label ><b>Forma de envio:</b> </label>
+                                                            </div>
+                                                            <div class="col">
+                                                                 <label ><%=pedVO.getForma_Envio()%></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                  
+                                                  
+                                                  
+                                                    
+                                                 
+                                                   
+                                                   
+                                                    
+                                                    
+                                                   
 
 
                                                 </div>
