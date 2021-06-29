@@ -63,7 +63,7 @@ public class ConfirmarPedidoControlador extends HttpServlet {
             }
 
             //retornamos a detalle prdido
-            request.setAttribute("mensajeExito", "Pedido generado exitosamente! id Pedido nuevo: "+ultimoPedVO.getId_Pedido());
+            request.setAttribute("mensajeExito", "Pedido generado exitosamente! Nuevo Pedido #: "+ultimoPedVO.getId_Pedido());
             request.getRequestDispatcher("detallePedidos.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("mensajeError", "Error al guardar el pedido: "+e.getMessage());
