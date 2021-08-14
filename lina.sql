@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 24-04-2021 a las 02:12:56
+-- Tiempo de generación: 19-06-2021 a las 03:29:58
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -33,6 +33,17 @@ CREATE TABLE `categoria_producto` (
   `descripcion_categoria` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `categoria_producto`
+--
+
+INSERT INTO `categoria_producto` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`) VALUES
+(1, 'Gwen', 'Gwen'),
+(2, 'Hass', 'Hass'),
+(3, 'Criollo', 'Criollo'),
+(4, 'Bacon', 'Bacon'),
+(5, 'Choquette', 'Choquette');
+
 -- --------------------------------------------------------
 
 --
@@ -44,8 +55,68 @@ CREATE TABLE `detalle_pedido` (
   `id_pedido` int(11) UNSIGNED NOT NULL,
   `id_producto` int(11) UNSIGNED NOT NULL,
   `estado_pedido` varchar(20) NOT NULL,
-  `cantidad_pedido` double NOT NULL
+  `cantidad_pedido` double NOT NULL,
+  `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detalle_pedido`
+--
+
+INSERT INTO `detalle_pedido` (`id_detalle`, `id_pedido`, `id_producto`, `estado_pedido`, `cantidad_pedido`, `cantidad`) VALUES
+(1, 12, 3, '', 68000, 2),
+(2, 12, 5, '', 5000, 1),
+(3, 13, 3, '', 68000, 2),
+(4, 13, 5, '', 5000, 1),
+(5, 14, 3, '', 68000, 2),
+(6, 14, 5, '', 5000, 1),
+(7, 15, 3, '', 68000, 2),
+(8, 15, 5, '', 5000, 1),
+(9, 16, 3, '', 34000, 1),
+(10, 17, 5, '', 10000, 2),
+(11, 18, 3, '', 34000, 1),
+(12, 18, 4, '', 10500, 3),
+(13, 18, 5, '', 10000, 2),
+(14, 19, 3, '', 34000, 1),
+(15, 19, 4, '', 10500, 3),
+(16, 19, 5, '', 10000, 2),
+(17, 20, 7, '', 30000, 6),
+(18, 21, 3, '', 136000, 4),
+(19, 21, 4, '', 7000, 2),
+(20, 21, 5, '', 10000, 2),
+(21, 21, 6, '', 3600, 1),
+(22, 22, 3, '', 136000, 4),
+(23, 22, 4, '', 7000, 2),
+(24, 21, 7, '', 5000, 1),
+(25, 21, 8, '', 60000, 1),
+(26, 22, 5, '', 10000, 2),
+(27, 22, 6, '', 3600, 1),
+(28, 22, 7, '', 5000, 1),
+(29, 22, 8, '', 60000, 1),
+(30, 23, 3, '', 136000, 4),
+(31, 23, 4, '', 7000, 2),
+(32, 23, 5, '', 10000, 2),
+(33, 23, 6, '', 3600, 1),
+(34, 23, 7, '', 5000, 1),
+(35, 23, 8, '', 60000, 1),
+(36, 24, 3, '', 136000, 4),
+(37, 24, 4, '', 7000, 2),
+(38, 24, 5, '', 10000, 2),
+(39, 24, 6, '', 3600, 1),
+(40, 24, 7, '', 5000, 1),
+(41, 24, 8, '', 60000, 1),
+(42, 25, 3, '', 136000, 4),
+(43, 25, 4, '', 7000, 2),
+(44, 25, 5, '', 10000, 2),
+(45, 25, 6, '', 3600, 1),
+(46, 25, 7, '', 5000, 1),
+(47, 25, 8, '', 60000, 1),
+(48, 26, 3, '', 136000, 4),
+(49, 26, 4, '', 7000, 2),
+(50, 26, 5, '', 10000, 2),
+(51, 26, 6, '', 3600, 1),
+(52, 26, 7, '', 5000, 1),
+(53, 26, 8, '', 60000, 1);
 
 -- --------------------------------------------------------
 
@@ -64,6 +135,13 @@ CREATE TABLE `muestreo_calidad` (
   `observaciones` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `muestreo_calidad`
+--
+
+INSERT INTO `muestreo_calidad` (`id_muestreo`, `fecha_muestreo`, `variedad_muestreo`, `cantidad_muestreo`, `peso_promedio`, `temperatura_primedio`, `masa_seca`, `observaciones`) VALUES
+(1, '2021-05-22', '2', 1, 7, 7, 5, '');
+
 -- --------------------------------------------------------
 
 --
@@ -78,6 +156,38 @@ CREATE TABLE `pedido` (
   `forma_envio` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`id_pedido`, `id_usuario`, `fecha_pedido`, `fecha_entrega`, `forma_envio`) VALUES
+(1, 9, '2021-05-12', '2021-05-20', 'carro'),
+(2, 4, '2021-05-10', '2021-05-12', 'tren'),
+(3, 4, '2021-05-20', '2021-05-20', 'contraenrega3'),
+(4, 4, '2021-05-12', '2021-05-20', 'contraenrega4'),
+(5, 4, '2021-05-20', '2021-05-27', 'contraenrega6'),
+(6, 4, '2021-05-22', '2021-05-25', 'contraenrega2'),
+(7, 5, '2021-05-05', '2021-05-10', 'carretera'),
+(8, 8, '2021-05-04', '2021-05-27', 'carretera'),
+(9, 4, '2021-05-25', '2021-06-02', 'maritima'),
+(10, 6, '2021-05-04', '2021-05-18', 'barco'),
+(11, 7, '2021-05-03', '2021-05-26', 'avion'),
+(12, 5, '2021-05-30', '2021-05-18', 'Envio Express'),
+(13, 5, '2021-05-30', '2021-05-18', 'Envio Express'),
+(14, 5, '2021-05-30', '2021-05-18', 'Envio Express'),
+(15, 5, '2021-05-30', '2021-05-18', 'Envio Express'),
+(16, 4, '2021-05-30', '2021-05-31', 'Recoge en Tienda'),
+(17, 5, '2021-05-30', '2021-05-31', 'Envio Express'),
+(18, 4, '2021-05-30', '2021-05-31', 'Envio Express'),
+(19, 4, '2021-05-30', '2021-05-31', 'Envio Express'),
+(20, 4, '2021-06-04', '2021-06-08', 'Express'),
+(21, 4, '2021-06-04', '2021-06-07', 'Envio Normal'),
+(22, 4, '2021-06-04', '2021-06-07', 'Envio Normal'),
+(23, 4, '2021-06-04', '2021-06-07', 'Envio Normal'),
+(24, 4, '2021-06-04', '2021-06-07', 'Envio Normal'),
+(25, 4, '2021-06-04', '2021-06-07', 'Envio Normal'),
+(26, 4, '2021-06-04', '2021-06-07', 'Envio Normal');
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +201,13 @@ CREATE TABLE `planta_linado` (
   `numero_operarios` int(11) NOT NULL,
   `cantidad_empacada` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `planta_linado`
+--
+
+INSERT INTO `planta_linado` (`id_planta`, `fecha_ingreso`, `fecha_salida`, `numero_operarios`, `cantidad_empacada`) VALUES
+(1, '2021-05-22', '2021-05-23', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -111,6 +228,18 @@ CREATE TABLE `producto` (
   `unidades_existentes` int(11) NOT NULL DEFAULT 0,
   `precio` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `id_tipo_producto`, `id_categoria`, `nombre_producto`, `id_planta`, `peso`, `url_imagen`, `productocol`, `id_muestreo`, `unidades_existentes`, `precio`) VALUES
+(3, 1, 1, 'semillas', 1, '3', 'a', '3', 1, 4, 34000),
+(4, 1, 1, 'aguacate', 1, '3', '', '3', 1, 6, 3500),
+(5, 1, 1, 'manzanas', 1, '3', '', '3', 1, 2, 5000),
+(6, 3, 1, 'aguacate', 1, '1kg', 'a', 'verde', 1, 30, 3600),
+(7, 4, 3, 'criollo', 1, '2kg', 'a', 'cafe', 1, 20, 5000),
+(8, 1, 1, 'aguacate', 1, '1kg', '', '3', 1, 4, 60000);
 
 -- --------------------------------------------------------
 
@@ -143,6 +272,16 @@ CREATE TABLE `tipo_producto` (
   `nombre_tipo` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tipo_producto`
+--
+
+INSERT INTO `tipo_producto` (`id_tipo_producto`, `nombre_tipo`) VALUES
+(1, 'Firme'),
+(2, 'Ruptura'),
+(3, 'Maduro'),
+(4, 'Sobremaduro');
+
 -- --------------------------------------------------------
 
 --
@@ -160,8 +299,7 @@ CREATE TABLE `tipo_usuario` (
 
 INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `nombre_usuario`) VALUES
 (1, 'Administrador'),
-(2, 'Empleado'),
-(3, 'Cliente');
+(2, 'Empleado');
 
 -- --------------------------------------------------------
 
@@ -179,18 +317,22 @@ CREATE TABLE `usuario` (
   `telefono_fijo` varchar(20) DEFAULT NULL,
   `telefono_movil` varchar(20) DEFAULT NULL,
   `id_tipo_usuario` int(11) UNSIGNED NOT NULL,
-  `id_tipo_documento` int(11) UNSIGNED NOT NULL
+  `id_tipo_documento` int(11) UNSIGNED NOT NULL,
+  `id_estado` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombre`, `documento`, `correo`, `direccion`, `clave`, `telefono_fijo`, `telefono_movil`, `id_tipo_usuario`, `id_tipo_documento`) VALUES
-(4, 'nidiah', '233633', 'nidiaes@hotmail.com', '855220', '98f63a859469722a52538e5a02a7f4d967e9f76cebdffb912538e96bd785cba6', NULL, '85552', 2, 1),
-(5, 'santy', '8523', 'sany@gmail.com', '97857', '0b592c692713048fb10a6bce270a9e83557d469c7d9c8e4766a6356ea5f89452', NULL, '85552', 2, 1),
-(6, 'andrea', '2555', 'andrea@gmaicom', '789895', '770c3cbf77615a1d94f88d0f9ed148823de46e4518a3f290fec2859e85b501ef', NULL, '7859', 2, 1),
-(7, 'Jose', '12356', 'jose@hotmail.com', '1235', 'a13df1211cf4c38cdb7a165c67f8e5ab6fded2982c2cb1f55d4cefef880183d5', NULL, '5258', 2, 1);
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `documento`, `correo`, `direccion`, `clave`, `telefono_fijo`, `telefono_movil`, `id_tipo_usuario`, `id_tipo_documento`, `id_estado`) VALUES
+(4, 'nidiah', '233633', 'nidiaes@hotmail.com', '855220', '77f37055a6349b3770b1ee2f8c1f95f0de40a8ecaa931c6fe4e35768cda62205', NULL, '85552', 2, 1, 0),
+(5, 'santy', '8523', 'sany@gmail.com', '97857', '0b592c692713048fb10a6bce270a9e83557d469c7d9c8e4766a6356ea5f89452', NULL, '85552', 2, 1, 0),
+(6, 'andrea', '2555', 'andrea@gmaicom', '789895', '770c3cbf77615a1d94f88d0f9ed148823de46e4518a3f290fec2859e85b501ef', NULL, '7859', 2, 1, 0),
+(7, 'Jose', '12356', 'jose@hotmail.com', '1235', 'a13df1211cf4c38cdb7a165c67f8e5ab6fded2982c2cb1f55d4cefef880183d5', NULL, '5258', 2, 1, 0),
+(8, 'Nidia Herrera', '65412347', 'nidiaesm@hotmail.com', 'carrera 71-5', '41b8f299497b80edcfb541dc9685d723f43a5e27fa3fcd389b835a9f34a63af2', NULL, '3128962517', 2, 1, 0),
+(9, 'Nidia Herrera', '65412347', 'nherrer54@gmail.com', 'carrera 71-5', '3b814105f5ff114e33df9cce7444ba7788b060e39619bed61c8b8b10b1c0f588', NULL, '3128962517', 2, 1, 0),
+(10, 'Jose Dominguez', '123456788', 'josedominguez.121398@gmail.com', 'carrera 71-5', 'd3bcfb928bb9e48b36901392e9c48d1022feebb4ad4058543330a5659980160a', '3124569874', '3124658782', 1, 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -273,37 +415,37 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria_producto`
 --
 ALTER TABLE `categoria_producto`
-  MODIFY `id_categoria` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_pedido`
 --
 ALTER TABLE `detalle_pedido`
-  MODIFY `id_detalle` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detalle` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `muestreo_calidad`
 --
 ALTER TABLE `muestreo_calidad`
-  MODIFY `id_muestreo` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_muestreo` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pedido` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `planta_linado`
 --
 ALTER TABLE `planta_linado`
-  MODIFY `id_planta` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_planta` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_producto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
@@ -315,7 +457,7 @@ ALTER TABLE `tipo_documento`
 -- AUTO_INCREMENT de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
-  MODIFY `id_tipo_producto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipo_producto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
@@ -327,7 +469,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
