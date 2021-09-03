@@ -153,7 +153,8 @@ CREATE TABLE `pedido` (
   `id_usuario` int(11) UNSIGNED NOT NULL,
   `fecha_pedido` date NOT NULL,
   `fecha_entrega` date NOT NULL,
-  `forma_envio` varchar(20) DEFAULT NULL
+  `forma_envio` varchar(20) DEFAULT NULL,
+  `estado_pedido` VARCHAR(45) NULL DEFAULT 'Nuevo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -260,6 +261,31 @@ INSERT INTO `tipo_documento` (`id_tipo_documento`, `nombre_documento`) VALUES
 (1, 'Cedula de Ciudadania'),
 (2, 'Cedula Extranjero'),
 (3, 'Tarjeta de Identidad');
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `configuracion`
+--
+
+CREATE TABLE `configuracion` (
+  `id_configuracion` int(11) UNSIGNED NOT NULL,
+  `nuumero_pedidos_maximos` int(11) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `configuracion`
+--
+
+INSERT INTO `configuracion` (`id_configuracion`,`nuumero_pedidos_maximos`) VALUES (1,5);
+
+--
+-- Indices de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
+  ADD PRIMARY KEY (`id_configuracion`);
+
 
 -- --------------------------------------------------------
 
