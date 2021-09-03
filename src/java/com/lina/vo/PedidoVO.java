@@ -15,18 +15,19 @@ public class PedidoVO {
 
     //Mensaje Jose Nidia github
     private int id_Pedido, id_Usuario;
-    private String forma_Envio,nombreUsuario;
+    private String forma_Envio,nombreUsuario,estadoPedido;
     private Date fecha_Pedido, fecha_Entrega;
 
     public PedidoVO() {
     }
 
-    public PedidoVO(int id_Pedido, int id_Usuario, Date fecha_Pedido, Date fecha_Entrega, String forma_Envio) {
+    public PedidoVO(int id_Pedido, int id_Usuario, Date fecha_Pedido, Date fecha_Entrega, String forma_Envio,String estadoPedido) {
         this.id_Pedido = id_Pedido;
         this.id_Usuario = id_Usuario;
         this.forma_Envio = forma_Envio;
         this.fecha_Pedido = fecha_Pedido;
         this.fecha_Entrega = fecha_Entrega;
+         this.estadoPedido = estadoPedido;
     }
 
     public int getId_Pedido() {
@@ -75,6 +76,14 @@ public class PedidoVO {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getEstadoPedido() {
+        return estadoPedido;
+    }
+
+    public void setEstadoPedido(String estadoPedido) {
+        this.estadoPedido = estadoPedido;
     }
 
 }

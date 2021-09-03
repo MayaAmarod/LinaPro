@@ -186,6 +186,7 @@
                                                 <th>Fecha de Pedido</th>
                                                 <th>Fecha de Entrega</th>
                                                 <th>Forma de Envio</th>
+                                                <th>Estado de Pedido</th>
                                                 <th>Ver Productos</th>
                                             </tr>
                                         </thead>
@@ -205,7 +206,25 @@
                                                 <td><%=pedVO.getNombreUsuario()%></td>
                                                 <td><%=pedVO.getFecha_Pedido()%></td>
                                                 <td><%=pedVO.getFecha_Entrega()%></td>
-                                                <td><%=pedVO.getForma_Envio()%></td>
+                                                 <td><%=pedVO.getForma_Envio()%></td>
+                                                 <td>
+                                                     <div style="display: flex;">
+                                                         <form method="post" action="CambiarEstadoPedido">
+                                                             <select name="estado" required="true"   >
+                                                                 <option selected="selected"><%=pedVO.getEstadoPedido()%> </option>
+                                                                 <option value="Nuevo">Nuevo </option>
+                                                                 <option value="Despachado">Despachado</option>
+                                                                 <option value="Entregado">Entregado</option>
+                                                                 <option value="Confirmado">Confirmado</option>
+                                                                 <option value="Finalizado">Finalizado</option>
+                                                                 <option value="Cancelado">Cancelado</option>
+                                                             </select> 
+                                                             <input type="hidden" name="textid_pedido" value="<%=pedVO.getId_Pedido()%>" >
+                                                             <button style="width: 50px; margin-left: 15px" > <i class="fa fa-save"></i></button>
+                                                         </form>
+                                                     </div>
+                                                 </td>
+
                                                 <td><form method="post" action="RealizarPedidoControlador">
                                                         <input type="hidden" name="textid_pedido" value="<%=pedVO.getId_Pedido()%>" >
                                                         <input type="hidden" name="opcion" value="detalle_pedido" >

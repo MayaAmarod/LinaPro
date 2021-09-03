@@ -216,7 +216,22 @@
                                         <%}%>
                                     </div>
                                 </div>
+                                    <%
+                                        PedidoDAO pedDAO = new PedidoDAO();
+                                           int numeroPedidosHoy=pedDAO.getNumeroPedidosHoy() ;
+                                           int numeroMaximoPedidosHoy=pedDAO.getNumeroMaximoPedidos();
+                                           String maximoPedidos="No es posible realizar mas pedidos. Numero maximo de pedidos alcanzado para hoy.";
+                                        %>
+                                 Numero de pedidos realizados Hoy: <%=numeroPedidosHoy%>. Numero Maximo de pedidos para hoy: <%=numeroMaximoPedidosHoy%>
+                                 
+                                  <%
+                                            if (numeroPedidosHoy<numeroMaximoPedidosHoy) {
+                                        %>
                                 <a href="LinaHome.jsp"><button> Realizar Pedido</button></a>
+                                 <%
+                                        } else { %>
+                                        <label style="color:orangered" ><%=maximoPedidos%></label>
+                                        <%}%>
                             </div>
 
 

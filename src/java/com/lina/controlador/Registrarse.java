@@ -121,7 +121,20 @@ public class Registrarse extends HttpServlet {
                         request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);                    }
                     
                     break;
-                case 4: //Eliminar                   
+                case 4: //Eliminar   
+                    //Insertar el registro a eliminar a una nueva tabla (Usuarios Eliminados) falta recibir los parametros de la vista/table
+                    Pid_estado = "2";
+                    boolean usuEliminados = usuarioDAO.usuariosEliminados(Pid_usuario);
+
+                    if (usuEliminados) {
+                        request.setAttribute("mensajeExito", "¡Registro exitoso!");
+                        request.getRequestDispatcher("eliminarUsuario.jsp").forward(request, response);
+                    } else {
+                        request.setAttribute("mensajeError", "¡Error al insertar usuario en base de datos!");
+                        request.getRequestDispatcher("eliminarUsuario.jsp").forward(request, response);
+                    }
+                    //--Fin
+                    
                     if (usuDAO.Eliminar()) { //si el metodo es verdadero se envia mensaje
                         request.setAttribute("mensajeExito", "El usuario se elimino correctamente");
                         response.sendRedirect("eliminarUsuario.jsp");

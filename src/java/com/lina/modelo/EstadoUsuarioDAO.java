@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author aamaya
  */
-public class TipoDocumentoDAO extends Conexion{
+public class EstadoUsuarioDAO extends Conexion{
     
      //Extends para heredar la coenxión a base de datos 
     private Connection conexion; //establecer conexion
@@ -45,30 +45,30 @@ public class TipoDocumentoDAO extends Conexion{
                 listaTipoDoc.add(tipoDocVo); //lo agrega a la posicion del arreglo hasta que ya no encuentre
             }
         } catch (SQLException e) {
-            Logger.getLogger(TipoDocumentoDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(EstadoUsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             try {
                 this.cerrarConexion(); // independiente que pase en try catch haga finally
             } catch (Exception e) {
-                Logger.getLogger(TipoDocumentoDAO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(EstadoUsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return listaTipoDoc;
     }
     
-    public String consultarTipoDocumento(String id) {
-        String nombreTipoDocumento = null;
+    public String consultarEstadoUsuario(String id) {
+        String nombreUsuario = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "SELECT * FROM tipo_documento WHERE id_tipo_documento=?;"; //query
+            sql = "SELECT * FROM estado_usuario WHERE id_estado=?;"; //query
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id); //enviar en el primer ? el id que se recibe
             mensajero = puente.executeQuery();
             while (mensajero.next()) {
-                nombreTipoDocumento = mensajero.getString(2); //asignar lo que el mensajero encuentre, valor columa 2
+                nombreUsuario = mensajero.getString(2); //asignar lo que el mensajero encuentre, valor columa 2
             }
         } catch (SQLException e) {
-            Logger.getLogger(TipoDocumentoDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(EstadoUsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
 //            try {
 //                this.cerrarConexion(); // no se puede cerrar porque consulta varias veces
@@ -78,7 +78,7 @@ public class TipoDocumentoDAO extends Conexion{
 //
 //            }
         }
-        return nombreTipoDocumento;
+        return nombreUsuario;
     }
 
 }

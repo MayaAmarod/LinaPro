@@ -170,6 +170,27 @@ public class UsuarioDAO extends Conexion {
         return listaUsuarios;
     }
 
+     public boolean actualizarClave(String clave, String documento, String correo) {
+        try {
+            sql = "update usuario set clave=? where documento=? and correo=? ";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, clave);
+            puente.setString(2, documento);
+            puente.setString(3, correo);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;//retorna ya que es un método booleano
+    }
+    
     public ArrayList<PersonasVO> listar() {  // ALMACENAR objetos VO, lo almacena en posiciones
         //se puede listar directamente en jsp y no en controlador ya que no pide datos
 
@@ -178,6 +199,37 @@ public class UsuarioDAO extends Conexion {
         try {
             conexion = this.obtenerConexion();
             sql = "select * from usuario"; //query
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                perVo = new PersonasVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6),
+                        mensajero.getString(7), mensajero.getString(8),
+                        mensajero.getString(9), mensajero.getString(10),
+                        mensajero.getString(11));
+                listaUsuarios.add(perVo); //lo agrega a la posicion del arreglo hasta que ya no encuentre
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion(); // independiente que pase en try catch haga finally
+            } catch (Exception e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return listaUsuarios;
+    }
+    
+    public ArrayList<PersonasVO> listarUsuEliminado() {  // ALMACENAR objetos VO, lo almacena en posiciones
+        //se puede listar directamente en jsp y no en controlador ya que no pide datos
+
+        PersonasVO perVo = null; //declarar VO
+        ArrayList<PersonasVO> listaUsuarios = new ArrayList<>(); //crear arraylist      
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuario_eliminado"; //query
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             while (mensajero.next()) {
@@ -253,6 +305,22 @@ public class UsuarioDAO extends Conexion {
             pst.setInt(8, tipoUsuario);
             pst.setInt(9, tipoDocumento);
             pst.setInt(10, estado);
+            pst.execute();
+            return true;
+
+        } catch (Exception ex) {
+            System.err.println("ERROR " + ex);
+            ex.printStackTrace();
+        }
+        return false;
+    }
+    
+     public boolean usuariosEliminados(String idusuario) {
+        PreparedStatement pst = null;
+        try {
+            String consulta = "insert into usuario_eliminado select * from usuario where usuario.id_usuario=?";
+            pst = obtenerConexion().prepareStatement(consulta);
+            pst.setString(1, idusuario);
             pst.execute();
             return true;
 

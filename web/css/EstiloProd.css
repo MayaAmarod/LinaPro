@@ -28,6 +28,38 @@ background: #ffffff;
     font-size: 10px;
     float: right;
 }
+
+.file-select {          
+  position: relative;
+  display: inline-block;
+}
+ 
+.file-select::before {
+  background-color: #5678EF;
+  color: white;
+  display: flex;            
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  content: 'Seleccionar'; /* testo por defecto */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;                
+}
+ 
+.file-select input[type="file"] {
+  opacity: 0;
+  width: 200px;
+  height: 32px;
+  display: inline-block;            
+}
+ 
+#src-file1::before {
+  content: 'Seleccionar Archivo 1';
+}
+
 .btn2{
     background: #f97716;
     opacity: 0.6;

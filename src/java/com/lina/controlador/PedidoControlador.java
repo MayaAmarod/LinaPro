@@ -61,7 +61,7 @@ public class PedidoControlador extends HttpServlet {
         } 
         String forma_Envio = request.getParameter("textforma_envio");
 
-        PedidoVO pedVO = new PedidoVO(idPedido, id_Usuario, fecha_Pedido, fecha_Entrega, forma_Envio);
+        PedidoVO pedVO = new PedidoVO(idPedido, id_Usuario, fecha_Pedido, fecha_Entrega, forma_Envio,"Nuevo");
 
         PedidoDAO pedDAO = new PedidoDAO();
         switch (opcion) {

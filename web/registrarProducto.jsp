@@ -216,7 +216,9 @@
                                                     <label>
                                                         Imagen: <br>
                                                     </label>
-                                                    <input type="text" name="texturl_imagen">   
+                                                    <div class="file-select" id="src-file1" >
+                                                        <input type="file" name="texturl_imagen" aria-label="Archivo">
+                                                    </div>  
 
                                                     <label>
                                                         Color:  <br>

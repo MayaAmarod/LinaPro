@@ -1,3 +1,6 @@
+<%@page import="com.lina.modelo.EstadoUsuarioDAO"%>
+<%@page import="com.lina.modelo.TipoDocumentoDAO"%>
+<%@page import="com.lina.modelo.TipoUsuarioDAO"%>
 <%@page import="com.lina.vo.PersonasVO"%>
 <%@page import="com.lina.modelo.UsuarioDAO"%>
 <%@page import="com.lina.modelo.TipoProductoDAO"%>
@@ -57,7 +60,7 @@
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
                             <ul class="sub-menu children dropdown-menu">
-                               <li><i class="fa fa-table"></i><a href="RealizarPedidos.jsp">Nuevo Pedido</a></li>
+                                <li><i class="fa fa-table"></i><a href="RealizarPedidos.jsp">Nuevo Pedido</a></li>
                                 <li><i class="fa fa-table"></i><a href="detallePedidos.jsp">Listar Pedidos</a></li>
                             </ul>
                         </li>
@@ -78,7 +81,9 @@
                                 <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
                                 <li><i class="fa fa-user-circle-o "></i><a href="UsuariosActivos.jsp">Usuarios Activos </a></li>
                                 <li><i class="fa fa-user-circle-o "></i><a href="ActualizarUsuario.jsp">Actualizar Usuarios </a></li>
-                                <li><i class="fa fa-user-circle-o "></i><a href="eliminarUsuarios.jsp">Eliminar Usuarios </a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="UsuariosEliminados.jsp">Usuarios Inactivos</a></li>
+                                <li><i class="fa fa-user-circle-o "></i><a href="eliminarUsuario.jsp">Eliminar Usuarios </a></li>
+                                
                             </ul>
                         </li>
                     </ul>
@@ -161,21 +166,6 @@
                                         <strong class="card-title">Usuarios</strong> 
                                         <button class="btn1">Generar Reporte PDF</button>
                                     </form>
-                                    <!--<form action="generarPDFusu.jsp" method="post" target="_blank">
-
-                                        <strong class="card-title">Usuarios</strong> 
-                                        <button class="btn1">Generar Reporte PDF</button>
-                                    </form>
-
-                                    <form action="reporteParametrizado.jsp" method="post" target="_blank">
-                                                                       
-                                    <strong class="card-title">Usuarios</strong> 
-                                    <select name="tipo">
-                                        <option value="extra"> extra</option>  
-                                        <option value="Hass"> Hass</option> 
-                                                                        </select>
-                                    <button class="btn1"> Generar </button>
-                                    </form> -->
                                 </div>
 
                                 <div class="card-body">
@@ -191,6 +181,7 @@
                                                 <th>Telefono Movil</th>
                                                 <th>Tipo De Usuario</th>
                                                 <th>Tipo De Documento</th>
+                                                <th>Estado</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -199,18 +190,19 @@
                                                 UsuarioDAO usuDAO = new UsuarioDAO(); //no va a hacer iPeraciones con datos del VO
                                                 //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
                                                 ArrayList<PersonasVO> listaUsuarios = usuDAO.listar();//se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
+
+                                                TipoUsuarioDAO TipEstDAO = new TipoUsuarioDAO();
+                                                TipoDocumentoDAO TipDocDAO = new TipoDocumentoDAO();
+                                                EstadoUsuarioDAO EstUsuDAO = new EstadoUsuarioDAO();
+                                                String tipoUsuario;
+                                                String tipoDocumento;
+                                                String estUsuario;
                                                 
-                                                //CategoriaProductoDAO CatProDAO = new CategoriaProductoDAO(); //instanciar 
-                                                /*TipoProductoDAO TiProDAO = new TipoProductoDAO();                                                
-                                                String nombreCateg;
-                                                String nombreTiPro;
-                                                for (int i = 0; i < listaProductos.size(); i++) {
-                                                    proVO = listaProductos.get(i);
-                                                    nombreCateg = CatProDAO.consultarNombreCategoria(proVO.getId_categoria());
-                                                    nombreTiPro = TiProDAO.consultarNombreTipoProducto(proVO.getId_tipo_producto());*/
-                                                
-                                                    for (int i = 0; i < listaUsuarios.size(); i++) {
+                                                for (int i = 0; i < listaUsuarios.size(); i++) {
                                                     perVO = listaUsuarios.get(i);
+                                                    tipoUsuario = TipEstDAO.consultarNombreTipoUsuario(perVO.getPtipoUsuario());
+                                                    tipoDocumento = TipDocDAO.consultarTipoDocumento(perVO.getPtipodocumento());
+                                                    estUsuario = EstUsuDAO.consultarEstadoUsuario(perVO.getPid_estado());
                                             %>
                                             <tr>
                                                 <td><%=perVO.getPid_usuario()%></td>
@@ -220,8 +212,9 @@
                                                 <td><%=perVO.getPdireccion()%></td>
                                                 <td><%=perVO.getPtelefonoFijo()%></td>
                                                 <td><%=perVO.getPcelular()%></td>
-                                                <td><%=perVO.getPtipoUsuario()%></td>    
-                                                <td><%=perVO.getPtipodocumento()%></td>  
+                                                <td><%=tipoUsuario%></td>    
+                                                <td><%=tipoDocumento%></td>  
+                                                <td><%=estUsuario%></td> 
                                             </tr>
                                             <%}%>
 
@@ -281,7 +274,5 @@
                 $('#bootstrap-data-table-export').DataTable();
             });
         </script>
-
-
     </body>
 </html>

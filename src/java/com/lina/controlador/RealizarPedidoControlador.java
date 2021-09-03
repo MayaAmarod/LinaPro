@@ -58,7 +58,7 @@ public class RealizarPedidoControlador extends HttpServlet {
         Date fecha_Pedido = new Date(Calendar.getInstance().getTime().getTime());// colocamos la fecha en que se realiza el pedido
         Date fecha_Entrega = Date.valueOf(request.getParameter("textfecha_entrega"));
         String forma_Envio = request.getParameter("textforma_envio");
-        PedidoVO pedVO = new PedidoVO(0, id_Usuario, fecha_Pedido, fecha_Entrega, forma_Envio);
+        PedidoVO pedVO = new PedidoVO(0, id_Usuario, fecha_Pedido, fecha_Entrega, forma_Envio,"Nuevo");
 
         //guardamos en cestaDeproductosSeleccionados los productos seleccionados con cantidad y subtotal
         ProductoDAO proDAO = new ProductoDAO();

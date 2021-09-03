@@ -1,10 +1,10 @@
+<%@page import="com.lina.modelo.EstadoUsuarioDAO"%>
+<%@page import="com.lina.modelo.TipoDocumentoDAO"%>
+<%@page import="com.lina.modelo.TipoUsuarioDAO"%>
+<%@page import="com.lina.vo.PersonasVO"%>
 <%@page import="com.lina.modelo.UsuarioDAO"%>
-<%@page import="com.lina.vo.PersonasVO"%>
-<%@page import="com.lina.vo.PersonasVO"%>
-<%@page import="com.lina.vo.CategoriaProductoVO"%>
-<%@page import="com.lina.modelo.CategoriaProductoDAO"%>
-<%@page import="com.lina.vo.TipoProductoVO"%>
 <%@page import="com.lina.modelo.TipoProductoDAO"%>
+<%@page import="com.lina.modelo.CategoriaProductoDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.lina.modelo.ProductoDAO"%>
 <%@page import="com.lina.vo.productoVO"%>
@@ -40,7 +40,7 @@
         <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
         <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
-        <link href="css/EstiloProd.css" rel="stylesheet" type="text/css"/>
+        <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
         <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
@@ -60,7 +60,7 @@
                         <li class="menu-item-has-children active dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-truck"></i>Pedidos</a>
                             <ul class="sub-menu children dropdown-menu">
-                               <li><i class="fa fa-table"></i><a href="RealizarPedidos.jsp">Nuevo Pedido</a></li>
+                                <li><i class="fa fa-table"></i><a href="RealizarPedidos.jsp">Nuevo Pedido</a></li>
                                 <li><i class="fa fa-table"></i><a href="detallePedidos.jsp">Listar Pedidos</a></li>
                             </ul>
                         </li>
@@ -72,7 +72,7 @@
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Registrar Productos </a></li>
                                 <li><i class="fa fa-envira"></i><a href="registrarProducto.jsp">Actualizar Productos </a></li>
                                 <li><i class="fa fa-envira"></i><a href="eliminarProducto.jsp">Eliminar Productos </a></li>
-                            <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>
+                                <li><i class="fa fa-envira"></i><a href="detalleProducto.jsp">Imprimir Listado Productos </a></li>
                             </ul>
                         </li>
                         <li class="menu-item-has-children active dropdown">
@@ -81,7 +81,6 @@
                                 <li><i class="fa fa-user-circle-o "></i><a href="RegistroUsuario.jsp">Registrar Usuarios </a></li>
                                 <li><i class="fa fa-user-circle-o "></i><a href="UsuariosActivos.jsp">Usuarios Activos </a></li>
                                 <li><i class="fa fa-user-circle-o "></i><a href="ActualizarUsuario.jsp">Actualizar Usuarios </a></li>
-                                <li><i class="fa fa-user-circle-o "></i><a href="UsuariosEliminados.jsp">Usuarios Inactivos</a></li>
                                 <li><i class="fa fa-user-circle-o "></i><a href="eliminarUsuario.jsp">Eliminar Usuarios </a></li>
                             </ul>
                         </li>
@@ -134,7 +133,7 @@
                         <div class="col-sm-4">
                             <div class="page-header float-left">
                                 <div class="page-title">
-                                    <h1>Eliminar Usuarios Registrados</h1>
+                                    <h1>Usuarios Activos</h1>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +143,7 @@
                                     <ol class="breadcrumb text-right">
                                         <li><a href="#">Menu</a></li>
                                         <li><a href="#">Usuarios</a></li>
-                                        <li class="active"><a href="#">Eliminar Usuarios</a></li>
+                                        <li class="active"><a href="#">Usuarios Activos</a></li>
 
                                     </ol>
                                 </div>
@@ -157,24 +156,14 @@
             <div class="content">
                 <div class="animated fadeIn">
                     <div class="row">
-                        <div class="col-lg-7">
-                            <div class="card">
-                                <div class="card-header">
-                                    <form action="Registrar" method="Post">
 
-                                        <strong class="card-title">Código Usuarios</strong>
-                                        <input type="text" name="textid_usuario">
-                                        <button class="btn2" value="4" name="opcion" >Eliminar</button>
-                                    </form>
-                                </div> 
-                            </div>
-                        </div>
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <strong class="card-title">Usuarios</strong> 
-
-
+                                    <form action="generarPDFusu.jsp" method="post" target="_blank">
+                                        <strong class="card-title">Usuarios</strong> 
+                                        <button class="btn1">Generar Reporte PDF</button>
+                                    </form>
                                 </div>
 
                                 <div class="card-body">
@@ -190,7 +179,6 @@
                                                 <th>Telefono Movil</th>
                                                 <th>Tipo De Usuario</th>
                                                 <th>Tipo De Documento</th>
-                                                <th>Estado</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -198,10 +186,21 @@
                                                 PersonasVO perVO = new PersonasVO();//se deja vacio porque no va a enviar sino recibir, no pasa x controlador
                                                 UsuarioDAO usuDAO = new UsuarioDAO(); //no va a hacer iPeraciones con datos del VO
                                                 //vamos a vehiculo DAO seleccionar variables y generan constructor vacio para llamarlo
-                                                ArrayList<PersonasVO> listaUsuarios = usuDAO.listar();//se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
+                                                //ArrayList<PersonasVO> listaUsuarios = usuDAO.listAar();//se declara un array para recibir los datos <se coloca el objeto, STRING, BOOLEAN>
+                                                ArrayList<PersonasVO> listaUsuariosElm = usuDAO.listarUsuEliminado();
                                                 
-                                                    for (int i = 0; i < listaUsuarios.size(); i++) {
-                                                    perVO = listaUsuarios.get(i);
+                                                TipoUsuarioDAO TipEstDAO = new TipoUsuarioDAO();
+                                                TipoDocumentoDAO TipDocDAO = new TipoDocumentoDAO();
+                                                EstadoUsuarioDAO EstUsuDAO = new EstadoUsuarioDAO();
+                                                String tipoUsuario;
+                                                String tipoDocumento;
+                                                String estUsuario;
+                                                
+                                                for (int i = 0; i < listaUsuariosElm.size(); i++) {
+                                                    perVO = listaUsuariosElm.get(i);
+                                                    tipoUsuario = TipEstDAO.consultarNombreTipoUsuario(perVO.getPtipoUsuario());
+                                                    tipoDocumento = TipDocDAO.consultarTipoDocumento(perVO.getPtipodocumento());
+                                                    estUsuario = EstUsuDAO.consultarEstadoUsuario(perVO.getPid_estado());
                                             %>
                                             <tr>
                                                 <td><%=perVO.getPid_usuario()%></td>
@@ -211,9 +210,8 @@
                                                 <td><%=perVO.getPdireccion()%></td>
                                                 <td><%=perVO.getPtelefonoFijo()%></td>
                                                 <td><%=perVO.getPcelular()%></td>
-                                                <td><%=perVO.getPtipoUsuario()%></td>    
-                                                <td><%=perVO.getPtipodocumento()%></td> 
-                                                <td><%=perVO.getPid_estado()%></td>   
+                                                <td><%=tipoUsuario%></td>    
+                                                <td><%=tipoDocumento%></td> 
                                             </tr>
                                             <%}%>
 
